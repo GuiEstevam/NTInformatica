@@ -1,0 +1,131 @@
+// ============================================
+// Benefits Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.benefits {
+  padding: $spacing-xxl 0;
+  background-color: $color-bg-primary;
+  position: relative;
+  overflow: hidden;
+  
+  // Elemento decorativo
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba($color-blue-primary, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.benefits__container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-lg;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.benefit-card {
+  @include card-modern;
+  padding: $spacing-xl;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all $transition-normal;
+  
+  &:hover {
+    transform: translateY(-6px);
+    
+    .benefit-card__icon {
+      transform: scale(1.1) rotate(5deg);
+      color: $color-blue-primary;
+    }
+  }
+}
+
+.benefit-card__icon {
+  font-size: 2.5rem;
+  color: $color-blue-primary;
+  margin-bottom: $spacing-md;
+  transition: all $transition-normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  
+  i {
+    display: block;
+  }
+}
+
+.benefit-card__title {
+  font-size: $font-size-h4;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+  color: $color-text-primary;
+  letter-spacing: -0.01em;
+}
+
+.benefit-card__description {
+  color: $color-text-secondary;
+  line-height: 1.7;
+  font-size: $font-size-body;
+}
+
+// Dark Mode
+@include dark-mode {
+  .benefits {
+    background-color: $color-black-soft;
+  }
+  
+  .benefit-card {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+    
+    .benefit-card__icon {
+      color: $color-white;
+    }
+    
+    .benefit-card__title {
+      color: $color-white;
+    }
+    
+    .benefit-card__description {
+      color: $color-gray-lighter;
+    }
+    
+    &:hover {
+      background-color: $color-white;
+      
+      .benefit-card__icon,
+      .benefit-card__title,
+      .benefit-card__description {
+        color: $color-black;
+      }
+    }
+  }
+}
+

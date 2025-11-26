@@ -1,0 +1,152 @@
+// ============================================
+// Base Styles - NT Informática
+// ============================================
+
+// Importar variáveis e mixins
+@use 'variables' as *;
+@use 'mixins' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-body;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-relaxed;
+  color: $color-text-primary;
+  background-color: $color-bg-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+// Tipografia Melhorada
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.1;
+  
+  @include mobile {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: $font-size-h2;
+  font-weight: $font-weight-bold;
+  
+  @include mobile {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: $font-size-h3;
+  font-weight: $font-weight-semibold;
+  
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+h4 {
+  font-size: $font-size-h4;
+  font-weight: $font-weight-semibold;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $color-text-secondary;
+  text-transform: none; // Garantir que não haja capitalize aplicado
+}
+
+a {
+  color: $color-text-primary;
+  text-decoration: none;
+  transition: color $transition-normal, transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    color: $color-blue-primary;
+  }
+  
+  &:focus {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Imagens
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Garantir que textos não tenham capitalize aplicado
+// (alguns navegadores ou estilos podem aplicar capitalize por padrão)
+* {
+  text-transform: none;
+}
+
+// Listas
+ul, ol {
+  list-style: none;
+}
+
+// Dark Mode
+@include dark-mode {
+  body {
+    background-color: $color-black-soft;
+    color: $color-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: $color-white;
+  }
+  
+  p {
+    color: $color-gray-lighter;
+  }
+  
+  a {
+    color: $color-white;
+    
+    &:hover {
+      color: $color-gray-lighter;
+    }
+  }
+}
+

@@ -1,0 +1,455 @@
+// ============================================
+// Hero Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: $color-bg-primary;
+  @include tech-gradient;
+  padding: $spacing-xl $spacing-md;
+  // Compensar altura da navbar fixa (70px)
+  padding-top: calc(70px + $spacing-xl);
+  overflow: hidden; // Para elementos decorativos
+  
+  // Elementos decorativos de fundo
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($color-blue-primary, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($color-accent, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 15s ease-in-out infinite reverse;
+  }
+  
+  @include mobile {
+    min-height: 80vh;
+    padding: $spacing-lg $spacing-md;
+    padding-top: calc(70px + $spacing-lg);
+    
+    &::before,
+    &::after {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  
+  // Hero em páginas internas (menor altura)
+  &--page {
+    min-height: 40vh;
+    padding-top: calc(70px + 2rem) !important; // 70px navbar + 2rem spacing
+    padding-bottom: 2rem;
+    padding-left: $spacing-md;
+    padding-right: $spacing-md;
+    align-items: flex-start; // Alinhar conteúdo no topo (não centralizar)
+    justify-content: flex-start; // Alinhar no topo também
+    
+    @include mobile {
+      min-height: 30vh;
+      padding-top: calc(70px + 1.5rem) !important;
+      padding-bottom: 1.5rem;
+    }
+  }
+}
+
+.hero__content {
+  @include container;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  max-width: 1000px; // Aumentado para ocupar mais espaço
+  padding: $spacing-lg 0; // Adicionar padding vertical
+}
+
+.hero__title {
+  font-size: 3.5rem; // Aumentado de 2.5rem
+  font-weight: $font-weight-extrabold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-lg; // Aumentado
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  animation: fadeInDown 0.8s ease-out;
+  
+  strong {
+    display: block;
+    margin-top: $spacing-sm; // Aumentado
+    background: linear-gradient(135deg, $color-blue-primary, $color-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 0.8s ease-out 0.2s both;
+  }
+  
+  @include mobile {
+    font-size: 2.5rem; // Aumentado de 2rem
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    
+    strong {
+      animation: none;
+    }
+  }
+}
+
+.hero__subtitle {
+  font-size: 1.75rem; // Aumentado de 1.5rem
+  font-weight: $font-weight-semibold;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-md; // Aumentado
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+  position: relative;
+  
+  // Linha decorativa abaixo do subtítulo
+  &::after {
+    content: '';
+    display: block;
+    width: 80px; // Aumentado
+    height: 4px; // Aumentado
+    background: linear-gradient(90deg, $color-blue-primary, $color-accent);
+    margin: $spacing-md auto 0; // Aumentado
+    border-radius: 2px;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+  
+  @include mobile {
+    font-size: 1.5rem; // Aumentado de 1.25rem
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+.hero__description {
+  font-size: 1.125rem; // Aumentado de 1rem
+  color: $color-text-secondary;
+  max-width: 700px; // Aumentado
+  margin: 0 auto $spacing-xl; // Aumentado
+  line-height: 1.8; // Aumentado
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  font-weight: $font-weight-regular;
+  
+  @include mobile {
+    font-size: 1rem; // Aumentado
+    line-height: 1.7;
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.hero__actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+  margin-top: $spacing-xl;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: $spacing-lg;
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+  
+  // Stagger animation para botões filhos
+  .stagger-animation {
+    animation: fadeInUp 0.6s ease-out both;
+    
+    &:nth-child(1) {
+      animation-delay: 0.6s;
+    }
+    
+    &:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+// Estatísticas rápidas abaixo dos botões (opcional)
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-xxl; // Aumentado
+  margin-top: $spacing-xxl; // Aumentado
+  padding-top: $spacing-xl; // Aumentado
+  border-top: $border-medium; // Aumentado espessura
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+  
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-lg; // Aumentado
+    margin-top: $spacing-xl;
+    padding-top: $spacing-lg;
+  }
+  
+  &-item {
+    text-align: center;
+    
+    &-number {
+      font-size: 3rem; // Aumentado de 2rem
+      font-weight: $font-weight-extrabold;
+      color: $color-blue-primary;
+      display: block;
+      line-height: 1;
+      margin-bottom: $spacing-sm; // Aumentado
+    }
+    
+    &-label {
+      font-size: $font-size-body; // Aumentado de small
+      color: $color-text-secondary;
+      font-weight: $font-weight-medium;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.hero__button {
+  @include button-modern;
+  padding: $spacing-md $spacing-xl; // Aumentado
+  font-size: $font-size-body; // Aumentado de small
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm; // Aumentado
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  min-height: 52px; // Aumentado para melhor toque
+  
+  // Efeito de brilho no hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left $transition-slow;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &--primary {
+    background: linear-gradient(135deg, $color-blue-primary, $color-blue-light) !important;
+    color: $color-white !important;
+    border: none;
+    box-shadow: $shadow-md;
+    font-weight: $font-weight-semibold; // Aumentar peso da fonte para melhor contraste
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Sombra sutil no texto para melhor legibilidade
+    
+    // Garantir contraste adequado no texto e ícones
+    i {
+      color: $color-white !important;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+    }
+    
+    // Garantir que o texto do link seja branco
+    &,
+    &:link,
+    &:visited {
+      color: $color-white !important;
+    }
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, $color-blue-dark, $color-blue-primary) !important;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: $shadow-lg;
+      color: $color-white !important; // Garantir que o texto continue branco no hover
+      
+      i {
+        color: $color-white !important;
+      }
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0) scale(0.98);
+      color: $color-white !important;
+      
+      i {
+        color: $color-white !important;
+      }
+    }
+    
+    &:focus,
+    &:focus-visible {
+      color: $color-white !important;
+      
+      i {
+        color: $color-white !important;
+      }
+    }
+  }
+  
+  &--secondary {
+    background-color: $color-white;
+    color: $color-text-primary;
+    border-color: rgba($color-blue-primary, 0.2);
+    
+    &:hover:not(:disabled) {
+      background-color: rgba($color-blue-primary, 0.05);
+      border-color: $color-blue-primary;
+      color: $color-blue-primary;
+      transform: translateY(-2px);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+  
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// Animações de entrada
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animação flutuante para elementos decorativos
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(5deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(-5deg);
+  }
+}
+
+// Dark Mode
+@include dark-mode {
+  .hero {
+    background-color: $color-black-soft;
+  }
+  
+  .hero__title {
+    color: $color-white;
+  }
+  
+  .hero__subtitle,
+  .hero__description {
+    color: $color-gray-lighter;
+  }
+  
+  .hero__button {
+    &--primary {
+      background: linear-gradient(135deg, $color-blue-primary, $color-blue-light) !important;
+      color: $color-white !important;
+      font-weight: $font-weight-semibold;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      
+      i {
+        color: $color-white !important;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+      }
+      
+      &,
+      &:link,
+      &:visited {
+        color: $color-white !important;
+      }
+      
+      &:hover:not(:disabled) {
+        background: linear-gradient(135deg, $color-blue-dark, $color-blue-primary) !important;
+        color: $color-white !important;
+        
+        i {
+          color: $color-white !important;
+        }
+      }
+      
+      &:focus,
+      &:focus-visible {
+        color: $color-white !important;
+        
+        i {
+          color: $color-white !important;
+        }
+      }
+    }
+    
+    &--secondary {
+      background-color: $color-black;
+      color: $color-white;
+      border-color: $color-white;
+      
+      &:hover:not(:disabled) {
+        background-color: $color-white;
+        color: $color-black;
+      }
+    }
+  }
+}
+

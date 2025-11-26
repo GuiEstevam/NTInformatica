@@ -1,0 +1,79 @@
+/* ============================================
+   Animações de Scroll - NT Informática
+   ============================================ */
+
+/* Fade In */
+.fade-in {
+  opacity: 0;
+  transition: opacity var(--transition-slow) ease-out;
+}
+
+.fade-in.animate-in {
+  opacity: 1;
+}
+
+/* Slide Up */
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out;
+}
+
+.slide-up.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Animation (para grids e listas) */
+.stagger-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-normal) ease-out, transform var(--transition-normal) ease-out;
+}
+
+.stagger-animation.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transições de Página */
+.page-loading {
+  opacity: 0;
+  transition: opacity var(--transition-normal) ease-in;
+}
+
+.page-loaded {
+  opacity: 1;
+  transition: opacity var(--transition-normal) ease-in;
+}
+
+.page-exiting {
+  opacity: 0;
+  transition: opacity var(--transition-fast) ease-out;
+}
+
+/* Suporte para prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-up,
+  .stagger-animation {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .fade-in.animate-in,
+  .slide-up.animate-in,
+  .stagger-animation.animate-in {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .page-loading,
+  .page-loaded,
+  .page-exiting {
+    opacity: 1;
+    transition: none;
+  }
+}
+

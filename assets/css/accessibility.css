@@ -1,0 +1,154 @@
+/* ============================================
+   Acessibilidade Visual - NT Informática
+   WCAG AA Compliance
+   ============================================ */
+
+/* Estados de Foco Visíveis */
+*:focus-visible {
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remover outline padrão do navegador */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Contraste de Texto - Garantir WCAG AA */
+/* Razão de contraste mínimo: 4.5:1 para texto normal, 3:1 para texto grande */
+
+/* Links com melhor contraste */
+a {
+  color: var(--color-blue-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: var(--color-blue-dark);
+}
+
+a:hover {
+  color: var(--color-blue-light);
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  background-color: rgba(0, 102, 204, 0.1);
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 2px;
+}
+
+/* Botões com contraste adequado */
+button,
+.button,
+.form-button,
+.hero__button {
+  min-height: 44px; /* Tamanho mínimo de toque (WCAG) */
+  min-width: 44px;
+}
+
+button:focus-visible,
+.button:focus-visible,
+.form-button:focus-visible,
+.hero__button:focus-visible {
+  outline: 3px solid var(--color-blue-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2);
+}
+
+/* Inputs com estados de foco claros */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 2px;
+  border-color: var(--color-blue-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Cards navegáveis */
+.service-card:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+}
+
+/* Skip Link para navegação por teclado */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-blue-primary);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  z-index: 10000;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Indicadores de erro com contraste adequado */
+.form-error {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  display: block;
+  margin-top: var(--spacing-xs);
+}
+
+.form-input--error {
+  border-color: var(--color-error);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.form-input--error:focus-visible {
+  outline-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Indicadores de sucesso */
+.form-input--success {
+  border-color: var(--color-success);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* Texto alternativo para ícones decorativos */
+.icon-decorative {
+  aria-hidden: true;
+}
+
+/* Suporte para alto contraste */
+@media (prefers-contrast: high) {
+  * {
+    border-width: 2px !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+  
+  button,
+  .button {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* Suporte para modo escuro com contraste adequado */
+@media (prefers-color-scheme: dark) {
+  a:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  button:focus-visible,
+  .button:focus-visible {
+    outline-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.3);
+  }
+}
+

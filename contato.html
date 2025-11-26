@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Contato - NT Informática | Solicite um Orçamento</title>
+  <meta name="description" content="Entre em contato com a NT Informática. Solicite um orçamento sem compromisso para serviços de suporte técnico e soluções em TI.">
+  <meta name="keywords" content="contato NT Informática, orçamento suporte técnico, solicitar orçamento TI, contato empresa informática">
+  <meta name="author" content="NT Informática">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contato - NT Informática | Solicite um Orçamento">
+  <meta property="og:description" content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso.">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contato - NT Informática | Solicite um Orçamento">
+  <meta name="twitter:description" content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso.">
+  <meta name="twitter:image" content="">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/toast.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/accessibility.css">
+  <link rel="stylesheet" href="/assets/css/sections/navigation.css">
+  <link rel="stylesheet" href="/assets/sass/main.scss">
+</head>
+<body>
+  <vite-partial src="/partials/header.html"/>
+  
+  <!-- Hero da Página -->
+  <section class="hero hero--page">
+    <div class="hero__content">
+      <h1 class="hero__title">Entre em Contato</h1>
+      <p class="hero__subtitle">Estamos prontos para ajudar sua empresa. Solicite um orçamento sem compromisso.</p>
+    </div>
+  </section>
+  
+  <!-- Contato -->
+  <section id="contato" class="contact section">
+    <div class="contact__container">
+      <div class="contact__info">
+        <h3>Informações de Contato</h3>
+        <p>
+          Estamos prontos para ajudar sua empresa. Entre em contato conosco e 
+          solicite um orçamento sem compromisso. Nossa equipe está disponível para 
+          esclarecer dúvidas e apresentar as melhores soluções para suas necessidades.
+        </p>
+        <ul class="contact__details">
+          <li>
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <a href="tel:+5511999999999">(11) 99999-9999</a>
+          </li>
+          <li>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:contato@ntinformatica.com.br">contato@ntinformatica.com.br</a>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>Endereço completo da empresa</span>
+          </li>
+          <li>
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </li>
+        </ul>
+        <div style="margin-top: var(--spacing-xl);">
+          <h4>Horário de Atendimento</h4>
+          <p>Segunda a Sexta: 8h às 18h<br>
+          Sábado: 8h às 12h<br>
+          Domingo: Fechado</p>
+        </div>
+      </div>
+      <form id="contact-form" class="contact-form" aria-label="Formulário de contato">
+        <div class="form-group">
+          <label for="nome" class="form-label">Nome Completo *</label>
+          <input 
+            type="text" 
+            id="nome" 
+            name="nome" 
+            class="form-input"
+            required
+            aria-required="true"
+            aria-describedby="nome-error"
+            minlength="3"
+            maxlength="100"
+          >
+          <div id="nome-error" class="form-error" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">E-mail *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-input"
+            required
+            aria-required="true"
+            aria-describedby="email-error"
+          >
+          <div id="email-error" class="form-error" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="telefone" class="form-label">Telefone *</label>
+          <input 
+            type="tel" 
+            id="telefone" 
+            name="telefone" 
+            class="form-input"
+            required
+            aria-required="true"
+            aria-describedby="telefone-error"
+            placeholder="(11) 99999-9999"
+          >
+          <div id="telefone-error" class="form-error" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="assunto" class="form-label">Assunto</label>
+          <select id="assunto" name="assunto" class="form-select">
+            <option value="">Selecione um assunto</option>
+            <option value="suporte">Suporte Técnico</option>
+            <option value="manutencao">Manutenção</option>
+            <option value="consultoria">Consultoria</option>
+            <option value="orcamento">Orçamento</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensagem" class="form-label">Mensagem *</label>
+          <textarea 
+            id="mensagem" 
+            name="mensagem" 
+            class="form-textarea"
+            required
+            aria-required="true"
+            aria-describedby="mensagem-error"
+            minlength="10"
+            maxlength="1000"
+            rows="5"
+          ></textarea>
+          <div id="mensagem-error" class="form-error" role="alert"></div>
+        </div>
+        <button type="submit" class="form-button">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          <span>Enviar Solicitação</span>
+        </button>
+      </form>
+    </div>
+  </section>
+  
+  <vite-partial src="/partials/footer.html"/>
+  
+  <!-- JavaScript -->
+  <script type="module" src="/assets/js/toast.js"></script>
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>
+

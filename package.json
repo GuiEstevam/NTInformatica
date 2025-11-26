@@ -1,0 +1,24 @@
+{
+  "name": "nt-informatica",
+  "version": "1.0.0",
+  "description": "Site corporativo NT Informática - Suporte Técnico e Soluções em TI",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "suporte técnico",
+    "informática",
+    "TI",
+    "site corporativo"
+  ],
+  "author": "NT Informática",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "vite": "^5.0.0",
+    "vite-plugin-partial": "^1.0.0"
+  }
+}

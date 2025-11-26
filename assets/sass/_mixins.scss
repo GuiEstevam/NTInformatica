@@ -1,0 +1,166 @@
+// ============================================
+// Mixins SASS - NT Informática
+// ============================================
+
+@use 'variables' as *;
+
+// Media Queries
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and (min-width: #{$breakpoint-large}) {
+    @content;
+  }
+}
+
+// Dark Mode
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+// Botões Modernos (estilo tech)
+@mixin button-modern {
+  border: $border-medium;
+  border-radius: 6px;
+  font-weight: $font-weight-medium;
+  letter-spacing: -0.01em;
+  transition: all $transition-normal;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    border-color: $color-blue-primary;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+  
+  &:focus {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none;
+    pointer-events: none;
+  }
+}
+
+// Cards Modernos (estilo tech)
+@mixin card-modern {
+  border: $border-medium;
+  border-radius: 8px;
+  background-color: $color-white;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+  overflow: hidden;
+  min-height: 0;
+  box-sizing: border-box;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+    border-color: rgba($color-blue-primary, 0.3);
+  }
+  
+  &:focus-within {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Gradiente sutil (estilo tech)
+@mixin tech-gradient {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(0, 168, 255, 0.03) 100%);
+}
+
+// Padrão geométrico muito sutil
+@mixin geometric-pattern {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba($color-blue-primary, 0.01) 20px,
+      rgba($color-blue-primary, 0.01) 40px
+    );
+}
+
+// Container centralizado
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include desktop {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Navegação hover suave
+@mixin nav-link-hover {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-blue-primary, $color-accent);
+    transition: width $transition-normal;
+    border-radius: 2px;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+

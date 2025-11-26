@@ -1,0 +1,119 @@
+// ============================================
+// Solutions Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.solutions {
+  padding: $spacing-xxl 0;
+  background-color: $color-bg-secondary;
+  
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.solutions__container {
+  @include container;
+}
+
+.solutions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: $spacing-md;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+}
+
+.solution-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border: $border-medium;
+  border-radius: 8px;
+  background-color: $color-white;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+  overflow: hidden;
+  min-width: 0;
+  
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($color-blue-primary, 0.3);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.solution-item__icon {
+  font-size: 1.75rem;
+  color: $color-blue-primary;
+  flex-shrink: 0;
+  transition: transform $transition-normal;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  i {
+    display: block;
+  }
+}
+
+.solution-item:hover .solution-item__icon {
+  transform: scale(1.05);
+}
+
+.solution-item__content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  
+  h4 {
+    font-size: $font-size-h5;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-xs;
+    letter-spacing: -0.01em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  p {
+    color: $color-text-secondary;
+    font-size: $font-size-small;
+    line-height: 1.6;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+// Dark Mode
+@include dark-mode {
+  .solutions {
+    background-color: $color-black;
+  }
+  
+  .solution-item {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+    
+    .solution-item__icon {
+      color: $color-white;
+    }
+    
+    h4 {
+      color: $color-white;
+    }
+    
+    p {
+      color: $color-gray-lighter;
+    }
+  }
+}
+

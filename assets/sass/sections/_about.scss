@@ -1,0 +1,151 @@
+// ============================================
+// About Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.about {
+  background-color: $color-bg-secondary;
+  padding: $spacing-xxl 0; // Aumentado
+  position: relative;
+  overflow: hidden;
+  
+  // Elemento decorativo sutil
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: -5%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba($color-accent, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  @include mobile {
+    padding: $spacing-xl 0; // Aumentado
+  }
+}
+
+.about__container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  align-items: center;
+  
+  @include tablet {
+    gap: $spacing-md;
+  }
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.about__text {
+  h2 {
+    font-size: $font-size-h2;
+    font-weight: $font-weight-extrabold;
+    margin-bottom: $spacing-md;
+    letter-spacing: -0.02em;
+  }
+  
+  h3 {
+    font-size: $font-size-h4;
+    font-weight: $font-weight-semibold;
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-xs;
+  }
+  
+  p {
+    color: $color-text-secondary;
+    line-height: 1.8; // Aumentado
+    margin-bottom: $spacing-lg; // Aumentado
+    font-size: 1.0625rem; // Ligeiramente maior
+  }
+}
+
+.about__image {
+  img {
+    width: 100%;
+    height: auto;
+    border: $border-thick;
+    object-fit: cover;
+  }
+}
+
+.about__values {
+  margin-top: $spacing-lg;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: $spacing-md;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about__value {
+  padding: $spacing-md;
+  border: $border-medium;
+  border-radius: 8px;
+  background-color: $color-white;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+  overflow: hidden;
+  min-height: 0;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    border-color: rgba($color-blue-primary, 0.2);
+  }
+  
+  h4 {
+    font-size: $font-size-h4;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-sm;
+    letter-spacing: -0.01em;
+    color: $color-blue-primary;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  p {
+    color: $color-text-secondary;
+    font-size: $font-size-small;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+// Dark Mode
+@include dark-mode {
+  .about {
+    background-color: $color-black;
+  }
+  
+  .about__value {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+    
+    h4 {
+      color: $color-white;
+    }
+    
+    p {
+      color: $color-gray-lighter;
+    }
+  }
+}
+

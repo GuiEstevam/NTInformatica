@@ -1,0 +1,119 @@
+// ============================================
+// Testimonials Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.testimonials {
+  padding: $spacing-xl 0;
+  background-color: $color-bg-primary;
+  
+  @include mobile {
+    padding: $spacing-lg 0;
+  }
+}
+
+.testimonials__container {
+  @include container;
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-md;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+}
+
+.testimonial-card {
+  @include card-modern;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.testimonial-card__content {
+  flex: 1;
+  margin-bottom: $spacing-md;
+}
+
+.testimonial-card__text {
+  font-size: $font-size-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+  font-style: italic;
+  margin-bottom: $spacing-sm;
+  position: relative;
+  
+  &::before {
+    content: '"';
+    font-size: 3rem;
+    line-height: 1;
+    color: $color-gray-lighter;
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    font-family: serif;
+  }
+}
+
+.testimonial-card__author {
+  border-top: $border-thin;
+  padding-top: $spacing-sm;
+  
+  strong {
+    display: block;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-small;
+    margin-bottom: $spacing-xs;
+    letter-spacing: -0.01em;
+  }
+  
+  span {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}
+
+// Dark Mode
+@include dark-mode {
+  .testimonials {
+    background-color: $color-black-soft;
+  }
+  
+  .testimonial-card {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+    
+    .testimonial-card__text {
+      color: $color-gray-lighter;
+      
+      &::before {
+        color: $color-gray;
+      }
+    }
+    
+    .testimonial-card__author {
+      border-color: $color-gray;
+      
+      strong {
+        color: $color-white;
+      }
+      
+      span {
+        color: $color-gray-lighter;
+      }
+    }
+  }
+}
+

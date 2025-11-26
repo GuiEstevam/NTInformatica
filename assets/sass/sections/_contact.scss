@@ -1,0 +1,322 @@
+// ============================================
+// Contact Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.contact {
+  padding: $spacing-xl 0;
+  background-color: $color-bg-secondary;
+  
+  @include mobile {
+    padding: $spacing-lg 0;
+  }
+}
+
+.contact__container {
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.contact__info {
+  h3 {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-sm;
+    letter-spacing: -0.01em;
+  }
+  
+  p {
+    color: $color-text-secondary;
+    margin-bottom: $spacing-md;
+    line-height: 1.6;
+    font-size: $font-size-small;
+  }
+}
+
+.contact__details {
+  list-style: none;
+  
+  li {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-sm;
+    border: $border-thin;
+    background-color: $color-white;
+    border-radius: 6px;
+    transition: all $transition-normal;
+    
+    &:hover {
+      transform: translateX(4px);
+      box-shadow: $shadow-sm;
+      border-color: $color-blue-primary;
+    }
+    
+    i {
+      font-size: 1.25rem;
+      color: $color-black;
+      flex-shrink: 0;
+      transition: transform $transition-normal, color $transition-normal;
+    }
+    
+    &:hover i {
+      transform: scale(1.1);
+      color: $color-blue-primary;
+    }
+    
+    a {
+      color: $color-text-primary;
+      font-weight: $font-weight-medium;
+      font-size: $font-size-small;
+      transition: color $transition-normal;
+      
+      &:hover {
+        color: $color-blue-primary;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.contact-form {
+  background-color: $color-white;
+  padding: $spacing-lg;
+  border: $border-medium;
+  border-radius: 8px;
+  box-shadow: $shadow-md;
+  transition: all $transition-normal;
+  position: relative;
+  
+  &--loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  &--success {
+    border-color: $color-success;
+    box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+  }
+  
+  &--error {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-label {
+  display: block;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-xs;
+  letter-spacing: -0.01em;
+  font-size: $font-size-small;
+  color: $color-text-primary;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: $spacing-sm;
+  border: $border-thin;
+  border-radius: 6px;
+  background-color: $color-white;
+  font-family: $font-family-primary;
+  font-size: $font-size-small;
+  color: $color-text-primary;
+  transition: all $transition-normal;
+  
+  &:focus {
+    outline: none;
+    border-color: $color-blue-primary;
+    box-shadow: 0 0 0 3px rgba($color-blue-primary, 0.1);
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $color-blue-primary;
+    outline-offset: 2px;
+    border-color: $color-blue-primary;
+  }
+  
+  &:invalid:not(:placeholder-shown) {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+  
+  &:valid:not(:placeholder-shown) {
+    border-color: $color-success;
+    box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: $color-gray-lighter;
+  }
+  
+  &::placeholder {
+    color: $color-gray-light;
+  }
+  
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-error {
+  color: $color-error;
+  font-size: $font-size-small;
+  margin-top: $spacing-xs;
+  display: none;
+  
+  &--show {
+    display: block;
+  }
+}
+
+.form-button {
+  @include button-modern;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-small;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  background: linear-gradient(135deg, $color-blue-primary, $color-blue-light);
+  color: $color-white;
+  border: none;
+  box-shadow: $shadow-md;
+  min-height: 44px; // Acessibilidade: tamanho mínimo de toque
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $color-blue-dark, $color-blue-primary);
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: $shadow-md;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: $shadow-sm;
+  }
+  
+  &--loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid $color-white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// Suporte para prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  .form-button--loading::after {
+    animation: none;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+}
+
+// Dark Mode
+@include dark-mode {
+  .contact {
+    background-color: $color-black;
+  }
+  
+  .contact__details li {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+    
+    i {
+      color: $color-white;
+    }
+    
+    a {
+      color: $color-white;
+    }
+  }
+  
+  .contact-form {
+    background-color: $color-gray-dark;
+    border-color: $color-white;
+  }
+  
+  .form-label {
+    color: $color-white;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .form-select {
+    background-color: $color-black-soft;
+    border-color: $color-white;
+    color: $color-white;
+    
+    &:focus {
+      border-color: $color-white;
+    }
+  }
+  
+  .form-button {
+    &--loading::after {
+      border-color: $color-white;
+      border-top-color: transparent;
+    }
+  }
+}
+
+
