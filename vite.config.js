@@ -2,13 +2,30 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import vitePluginPartial from 'vite-plugin-partial';
 
+// Determinar base path
+const basePath = process.env.NODE_ENV === 'production' ? '/NTInformatica/' : './';
+
 export default defineConfig({
   root: '.',
   // Base path: '/NTInformatica/' para produção (subpasta no GitHub Pages)
   // './' para desenvolvimento local
-  base: process.env.NODE_ENV === 'production' ? '/NTInformatica/' : './',
+  base: basePath,
   plugins: [
-    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial()
+    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial(),
+    // Plugin para substituir caminhos relativos de public files com base path em produção
+    {
+      name: 'replace-public-paths',
+      transformIndexHtml(html) {
+        if (process.env.NODE_ENV === 'production' && basePath !== './') {
+          // Substituir caminhos relativos de arquivos public por caminhos absolutos
+          return html.replace(
+            /src="\.\/js\/([^"]+)"/g,
+            `src="${basePath}js/$1"`
+          );
+        }
+        return html;
+      }
+    }
   ],
   css: {
     preprocessorOptions: {
