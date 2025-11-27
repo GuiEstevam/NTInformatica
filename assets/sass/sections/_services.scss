@@ -7,11 +7,14 @@
 
 .services {
   padding: $spacing-xxl 0;
-  background-color: $color-bg-primary;
+  background-color: var(--color-bg-primary);
+  background-image: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
   position: relative;
   overflow: hidden;
-  
-  // Elemento decorativo sutil
+
+  // Elementos decorativos animados
   &::before {
     content: '';
     position: absolute;
@@ -19,13 +22,33 @@
     right: -5%;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba($color-blue-primary, 0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.06) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
+    animation: float 25s ease-in-out infinite;
   }
-  
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 15%;
+    left: -5%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite reverse;
+  }
+
   @include mobile {
     padding: $spacing-xl 0;
+
+    &::before,
+    &::after {
+      width: 250px;
+      height: 250px;
+    }
   }
 }
 
@@ -39,16 +62,94 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); // Aumentado de 280px
   gap: $spacing-lg; // Aumentado de md
-  
+
   @include mobile {
     grid-template-columns: 1fr;
     gap: $spacing-md; // Aumentado de sm
   }
 }
 
+.services__group {
+  background-color: var(--color-bg-card);
+  border: var(--border-medium);
+  border-radius: 16px;
+  padding: $spacing-xxl;
+  box-shadow: var(--shadow-md);
+  margin-bottom: $spacing-xxl;
+  position: relative;
+  overflow: hidden;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(var(--color-blue-primary-rgb), 0.04), rgba(var(--color-accent-rgb), 0.03));
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+
+  @include tablet {
+    padding: $spacing-xl;
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.services__group-header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
+
+  h3 {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-semibold;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    color: var(--color-text-secondary);
+    max-width: 720px;
+    line-height: 1.7;
+  }
+}
+
+.services__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  align-self: flex-start;
+  padding: $spacing-xs $spacing-md;
+  border-radius: 999px;
+  background: rgba(var(--color-blue-primary-rgb), 0.12);
+  border: 1px solid rgba(var(--color-blue-primary-rgb), 0.2);
+  font-size: 0.9rem;
+  font-weight: $font-weight-semibold;
+  color: var(--color-blue-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  i {
+    font-size: 0.85rem;
+  }
+}
+
 .service-card {
   @include card-modern;
-  padding: $spacing-xl; // Aumentado de lg
+  padding: $spacing-xl;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -56,43 +157,58 @@
   overflow: hidden;
   min-height: 0;
   cursor: pointer;
-  min-height: 320px; // Altura mínima para consistência
-  
+  min-height: 320px;
+  position: relative;
+  transition: all $transition-normal;
+
   &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+
     .service-card__icon {
-      color: $color-blue-primary;
+      color: var(--color-blue-primary);
       transform: scale(1.1);
-      
+
       i {
         transform: rotate(5deg);
       }
-      
+
       &::before {
         opacity: 1;
         transform: scale(1.2);
       }
     }
-    
+
     .service-card__title {
-      color: $color-blue-primary;
-      transform: translateY(-2px);
+      color: var(--color-blue-primary);
     }
-    
+
     .service-card__description {
-      color: $color-text-primary;
+      color: var(--color-text-primary);
+    }
+
+    .service-card__link {
+      transform: translateX(4px);
+      color: var(--color-blue-dark);
     }
   }
-  
+
   &:focus-within {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
     .service-card__icon {
       transition: none;
-      
+
       &:hover {
         transform: none;
       }
@@ -100,24 +216,40 @@
   }
 }
 
+.service-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xxs $spacing-sm;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(var(--color-blue-primary-rgb), 0.08);
+  color: var(--color-blue-primary);
+  border: 1px solid rgba(var(--color-blue-primary-rgb), 0.2);
+  margin-bottom: $spacing-md;
+}
+
 .service-card__icon {
-  font-size: 3rem; // Aumentado de 2.5rem
-  color: $color-blue-primary;
-  margin-bottom: $spacing-md; // Aumentado de sm
+  font-size: 3.5rem;
+  color: var(--color-blue-primary);
+  margin-bottom: $spacing-lg;
   transition: all $transition-normal;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.5rem; // Aumentado de 3.5rem
-  height: 4.5rem; // Aumentado de 3.5rem
+  width: 5rem;
+  height: 5rem;
   flex-shrink: 0;
   position: relative;
-  
+
   i {
     display: block;
     transition: transform $transition-normal;
   }
-  
+
   // Efeito de pulso sutil no hover
   &::before {
     content: '';
@@ -125,98 +257,113 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: rgba($color-blue-primary, 0.1);
+    background: rgba(var(--color-blue-primary-rgb), 0.1);
     opacity: 0;
     transform: scale(0.8);
     transition: all $transition-normal;
+    z-index: -1;
   }
 }
 
 .service-card__title {
-  font-size: 1.75rem; // Aumentado de h4 (1.5rem)
-  font-weight: $font-weight-semibold;
-  margin-bottom: $spacing-sm; // Aumentado de xs
+  font-size: 1.625rem;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
   letter-spacing: -0.01em;
-  color: $color-text-primary;
-  transition: color $transition-normal, transform $transition-normal;
+  color: var(--color-text-primary);
+  transition: color $transition-normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
-  
+  line-height: 1.4;
+  text-align: center;
+  min-height: 4rem; // Garantir altura consistente para 2 linhas
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   @include mobile {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
+    min-height: 3.5rem;
   }
 }
 
 .service-card__description {
-  color: $color-text-secondary;
-  line-height: 1.7; // Aumentado
-  margin-bottom: $spacing-md; // Aumentado de sm
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: $spacing-md;
   flex: 1;
   transition: color $transition-normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
-  font-size: $font-size-body; // Aumentado de small
+  font-size: 1rem;
+  text-align: center;
 }
 
 .service-card__features {
   list-style: none;
   text-align: left;
   width: 100%;
-  
+
   li {
     padding: $spacing-xs 0;
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
     position: relative;
     padding-left: $spacing-sm;
     transition: color $transition-normal;
     font-size: $font-size-small;
-    
+
     &::before {
       content: '✓';
       position: absolute;
       left: 0;
       font-weight: $font-weight-bold;
-      color: $color-blue-primary;
+      color: var(--color-blue-primary);
       font-size: 0.875rem;
     }
   }
 }
 
 .service-card:hover .service-card__features li {
-  color: $color-text-primary;
+  color: var(--color-text-primary);
+}
+
+.service-card__meta {
+  width: 100%;
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: var(--border-thin);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: $spacing-sm;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+
+    i {
+      color: var(--color-blue-primary);
+      font-size: 0.9rem;
+    }
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
 }
 
 // Link do card de serviço
 .service-card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-xs;
-  color: $color-blue-primary;
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-body;
-  margin-top: auto; // Empurrar para o final do card
-  padding-top: $spacing-md;
-  transition: all $transition-normal;
-  
-  i {
-    transition: transform $transition-normal;
-  }
-  
-  &:hover {
-    color: $color-blue-dark;
-    transform: translateX(4px);
-    
-    i {
-      transform: translateX(4px);
-    }
-  }
-  
-  &:focus-visible {
-    outline: 2px solid $color-blue-primary;
-    outline-offset: 2px;
-    border-radius: 2px;
+  margin-top: $spacing-md;
+  width: 100%;
+
+  &.hero__button {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -224,52 +371,22 @@
 .services__cta {
   text-align: center;
   margin-top: $spacing-xxl; // Aumentado
-  
+
   @include mobile {
     margin-top: $spacing-xl;
   }
 }
 
-// Dark Mode
-@include dark-mode {
+// Dark mode é gerenciado automaticamente via CSS variables
+// Ajustes finos apenas para elementos decorativos
+.dark {
   .services {
-    background-color: $color-black-soft;
-  }
-  
-  .service-card {
-    background-color: $color-gray-dark;
-    border-color: $color-white;
-    
-    .service-card__icon {
-      color: $color-white;
+    &::before {
+      background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.03) 0%, transparent 70%);
     }
-    
-    .service-card__title {
-      color: $color-white;
-    }
-    
-    .service-card__description {
-      color: $color-gray-lighter;
-    }
-    
-    &:hover {
-      background-color: $color-white;
-      color: $color-black;
-      
-      .service-card__icon,
-      .service-card__title,
-      .service-card__description {
-        color: $color-black;
-      }
-      
-      .service-card__features li {
-        color: $color-black;
-        
-        &::before {
-          color: $color-black;
-        }
-      }
+
+    &::after {
+      background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.02) 0%, transparent 70%);
     }
   }
 }
-

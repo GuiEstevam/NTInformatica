@@ -1,0 +1,250 @@
+// ============================================
+// Stats Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.stats {
+  background-color: var(--color-bg-secondary);
+  padding: $spacing-xxl 0;
+  position: relative;
+  overflow: hidden;
+
+  // Background gradiente animado
+  background-image: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+
+  // Elementos decorativos flutuantes
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 25s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite reverse;
+  }
+
+  @include mobile {
+    padding: $spacing-xl 0;
+
+    &::before,
+    &::after {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  // Suporte para prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background-size: 100% 100%;
+
+    &::before,
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+.stats__container {
+  @include container;
+  position: relative;
+  z-index: 1;
+
+  // Título da seção reduzido para melhor proporção
+  .section-title {
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      font-size: 2rem; // Reduzido de 2.5rem
+
+      @include mobile {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.stats__card {
+  background-color: var(--color-bg-card);
+  padding: $spacing-lg;
+  border: var(--border-medium);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all $transition-normal;
+  opacity: 0;
+  transform: translateY(30px);
+  position: relative;
+  overflow: hidden;
+
+  // Background gradiente sutil no hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(var(--color-blue-primary-rgb), 0.03), rgba(var(--color-accent-rgb), 0.03));
+    opacity: 0;
+    transition: opacity $transition-normal;
+    z-index: 0;
+  }
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.3);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .stats__icon {
+      color: var(--color-blue-primary);
+      transform: scale(1.1);
+
+      i {
+        transform: rotate(5deg);
+      }
+
+      &::before {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    .stats__title {
+      color: var(--color-blue-primary);
+    }
+
+    .stats__description {
+      color: var(--color-text-primary);
+    }
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.stats__icon {
+  font-size: 2.5rem;
+  color: var(--color-blue-primary);
+  margin-bottom: $spacing-sm;
+  transition: all $transition-normal;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  i {
+    display: block;
+    transition: transform $transition-normal;
+  }
+
+  // Efeito de pulso sutil no hover (igual aos cards de serviços)
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(var(--color-blue-primary-rgb), 0.1);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all $transition-normal;
+    z-index: -1;
+  }
+
+  @include mobile {
+    font-size: 2.5rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.stats__number {
+  font-size: 1.75rem;
+  font-weight: $font-weight-extrabold;
+  color: var(--color-text-primary);
+  display: block;
+  line-height: 1;
+  margin-bottom: $spacing-xs;
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.stats__title {
+  font-size: 1rem;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-xs;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.stats__description {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-size: 0.875rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+// Dark mode é gerenciado automaticamente via CSS variables
+

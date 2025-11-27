@@ -7,7 +7,7 @@
 
 .solutions {
   padding: $spacing-xxl 0;
-  background-color: $color-bg-secondary;
+  background-color: var(--color-bg-secondary);
   
   @include mobile {
     padding: $spacing-xl 0;
@@ -34,24 +34,24 @@
   align-items: flex-start;
   gap: $spacing-sm;
   padding: $spacing-md;
-  border: $border-medium;
+  border: var(--border-medium);
   border-radius: 8px;
-  background-color: $color-white;
-  box-shadow: $shadow-sm;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
   transition: all $transition-normal;
   overflow: hidden;
   min-width: 0;
   
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba($color-blue-primary, 0.3);
-    box-shadow: $shadow-lg;
+    border-color: rgba(var(--color-blue-primary-rgb), 0.3);
+    box-shadow: var(--shadow-lg);
   }
 }
 
 .solution-item__icon {
   font-size: 1.75rem;
-  color: $color-blue-primary;
+  color: var(--color-blue-primary);
   flex-shrink: 0;
   transition: transform $transition-normal;
   width: 2.25rem;
@@ -84,7 +84,7 @@
   }
   
   p {
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
     font-size: $font-size-small;
     line-height: 1.6;
     margin: 0;
@@ -93,27 +93,5 @@
   }
 }
 
-// Dark Mode
-@include dark-mode {
-  .solutions {
-    background-color: $color-black;
-  }
-  
-  .solution-item {
-    background-color: $color-gray-dark;
-    border-color: $color-white;
-    
-    .solution-item__icon {
-      color: $color-white;
-    }
-    
-    h4 {
-      color: $color-white;
-    }
-    
-    p {
-      color: $color-gray-lighter;
-    }
-  }
-}
+// Dark mode é gerenciado automaticamente via CSS variables
 

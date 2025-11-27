@@ -7,10 +7,10 @@
 
 .benefits {
   padding: $spacing-xxl 0;
-  background-color: $color-bg-primary;
+  background-color: var(--color-bg-primary);
   position: relative;
   overflow: hidden;
-  
+
   // Elemento decorativo
   &::before {
     content: '';
@@ -19,27 +19,32 @@
     left: -5%;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba($color-blue-primary, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.03) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
   }
-  
+
   @include mobile {
     padding: $spacing-xl 0;
   }
 }
 
 .benefits__container {
-  @include container;
+  @include container; // Agora usa max-width: 1400px do mixin
   position: relative;
   z-index: 1;
 }
 
 .benefits__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: $spacing-lg;
-  
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Aumentado de 250px
+  gap: $spacing-xl; // Aumentado
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr); // 2 colunas no tablet
+    gap: $spacing-lg;
+  }
+
   @include mobile {
     grid-template-columns: 1fr;
     gap: $spacing-md;
@@ -54,78 +59,129 @@
   flex-direction: column;
   align-items: center;
   transition: all $transition-normal;
-  
+  background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(var(--color-blue-primary-rgb), 0.02) 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Elemento decorativo sutil
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(var(--color-blue-primary-rgb), 0.03), rgba(var(--color-accent-rgb), 0.02));
+    opacity: 0;
+    transition: opacity $transition-normal;
+    z-index: 0;
+  }
+
   &:hover {
-    transform: translateY(-6px);
-    
-    .benefit-card__icon {
-      transform: scale(1.1) rotate(5deg);
-      color: $color-blue-primary;
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.3);
+
+    &::before {
+      opacity: 1;
     }
+
+    .benefit-card__icon {
+      color: var(--color-blue-primary);
+      transform: scale(1.1);
+
+      i {
+        transform: rotate(5deg);
+      }
+
+      &::before {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    .benefit-card__number {
+      color: var(--color-blue-primary);
+      transform: scale(1.1);
+    }
+
+    .benefit-card__title {
+      color: var(--color-blue-primary);
+    }
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
   }
 }
 
 .benefit-card__icon {
-  font-size: 2.5rem;
-  color: $color-blue-primary;
-  margin-bottom: $spacing-md;
+  font-size: 3.5rem; // Igual ao services
+  color: var(--color-blue-primary); // Igual ao services
+  margin-bottom: $spacing-lg; // Igual ao services
   transition: all $transition-normal;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
-  
+  width: 5rem; // Igual ao services
+  height: 5rem; // Igual ao services
+  flex-shrink: 0;
+  position: relative;
+
   i {
     display: block;
+    transition: transform $transition-normal;
   }
+
+  // Efeito de pulso sutil no hover (igual ao services)
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(var(--color-blue-primary-rgb), 0.1);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all $transition-normal;
+    z-index: -1;
+  }
+}
+
+.benefit-card__number {
+  font-size: 2rem; // Reduzido de 2.5rem
+  font-weight: $font-weight-extrabold;
+  color: var(--color-blue-primary);
+  margin-bottom: $spacing-xs; // Reduzido
+  line-height: 1;
+  transition: all $transition-normal;
+  letter-spacing: -0.02em;
 }
 
 .benefit-card__title {
-  font-size: $font-size-h4;
-  font-weight: $font-weight-semibold;
-  margin-bottom: $spacing-sm;
-  color: $color-text-primary;
+  font-size: 1.25rem; // Reduzido de 1.5rem
+  font-weight: $font-weight-semibold; // Reduzido de bold
+  margin-bottom: $spacing-sm; // Reduzido
+  color: var(--color-text-primary);
   letter-spacing: -0.01em;
+  transition: color $transition-normal;
 }
 
 .benefit-card__description {
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
   line-height: 1.7;
-  font-size: $font-size-body;
+  font-size: 1rem; // Mantido padrão
+  text-align: center;
+  flex: 1; // Para ocupar espaço disponível
 }
 
-// Dark Mode
-@include dark-mode {
+// Dark mode é gerenciado automaticamente via CSS variables
+// Ajustes finos apenas para elementos decorativos
+.dark {
   .benefits {
-    background-color: $color-black-soft;
-  }
-  
-  .benefit-card {
-    background-color: $color-gray-dark;
-    border-color: $color-white;
-    
-    .benefit-card__icon {
-      color: $color-white;
-    }
-    
-    .benefit-card__title {
-      color: $color-white;
-    }
-    
-    .benefit-card__description {
-      color: $color-gray-lighter;
-    }
-    
-    &:hover {
-      background-color: $color-white;
-      
-      .benefit-card__icon,
-      .benefit-card__title,
-      .benefit-card__description {
-        color: $color-black;
-      }
+    &::before {
+      background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.02) 0%, transparent 70%);
     }
   }
 }
-

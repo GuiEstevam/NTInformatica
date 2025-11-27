@@ -1,0 +1,95 @@
+/* ============================================
+   Scroll to Top Button - NT Informática
+   ============================================ */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-light));
+  color: var(--color-white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all var(--transition-normal);
+  z-index: 9999;
+  font-size: 1.25rem;
+
+  /* Aparecer quando visível */
+}
+
+.scroll-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue-primary));
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+.scroll-to-top:active:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Focus state */
+.scroll-to-top:focus-visible {
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(var(--color-blue-primary-rgb), 0.2), var(--shadow-lg);
+}
+
+/* Disabled state */
+.scroll-to-top:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top i {
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.scroll-to-top:hover:not(:disabled) i {
+  transform: translateY(-2px);
+}
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    width: 44px;
+    height: 44px;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    font-size: 1.125rem;
+  }
+
+  /* Suporte para prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top:hover:not(:disabled) {
+    transform: translateY(0) scale(1);
+  }
+
+  .scroll-to-top i {
+    transition: none;
+  }
+}
+
+/* Dark mode - ajustes automáticos via CSS variables */

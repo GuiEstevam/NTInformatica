@@ -1,0 +1,16 @@
+/* ============================================
+   Estilos Base - NT Informática
+   ============================================ */
+
+/* Garantir que body e elementos principais usem variáveis CSS */
+body {
+ position: relative;
+ background-color: var(--color-bg-primary);
+ color: var(--color-text-primary);
+}
+
+/* Garantir que o scroll funcione corretamente com skip link */
+main[id="main-content"] {
+ scroll-margin-top: 0;
+}
+

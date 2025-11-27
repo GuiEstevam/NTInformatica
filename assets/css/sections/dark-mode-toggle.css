@@ -1,0 +1,92 @@
+/* ============================================
+   Botão de Toggle Dark Mode - NT Informática
+   ============================================ */
+
+.dark-mode-toggle {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: all var(--transition-normal);
+  color: var(--color-text-secondary);
+  position: relative;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.dark-mode-toggle:hover {
+  color: var(--color-blue-primary);
+  background-color: rgba(0, 102, 204, 0.1);
+  border-color: var(--color-blue-primary);
+  transform: scale(1.05);
+}
+
+.dark-mode-toggle:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dark-mode-toggle:focus-visible {
+  outline: 2px solid var(--color-blue-primary);
+  outline-offset: 2px;
+  color: var(--color-blue-primary);
+}
+
+.dark-mode-toggle__icon--sun,
+.dark-mode-toggle__icon--moon {
+  font-size: 1.125rem;
+  transition: opacity var(--transition-fast), transform var(--transition-normal);
+  position: absolute;
+}
+
+.dark-mode-toggle__icon--sun.hidden,
+.dark-mode-toggle__icon--moon.hidden {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+  pointer-events: none;
+}
+
+.dark-mode-toggle__icon--sun:not(.hidden),
+.dark-mode-toggle__icon--moon:not(.hidden) {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Dark Mode - mesma cor dos links, mas com animação própria */
+.dark .dark-mode-toggle {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+}
+
+.dark .dark-mode-toggle:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: scale(1.05);
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle {
+    min-width: 36px;
+    min-height: 36px;
+    padding: var(--spacing-xs) 0;
+  }
+
+  .dark-mode-toggle__icon--sun,
+  .dark-mode-toggle__icon--moon {
+    font-size: 1rem;
+  }
+}
+
+/* Utilitário hidden - usado apenas para ícones do toggle */
+.dark-mode-toggle__icon--sun.hidden,
+.dark-mode-toggle__icon--moon.hidden {
+  display: none;
+}
+

@@ -1,182 +1,760 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
   <!-- SEO Meta Tags -->
   <title>Contato - NT Informática | Solicite um Orçamento</title>
-  <meta name="description" content="Entre em contato com a NT Informática. Solicite um orçamento sem compromisso para serviços de suporte técnico e soluções em TI.">
-  <meta name="keywords" content="contato NT Informática, orçamento suporte técnico, solicitar orçamento TI, contato empresa informática">
-  <meta name="author" content="NT Informática">
-  <meta name="robots" content="index, follow">
-  
+  <meta
+   name="description"
+   content="Entre em contato com a NT Informática. Solicite um orçamento sem compromisso para serviços de suporte técnico e soluções em TI."
+  />
+  <meta
+   name="keywords"
+   content="contato NT Informática, orçamento suporte técnico, solicitar orçamento TI, contato empresa informática"
+  />
+  <meta name="author" content="NT Informática" />
+  <meta name="robots" content="index, follow" />
+
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Contato - NT Informática | Solicite um Orçamento">
-  <meta property="og:description" content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso.">
-  <meta property="og:image" content="">
-  <meta property="og:url" content="">
-  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contato - NT Informática | Solicite um Orçamento" />
+  <meta
+   property="og:description"
+   content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso."
+  />
+  <meta property="og:image" content="" />
+  <meta property="og:url" content="https://www.ntinformatica.com.br/contato.html" />
+
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contato - NT Informática | Solicite um Orçamento">
-  <meta name="twitter:description" content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso.">
-  <meta name="twitter:image" content="">
-  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contato - NT Informática | Solicite um Orçamento" />
+  <meta
+   name="twitter:description"
+   content="Entre em contato com a NT Informática e solicite um orçamento sem compromisso."
+  />
+  <meta name="twitter:image" content="" />
+
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+   rel="stylesheet"
+  />
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+  />
+
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/toast.css">
-  <link rel="stylesheet" href="/assets/css/animations.css">
-  <link rel="stylesheet" href="/assets/css/accessibility.css">
-  <link rel="stylesheet" href="/assets/css/sections/navigation.css">
-  <link rel="stylesheet" href="/assets/sass/main.scss">
-</head>
-<body>
-  <vite-partial src="/partials/header.html"/>
-  
-  <!-- Hero da Página -->
-  <section class="hero hero--page">
+
+  <!-- Inicializar Dark Mode ANTES do CSS carregar (evitar FOUC) -->
+  <!--
+    EXCEÇÃO À REGRA: Script externo carregado de forma síncrona antes dos CSS
+    Necessário para evitar FOUC (Flash of Unstyled Content).
+    Este script DEVE ser executado ANTES do CSS para aplicar a classe .dark imediatamente.
+    Referência: @.cursor/rules/rules.mdc - "exceto quando absolutamente necessário"
+  -->
+  <script src="/js/dark-mode-init.js"></script>
+
+  <!-- CSS (carregado depois do script de inicialização) -->
+  <!-- 1. Variáveis primeiro (necessárias para tudo) -->
+  <link rel="stylesheet" href="/assets/css/variables.css" />
+  <!-- 2. Temas (usa variáveis) -->
+  <link rel="stylesheet" href="/assets/css/themes.css" />
+  <!-- 3. Base (usa variáveis e temas) -->
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <!-- 4. Acessibilidade (pode sobrescrever) -->
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+  <!-- 5. Outros CSS -->
+  <link rel="stylesheet" href="/assets/css/toast.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/sections/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/sections/footer.css" />
+  <link rel="stylesheet" href="/assets/css/sections/dark-mode-toggle.css" />
+  <link rel="stylesheet" href="/assets/css/sections/scroll-to-top.css" />
+  <link rel="stylesheet" href="/assets/sass/main.scss" />
+ </head>
+ <body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Pular para conteúdo</a>
+
+  <vite-partial src="/partials/header.html" />
+
+  <main id="main-content">
+   <!-- Hero da Página -->
+   <section class="hero hero--page contact-hero fade-in" aria-labelledby="contact-hero-title">
     <div class="hero__content">
-      <h1 class="hero__title">Entre em Contato</h1>
-      <p class="hero__subtitle">Estamos prontos para ajudar sua empresa. Solicite um orçamento sem compromisso.</p>
-    </div>
-  </section>
-  
-  <!-- Contato -->
-  <section id="contato" class="contact section">
-    <div class="contact__container">
-      <div class="contact__info">
-        <h3>Informações de Contato</h3>
-        <p>
-          Estamos prontos para ajudar sua empresa. Entre em contato conosco e 
-          solicite um orçamento sem compromisso. Nossa equipe está disponível para 
-          esclarecer dúvidas e apresentar as melhores soluções para suas necessidades.
-        </p>
-        <ul class="contact__details">
-          <li>
-            <i class="fas fa-phone" aria-hidden="true"></i>
-            <a href="tel:+5511999999999">(11) 99999-9999</a>
-          </li>
-          <li>
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            <a href="mailto:contato@ntinformatica.com.br">contato@ntinformatica.com.br</a>
-          </li>
-          <li>
-            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-            <span>Endereço completo da empresa</span>
-          </li>
-          <li>
-            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </li>
-        </ul>
-        <div style="margin-top: var(--spacing-xl);">
-          <h4>Horário de Atendimento</h4>
-          <p>Segunda a Sexta: 8h às 18h<br>
-          Sábado: 8h às 12h<br>
-          Domingo: Fechado</p>
-        </div>
+      <span class="contact-hero__badge">
+       <i class="fas fa-bolt" aria-hidden="true"></i>
+       Resposta média em <strong>&lt; 1h</strong>
+      </span>
+      <h1 id="contact-hero-title" class="hero__title slide-up">
+       Fale com especialistas em suporte e infraestrutura de TI
+      </h1>
+      <p class="hero__subtitle slide-up">
+       Diagnóstico rápido, proposta personalizada e acompanhamento por um time dedicado em todo o Brasil.
+      </p>
+      <ul class="contact-hero__highlights slide-up" aria-label="Principais diferenciais de atendimento">
+       <li>
+        <i class="fas fa-headset" aria-hidden="true"></i>
+        Service Desk 24/7 com especialistas certificados
+       </li>
+       <li>
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        Monitoramento e resposta a incidentes em tempo real
+       </li>
+       <li>
+        <i class="fas fa-check-circle" aria-hidden="true"></i>
+        Onboarding guiado e indicadores claros desde o primeiro dia
+       </li>
+      </ul>
+      <div class="hero__actions stagger-animation">
+       <a href="#contato" class="hero__button hero__button--primary">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        Enviar solicitação
+       </a>
+       <a
+        href="https://wa.me/5511999999999?text=Olá!%20Quero%20falar%20com%20a%20NT%20Informática."
+        class="hero__button hero__button--whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+       >
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        Conversar no WhatsApp
+       </a>
       </div>
-      <form id="contact-form" class="contact-form" aria-label="Formulário de contato">
-        <div class="form-group">
-          <label for="nome" class="form-label">Nome Completo *</label>
-          <input 
-            type="text" 
-            id="nome" 
-            name="nome" 
-            class="form-input"
-            required
-            aria-required="true"
-            aria-describedby="nome-error"
-            minlength="3"
-            maxlength="100"
-          >
-          <div id="nome-error" class="form-error" role="alert"></div>
-        </div>
-        <div class="form-group">
-          <label for="email" class="form-label">E-mail *</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            class="form-input"
-            required
-            aria-required="true"
-            aria-describedby="email-error"
-          >
-          <div id="email-error" class="form-error" role="alert"></div>
-        </div>
-        <div class="form-group">
-          <label for="telefone" class="form-label">Telefone *</label>
-          <input 
-            type="tel" 
-            id="telefone" 
-            name="telefone" 
-            class="form-input"
-            required
-            aria-required="true"
-            aria-describedby="telefone-error"
-            placeholder="(11) 99999-9999"
-          >
-          <div id="telefone-error" class="form-error" role="alert"></div>
-        </div>
-        <div class="form-group">
-          <label for="assunto" class="form-label">Assunto</label>
-          <select id="assunto" name="assunto" class="form-select">
-            <option value="">Selecione um assunto</option>
-            <option value="suporte">Suporte Técnico</option>
-            <option value="manutencao">Manutenção</option>
-            <option value="consultoria">Consultoria</option>
-            <option value="orcamento">Orçamento</option>
-            <option value="outro">Outro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="mensagem" class="form-label">Mensagem *</label>
-          <textarea 
-            id="mensagem" 
-            name="mensagem" 
-            class="form-textarea"
-            required
-            aria-required="true"
-            aria-describedby="mensagem-error"
-            minlength="10"
-            maxlength="1000"
-            rows="5"
-          ></textarea>
-          <div id="mensagem-error" class="form-error" role="alert"></div>
-        </div>
-        <button type="submit" class="form-button">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          <span>Enviar Solicitação</span>
-        </button>
-      </form>
     </div>
-  </section>
-  
-  <vite-partial src="/partials/footer.html"/>
-  
+   </section>
+
+   <!-- Canais de atendimento -->
+   <section class="contact-channels section fade-in" aria-labelledby="contact-channels-title">
+    <div class="contact-channels__container">
+     <div class="section-title slide-up">
+      <p class="section-eyebrow">Como preferir</p>
+      <h2 id="contact-channels-title">Escolha o canal ideal para falar com a NT Informática</h2>
+      <p>
+       Todos os contatos são monitorados em tempo real para garantir respostas rápidas e acompanhamento humanizado.
+      </p>
+     </div>
+     <div class="contact-channels__grid">
+      <article class="contact-channel-card stagger-animation">
+       <div class="contact-channel-card__icon">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+       </div>
+       <h3 class="contact-channel-card__title">Suporte comercial</h3>
+       <p>
+        Diagnóstico inicial, entendimento do cenário atual e definição dos próximos passos.
+       </p>
+       <ul class="contact-channel-card__meta">
+        <li>SLA &lt; 1h útil</li>
+        <li>Equipe especializada</li>
+       </ul>
+       <a href="tel:+5511999999999" class="hero__button hero__button--secondary" aria-label="Ligar para o suporte comercial">
+        <i class="fas fa-phone" aria-hidden="true"></i>
+        Ligar agora
+       </a>
+      </article>
+      <article class="contact-channel-card stagger-animation">
+       <div class="contact-channel-card__icon">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+       </div>
+       <h3 class="contact-channel-card__title">WhatsApp corporativo</h3>
+       <p>Atendimento ágil para demandas urgentes, status de tickets e abertura de chamados.</p>
+       <ul class="contact-channel-card__meta">
+        <li>Disponível 24/7</li>
+        <li>Integração com Service Desk</li>
+       </ul>
+       <a
+        href="https://wa.me/5511999999999?text=Olá!%20Preciso%20de%20suporte%20da%20NT%20Informática."
+        class="hero__button hero__button--whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+       >
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        Abrir conversa
+       </a>
+      </article>
+      <article class="contact-channel-card stagger-animation">
+       <div class="contact-channel-card__icon">
+        <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
+       </div>
+       <h3 class="contact-channel-card__title">E-mail dedicado</h3>
+       <p>Ideal para solicitações formais, contratos e documentação de onboarding.</p>
+       <ul class="contact-channel-card__meta">
+        <li>Registro automático de chamados</li>
+        <li>Prioridade por criticidade</li>
+       </ul>
+       <a href="mailto:contato@ntinformatica.com.br" class="hero__button hero__button--secondary">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        Escrever e-mail
+       </a>
+      </article>
+      <article class="contact-channel-card stagger-animation">
+       <div class="contact-channel-card__icon">
+        <i class="fas fa-video" aria-hidden="true"></i>
+       </div>
+       <h3 class="contact-channel-card__title">Reunião estratégica</h3>
+       <p>Conversa com consultores para mapear prioridades, definir indicadores e viabilidade técnica.</p>
+       <ul class="contact-channel-card__meta">
+        <li>Agenda em até 48h</li>
+        <li>Consultores seniors</li>
+       </ul>
+       <a href="/servicos.html#planos" class="hero__button hero__button--secondary">
+        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+        Agendar reunião
+       </a>
+      </article>
+     </div>
+    </div>
+   </section>
+
+   <!-- Contato -->
+   <section id="contato" class="contact section fade-in" aria-labelledby="contact-form-title">
+    <div class="contact__container">
+     <div class="contact__info slide-up">
+      <div class="section-title">
+       <h2 id="contact-form-title">Central de relacionamento</h2>
+       <p>
+        Conte com um time dedicado para planejar, implantar e operar toda a sua infraestrutura de TI. Informações completas para iniciar agora.
+       </p>
+      </div>
+      <ul class="contact__details">
+       <li>
+        <i class="fas fa-phone" aria-hidden="true"></i>
+        <a href="tel:+5511999999999">(11) 99999-9999</a>
+       </li>
+       <li>
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <a href="mailto:contato@ntinformatica.com.br">contato@ntinformatica.com.br</a>
+       </li>
+       <li>
+        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+        <span>Av. Exemplo, 123 - São Paulo/SP</span>
+       </li>
+       <li>
+        <i class="fas fa-headphones" aria-hidden="true"></i>
+        <span>Service Desk e NOC 24/7</span>
+       </li>
+      </ul>
+      <div class="contact__highlights" aria-label="Diferenciais de atendimento">
+       <div class="contact__highlight-card">
+        <strong>&lt; 15 min</strong>
+        <span>Tempo de resposta crítico</span>
+       </div>
+       <div class="contact__highlight-card">
+        <strong>+120</strong>
+        <span>Analistas e especialistas</span>
+       </div>
+       <div class="contact__highlight-card">
+        <strong>ISO 20000</strong>
+        <span>Processos certificados</span>
+       </div>
+      </div>
+      <div class="contact__schedule" aria-label="Horários e SLA">
+       <h3>Horários e SLA</h3>
+       <ul>
+        <li><strong>Comercial:</strong> Segunda a sexta, 8h às 18h</li>
+        <li><strong>Plantão:</strong> 24/7 para clientes com SLA crítico</li>
+        <li><strong>Visitas presenciais:</strong> Sob agendamento em até 24h</li>
+       </ul>
+      </div>
+     </div>
+     <form
+      id="contact-form"
+      class="contact-form slide-up"
+      aria-label="Formulário de contato"
+      novalidate
+     >
+      <div class="form-row">
+       <div class="form-group">
+        <label for="nome" class="form-label">Nome completo *</label>
+        <input
+         type="text"
+         id="nome"
+         name="nome"
+         class="form-input"
+         required
+         aria-required="true"
+         aria-describedby="nome-error"
+         minlength="3"
+         maxlength="100"
+        />
+        <div id="nome-error" class="form-error" role="alert"></div>
+       </div>
+       <div class="form-group">
+        <label for="empresa" class="form-label">Empresa *</label>
+        <input
+         type="text"
+         id="empresa"
+         name="empresa"
+         class="form-input"
+         required
+         aria-required="true"
+         aria-describedby="empresa-error"
+         minlength="2"
+         maxlength="120"
+        />
+        <div id="empresa-error" class="form-error" role="alert"></div>
+       </div>
+      </div>
+      <div class="form-row">
+       <div class="form-group">
+        <label for="email" class="form-label">E-mail corporativo *</label>
+        <input
+         type="email"
+         id="email"
+         name="email"
+         class="form-input"
+         required
+         aria-required="true"
+         aria-describedby="email-error"
+        />
+        <div id="email-error" class="form-error" role="alert"></div>
+       </div>
+       <div class="form-group">
+        <label for="telefone" class="form-label">Telefone celular *</label>
+        <input
+         type="tel"
+         id="telefone"
+         name="telefone"
+         class="form-input"
+         required
+         aria-required="true"
+         aria-describedby="telefone-error"
+         placeholder="(11) 99999-9999"
+        />
+        <div id="telefone-error" class="form-error" role="alert"></div>
+       </div>
+      </div>
+      <div class="form-row">
+       <div class="form-group">
+        <label for="porte" class="form-label">Porte da empresa *</label>
+        <select
+         id="porte"
+         name="porte"
+         class="form-select"
+         required
+         aria-required="true"
+         aria-describedby="porte-error"
+        >
+         <option value="">Selecione</option>
+         <option value="ate-25">Até 25 colaboradores</option>
+         <option value="ate-80">26 a 80 colaboradores</option>
+         <option value="ate-200">81 a 200 colaboradores</option>
+         <option value="acima-200">Mais de 200 colaboradores</option>
+        </select>
+        <div id="porte-error" class="form-error" role="alert"></div>
+       </div>
+       <div class="form-group">
+        <label for="assunto" class="form-label">Assunto *</label>
+        <select
+         id="assunto"
+         name="assunto"
+         class="form-select"
+         required
+         aria-required="true"
+         aria-describedby="assunto-error"
+        >
+         <option value="">Selecione</option>
+         <option value="suporte">Suporte técnico</option>
+         <option value="manutencao">Manutenção e Field Service</option>
+         <option value="consultoria">Consultoria e projetos</option>
+         <option value="seguranca">Segurança da informação</option>
+         <option value="orcamento">Planos e contratos</option>
+        </select>
+        <div id="assunto-error" class="form-error" role="alert"></div>
+       </div>
+      </div>
+      <fieldset class="form-fieldset" aria-labelledby="servicos-label">
+       <legend id="servicos-label" class="form-label">Serviços de interesse *</legend>
+       <p class="fieldset-description">Selecione os serviços que melhor representam a sua necessidade atual.</p>
+       <div class="services-checkbox-grid" role="group" aria-labelledby="servicos-label">
+        <label class="service-checkbox-card">
+         <input
+          type="checkbox"
+          name="servicos"
+          value="service-desk"
+          aria-describedby="servicos-error"
+         />
+         <div class="service-checkbox-card__content">
+          <i class="fas fa-headset" aria-hidden="true"></i>
+          <span>Service Desk dedicado</span>
+         </div>
+        </label>
+        <label class="service-checkbox-card">
+         <input
+          type="checkbox"
+          name="servicos"
+          value="monitoramento"
+          aria-describedby="servicos-error"
+         />
+         <div class="service-checkbox-card__content">
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
+          <span>Monitoramento e NOC</span>
+         </div>
+        </label>
+        <label class="service-checkbox-card">
+         <input
+          type="checkbox"
+          name="servicos"
+          value="seguranca"
+          aria-describedby="servicos-error"
+         />
+         <div class="service-checkbox-card__content">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          <span>Segurança da informação</span>
+         </div>
+        </label>
+        <label class="service-checkbox-card">
+         <input
+          type="checkbox"
+          name="servicos"
+          value="projetos"
+          aria-describedby="servicos-error"
+         />
+         <div class="service-checkbox-card__content">
+          <i class="fas fa-project-diagram" aria-hidden="true"></i>
+          <span>Projetos e consultoria</span>
+         </div>
+        </label>
+        <label class="service-checkbox-card">
+         <input
+          type="checkbox"
+          name="servicos"
+          value="outsourcing"
+          aria-describedby="servicos-error"
+         />
+         <div class="service-checkbox-card__content">
+          <i class="fas fa-users-cog" aria-hidden="true"></i>
+          <span>Outsourcing de profissionais</span>
+         </div>
+        </label>
+       </div>
+       <div id="servicos-error" class="form-error" role="alert"></div>
+      </fieldset>
+      <div class="form-group">
+       <label for="mensagem" class="form-label">Descreva sua necessidade *</label>
+       <textarea
+        id="mensagem"
+        name="mensagem"
+        class="form-textarea"
+        required
+        aria-required="true"
+        aria-describedby="mensagem-error"
+        minlength="20"
+        maxlength="1200"
+        rows="5"
+        placeholder="Conte como está sua operação hoje, SLAs desejados e próximos passos."
+       ></textarea>
+       <div id="mensagem-error" class="form-error" role="alert"></div>
+      </div>
+      <div class="form-group">
+       <label for="preferencia-contato" class="form-label">Preferência de contato</label>
+       <select id="preferencia-contato" name="preferencia" class="form-select">
+        <option value="">Selecione</option>
+        <option value="telefone">Telefone</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="email">E-mail</option>
+        <option value="reuniao">Reunião online</option>
+       </select>
+      </div>
+      <div class="form-group form-group--checkbox">
+       <label class="form-checkbox" for="consentimento">
+        <input
+         type="checkbox"
+         id="consentimento"
+         name="consentimento"
+         required
+         aria-required="true"
+        />
+        <span>
+         Autorizo a NT Informática a utilizar meus dados para contato comercial, conforme LGPD.
+        </span>
+       </label>
+       <div id="consentimento-error" class="form-error" role="alert"></div>
+      </div>
+      <button type="submit" class="form-button">
+       <i class="fas fa-paper-plane" aria-hidden="true"></i>
+       <span>Enviar solicitação</span>
+      </button>
+      <p class="form-helper-text">
+       Tempo médio de resposta: <strong>45 minutos</strong>. Utilizamos canais criptografados para proteger seus dados.
+      </p>
+     </form>
+    </div>
+   </section>
+
+   <!-- SLA e horários -->
+   <section class="contact-availability section fade-in" aria-labelledby="contact-availability-title">
+    <div class="contact-availability__container">
+     <div class="section-title slide-up">
+      <h2 id="contact-availability-title">Como atuamos após o seu contato</h2>
+      <p>Fluxo transparente, prazos claros e acompanhamento contínuo em todas as etapas.</p>
+     </div>
+     <div class="contact-availability__grid">
+      <article class="availability-card stagger-animation">
+       <div class="availability-card__icon">
+        <i class="fas fa-rocket" aria-hidden="true"></i>
+       </div>
+       <h3>Kick-off em até 48h</h3>
+       <p>Após o diagnóstico inicial, iniciamos o onboarding com cronograma detalhado e responsáveis definidos.</p>
+       <ul class="availability-card__list">
+        <li>Checklist de inventário</li>
+        <li>Diagnóstico remoto imediato</li>
+        <li>Workshops com stakeholders</li>
+       </ul>
+      </article>
+      <article class="availability-card stagger-animation">
+       <div class="availability-card__icon">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+       </div>
+       <h3>SLA sob medida</h3>
+       <p>Opções comercial, estendido ou 24/7 com indicadores de atendimento, solução e comunicação.</p>
+       <ul class="availability-card__list">
+        <li>Resposta crítica em &lt; 15 minutos</li>
+        <li>Escalonamento automático</li>
+        <li>Service Desk + NOC integrados</li>
+       </ul>
+      </article>
+      <article class="availability-card stagger-animation">
+       <div class="availability-card__icon">
+        <i class="fas fa-chart-line" aria-hidden="true"></i>
+       </div>
+       <h3>Acompanhamento contínuo</h3>
+       <p>Relatórios mensais, reuniões executivas e dashboard em tempo real com indicadores chave.</p>
+       <ul class="availability-card__list">
+        <li>Indicadores em tempo real</li>
+        <li>Quarterly Business Review</li>
+        <li>Roadmap co-criado</li>
+       </ul>
+      </article>
+     </div>
+    </div>
+   </section>
+
+   <!-- Cobertura nacional -->
+   <section class="contact-coverage section fade-in" aria-labelledby="contact-coverage-title">
+    <div class="contact-coverage__container">
+     <div class="contact-coverage__content slide-up">
+      <span class="contact-coverage__badge">
+       <i class="fas fa-globe-americas" aria-hidden="true"></i>
+       Atuação nacional
+      </span>
+      <h2 id="contact-coverage-title">Presença em todas as regiões do Brasil</h2>
+      <p>
+       Operamos com hubs em São Paulo, Rio de Janeiro, Minas Gerais, Paraná e Bahia, além de rede de parceiros certificados para atendimentos locais e híbridos.
+      </p>
+      <ul class="contact-coverage__list">
+       <li>Field service em mais de 120 cidades</li>
+       <li>Plantões regionais e estoque descentralizado</li>
+       <li>Equipe bilíngue para operações globais</li>
+      </ul>
+     </div>
+     <div class="contact-coverage__visual slide-up" aria-hidden="true">
+      <img
+       src="/assets/images/team.png"
+       alt="Equipe NT Informática representando cobertura nacional"
+       loading="lazy"
+      />
+      <div class="contact-coverage__stat">
+       <strong>+35</strong>
+       <span>Pontos de apoio</span>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <!-- CTA -->
+   <section class="contact contact-cta section fade-in">
+    <div class="contact-cta__container">
+     <span class="contact-cta__badge">
+      <i class="fas fa-bolt" aria-hidden="true"></i>
+      Atendimento em todo o Brasil
+     </span>
+     <h2 class="contact-cta__title">Vamos impulsionar a TI da sua empresa?</h2>
+     <p class="contact-cta__description">
+      Compartilhe seus desafios e receba um plano claro com prioridades, prazos e investimentos estimados. Em até 1 hora útil retornamos com os próximos passos.
+     </p>
+     <div class="contact-cta__stats">
+      <i class="fas fa-clock" aria-hidden="true"></i>
+      Resposta em <strong>&lt; 1h</strong>
+     </div>
+     <div class="contact-cta__actions">
+      <a href="#contato" class="hero__button hero__button--primary">
+       <i class="fas fa-paper-plane" aria-hidden="true"></i>
+       Solicitar orçamento
+      </a>
+      <a
+       href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20um%20orçamento%20completo."
+       class="hero__button hero__button--whatsapp"
+       target="_blank"
+       rel="noopener noreferrer"
+      >
+       <i class="fab fa-whatsapp" aria-hidden="true"></i>
+       WhatsApp imediato
+      </a>
+      <a href="/servicos.html" class="hero__button hero__button--secondary">
+       <i class="fas fa-list" aria-hidden="true"></i>
+       Ver catálogo completo
+      </a>
+     </div>
+    </div>
+   </section>
+
+   <!-- FAQ -->
+   <section id="faq" class="faq section fade-in" aria-labelledby="faq-title">
+    <div class="faq__container">
+     <div class="section-title slide-up">
+      <h2 id="faq-title">Dúvidas frequentes</h2>
+      <p>Respondemos às perguntas mais comuns sobre contratação, SLA e onboarding.</p>
+     </div>
+     <div class="faq__grid">
+      <article class="faq-item">
+       <button
+        class="faq-item__trigger"
+        aria-expanded="false"
+        aria-controls="faq-content-1"
+        id="faq-question-1"
+       >
+        Em quanto tempo vocês retornam com a proposta?
+        <i class="fas fa-plus" aria-hidden="true"></i>
+       </button>
+       <div
+        id="faq-content-1"
+        class="faq-item__content"
+        role="region"
+        aria-labelledby="faq-question-1"
+       >
+        <p>
+         Retornamos em até 1 hora útil com o alinhamento inicial e, em no máximo 2 dias úteis, enviamos o diagnóstico com proposta personalizada e cronograma sugerido.
+        </p>
+       </div>
+      </article>
+      <article class="faq-item">
+       <button
+        class="faq-item__trigger"
+        aria-expanded="false"
+        aria-controls="faq-content-2"
+        id="faq-question-2"
+       >
+        O formulário substitui o contato com o comercial?
+        <i class="fas fa-plus" aria-hidden="true"></i>
+       </button>
+       <div
+        id="faq-content-2"
+        class="faq-item__content"
+        role="region"
+        aria-labelledby="faq-question-2"
+       >
+        <p>
+         O formulário agiliza o diagnóstico e já abre um ticket no nosso CRM. Ainda assim, um especialista entrará em contato por telefone ou vídeo para detalhar necessidades e fechar o escopo.
+        </p>
+       </div>
+      </article>
+      <article class="faq-item">
+       <button
+        class="faq-item__trigger"
+        aria-expanded="false"
+        aria-controls="faq-content-3"
+        id="faq-question-3"
+       >
+        Vocês assinam NDA e seguem a LGPD?
+        <i class="fas fa-plus" aria-hidden="true"></i>
+       </button>
+       <div
+        id="faq-content-3"
+        class="faq-item__content"
+        role="region"
+        aria-labelledby="faq-question-3"
+       >
+        <p>
+         Sim. Trabalhamos com NDA desde o pré-vendas, temos políticas aderentes à LGPD e certificações ISO que garantem confidencialidade, integridade e disponibilidade dos dados.
+        </p>
+       </div>
+      </article>
+      <article class="faq-item">
+       <button
+        class="faq-item__trigger"
+        aria-expanded="false"
+        aria-controls="faq-content-4"
+        id="faq-question-4"
+       >
+        É possível contratar apenas um projeto pontual?
+        <i class="fas fa-plus" aria-hidden="true"></i>
+       </button>
+       <div
+        id="faq-content-4"
+        class="faq-item__content"
+        role="region"
+        aria-labelledby="faq-question-4"
+       >
+        <p>
+         Sim. Atendemos desde projetos de migração, upgrades de infraestrutura e auditorias até contratos recorrentes. Basta indicar no formulário que deseja um projeto pontual.
+        </p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <vite-partial src="/partials/footer.html" />
+
+  <!-- Botão Voltar ao Topo -->
+  <button
+   id="scroll-to-top"
+   class="scroll-to-top"
+   aria-label="Voltar ao topo"
+   title="Voltar ao topo"
+  >
+   <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+   {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "NT Informática",
+    "description": "Contato comercial para suporte técnico, infraestrutura, segurança da informação e consultoria em TI.",
+    "url": "https://www.ntinformatica.com.br/contato.html",
+    "telephone": "+55-11-99999-9999",
+    "email": "contato@ntinformatica.com.br",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "Av. Exemplo, 123",
+     "addressLocality": "São Paulo",
+     "addressRegion": "SP",
+     "postalCode": "01000-000",
+     "addressCountry": "BR"
+    },
+    "areaServed": "BR",
+    "contactPoint": {
+     "@type": "ContactPoint",
+     "contactType": "customer service",
+     "availableLanguage": ["pt-BR"]
+    }
+   }
+  </script>
+
   <!-- JavaScript -->
   <script type="module" src="/assets/js/toast.js"></script>
   <script type="module" src="/assets/js/app.js"></script>
   <script type="module" src="/assets/js/main.js"></script>
-</body>
+ </body>
 </html>
 

@@ -1,284 +1,541 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
   <!-- SEO Meta Tags -->
   <title>NT Informática - Suporte Técnico e Soluções em TI</title>
-  <meta name="description" content="NT Informática oferece serviços completos de suporte técnico, manutenção de computadores e soluções em tecnologia da informação.">
-  <meta name="keywords" content="suporte técnico, informática, manutenção de computadores, TI, suporte remoto">
-  <meta name="author" content="NT Informática">
-  <meta name="robots" content="index, follow">
-  
+  <meta
+   name="description"
+   content="NT Informática oferece serviços completos de suporte técnico, manutenção de computadores e soluções em tecnologia da informação."
+  />
+  <meta
+   name="keywords"
+   content="suporte técnico, informática, manutenção de computadores, TI, suporte remoto"
+  />
+  <meta name="author" content="NT Informática" />
+  <meta name="robots" content="index, follow" />
+
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="NT Informática - Suporte Técnico e Soluções em TI">
-  <meta property="og:description" content="Serviços completos de suporte técnico e soluções em tecnologia da informação.">
-  <meta property="og:image" content="">
-  <meta property="og:url" content="">
-  
+  <meta property="og:type" content="website" />
+  <meta
+   property="og:title"
+   content="NT Informática - Suporte Técnico e Soluções em TI"
+  />
+  <meta
+   property="og:description"
+   content="Serviços completos de suporte técnico e soluções em tecnologia da informação."
+  />
+  <meta
+   property="og:image"
+   content="https://www.ntinformatica.com.br/assets/images/og-image.jpg"
+  />
+  <meta property="og:url" content="https://www.ntinformatica.com.br" />
+
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NT Informática - Suporte Técnico e Soluções em TI">
-  <meta name="twitter:description" content="Serviços completos de suporte técnico e soluções em tecnologia da informação.">
-  <meta name="twitter:image" content="">
-  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+   name="twitter:title"
+   content="NT Informática - Suporte Técnico e Soluções em TI"
+  />
+  <meta
+   name="twitter:description"
+   content="Serviços completos de suporte técnico e soluções em tecnologia da informação."
+  />
+  <meta
+   name="twitter:image"
+   content="https://www.ntinformatica.com.br/assets/images/og-image.jpg"
+  />
+
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+   rel="stylesheet"
+  />
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+  />
+
   <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/toast.css">
-  <link rel="stylesheet" href="/assets/css/animations.css">
-  <link rel="stylesheet" href="/assets/css/accessibility.css">
-  <link rel="stylesheet" href="/assets/css/sections/navigation.css">
-  <link rel="stylesheet" href="/assets/sass/main.scss">
-  
+  <script
+   type="module"
+   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+   nomodule
+   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+  <!-- Inicializar Dark Mode ANTES do CSS carregar (evitar FOUC) -->
+  <!-- 
+    EXCEÇÃO À REGRA: Script externo carregado de forma síncrona antes dos CSS
+    Necessário para evitar FOUC (Flash of Unstyled Content).
+    Este script DEVE ser executado ANTES do CSS para aplicar a classe .dark imediatamente.
+    Referência: @.cursor/rules/rules.mdc - "exceto quando absolutamente necessário"
+    
+    IMPORTANTE: Sem defer/async para garantir execução síncrona e bloqueante
+    O script bloqueia o parsing até ser executado completamente
+  -->
+  <script src="/js/dark-mode-init.js"></script>
+
+  <!-- CSS (carregado depois do script de inicialização) -->
+  <!-- 1. Variáveis primeiro (necessárias para tudo) -->
+  <link rel="stylesheet" href="/assets/css/variables.css" />
+  <!-- 2. Temas (usa variáveis) -->
+  <link rel="stylesheet" href="/assets/css/themes.css" />
+  <!-- 3. Base (usa variáveis e temas) -->
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <!-- 4. Acessibilidade (pode sobrescrever) -->
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+  <!-- 5. Outros CSS -->
+  <link rel="stylesheet" href="/assets/css/toast.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/sections/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/sections/footer.css" />
+  <link rel="stylesheet" href="/assets/css/sections/dark-mode-toggle.css" />
+  <link rel="stylesheet" href="/assets/css/sections/scroll-to-top.css" />
+  <link rel="stylesheet" href="/assets/sass/main.scss" />
+
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
-  {
+   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "NT Informática",
     "description": "Serviços de suporte técnico e soluções em tecnologia da informação",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Endereço completo",
-      "addressLocality": "Cidade",
-      "addressRegion": "SP",
-      "postalCode": "CEP",
-      "addressCountry": "BR"
-    },
-    "telephone": "+55-XX-XXXXX-XXXX",
     "email": "contato@ntinformatica.com.br",
-    "url": "https://www.ntinformatica.com.br"
-  }
+    "url": "https://www.ntinformatica.com.br",
+    "serviceArea": {
+     "@type": "Country",
+     "name": "Brasil"
+    },
+    "areaServed": "BR",
+    "hasOfferCatalog": {
+     "@type": "OfferCatalog",
+     "name": "Serviços de TI",
+     "itemListElement": [
+      {
+       "@type": "Offer",
+       "itemOffered": {
+        "@type": "Service",
+        "name": "Suporte Técnico",
+        "description": "Suporte técnico remoto e presencial para empresas"
+       }
+      },
+      {
+       "@type": "Offer",
+       "itemOffered": {
+        "@type": "Service",
+        "name": "Segurança da Informação",
+        "description": "Proteção de dados e sistemas contra ameaças digitais"
+       }
+      },
+      {
+       "@type": "Offer",
+       "itemOffered": {
+        "@type": "Service",
+        "name": "Infraestrutura de TI",
+        "description": "Planejamento e implementação de infraestrutura de TI"
+       }
+      }
+     ]
+    }
+   }
   </script>
-</head>
-<body>
-  <vite-partial src="/partials/header.html"/>
-  
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
+ </head>
+ <body>
+  <!-- Skip Link para acessibilidade -->
+  <a href="#main-content" class="skip-link">Pular para conteúdo</a>
+
+  <vite-partial src="/partials/header.html" />
+
+  <main id="main-content">
+   <!-- Hero Section -->
+   <section id="hero" class="hero">
     <div class="hero__content">
-      <h1 class="hero__title fade-in">
-        Soluções completas em<br>
-        <strong>Suporte de Informática</strong>
-      </h1>
-      <p class="hero__subtitle slide-up">Suporte técnico especializado para sua empresa</p>
-      <p class="hero__description slide-up">
-        Oferecemos serviços de TI de qualidade, com atendimento rápido e eficiente. 
-        Mantenha sua infraestrutura funcionando perfeitamente.
+     <h1 class="hero__title fade-in">
+      Soluções completas em<br />
+      <strong>Suporte de Informática</strong>
+     </h1>
+     <p class="hero__subtitle slide-up">
+      Suporte técnico especializado para sua empresa
+     </p>
+     <p class="hero__description slide-up">
+      Oferecemos serviços de TI de qualidade, com atendimento rápido e
+      eficiente. Mantenha sua infraestrutura funcionando perfeitamente.
+     </p>
+     <div class="hero__actions stagger-animation">
+      <a
+       href="/contato.html"
+       class="hero__button hero__button--primary stagger-animation"
+      >
+       <i class="fas fa-paper-plane" aria-hidden="true"></i>
+       Solicitar Orçamento
+      </a>
+      <a
+       href="/servicos.html"
+       class="hero__button hero__button--secondary stagger-animation"
+      >
+       <i class="fas fa-laptop" aria-hidden="true"></i>
+       Nossos Serviços
+      </a>
+     </div>
+
+     <!-- Estatísticas Rápidas (opcional) -->
+     <div class="hero__stats">
+      <div class="hero__stats-item">
+       <span class="hero__stats-number" data-count="500">+500</span>
+       <span class="hero__stats-label">
+        <i class="fas fa-users" aria-hidden="true"></i>
+        Clientes Atendidos
+       </span>
+      </div>
+      <div class="hero__stats-item">
+       <span class="hero__stats-number">24/7</span>
+       <span class="hero__stats-label">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+        Suporte Disponível
+       </span>
+      </div>
+      <div class="hero__stats-item">
+       <span class="hero__stats-number" data-count="98">98%</span>
+       <span class="hero__stats-label">
+        <i class="fas fa-star" aria-hidden="true"></i>
+        Satisfação
+       </span>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <!-- Resumo de Serviços -->
+   <section id="servicos-resumo" class="services section fade-in">
+    <div class="services__container">
+     <div class="section-title slide-up">
+      <h2>Nossos serviços</h2>
+      <p>
+       Oferecemos soluções completas em tecnologia da informação para sua
+       empresa
       </p>
-      <div class="hero__actions stagger-animation">
-        <a href="/contato.html" class="hero__button hero__button--primary stagger-animation">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          Solicitar Orçamento
-        </a>
-        <a href="/servicos.html" class="hero__button hero__button--secondary stagger-animation">
-          <i class="fas fa-laptop" aria-hidden="true"></i>
-          Nossos Serviços
-        </a>
+     </div>
+     <div class="services__grid">
+      <article class="service-card stagger-animation">
+       <div class="service-card__icon">
+        <i class="fas fa-laptop" aria-hidden="true"></i>
+       </div>
+       <h3 class="service-card__title">Suporte técnico</h3>
+       <p class="service-card__description">
+        Suporte técnico remoto e presencial para resolver problemas de forma
+        rápida e eficiente. Nossa equipe está disponível 24/7 para garantir que
+        seus sistemas funcionem perfeitamente.
+       </p>
+       <a href="/servicos.html#suporte-tecnico" class="service-card__link">
+        Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+       </a>
+      </article>
+      <article class="service-card stagger-animation">
+       <div class="service-card__icon">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+       </div>
+       <h3 class="service-card__title">Segurança da informação</h3>
+       <p class="service-card__description">
+        Proteção dos dados e sistemas da sua empresa contra ameaças digitais.
+        Implementamos soluções de segurança robustas para manter seus dados
+        seguros.
+       </p>
+       <a href="/servicos.html#seguranca" class="service-card__link">
+        Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+       </a>
+      </article>
+      <article class="service-card stagger-animation">
+       <div class="service-card__icon">
+        <i class="fas fa-server" aria-hidden="true"></i>
+       </div>
+       <h3 class="service-card__title">Infraestrutura de TI</h3>
+       <p class="service-card__description">
+        Planejamento e implementação de infraestrutura de TI para sua empresa.
+        Criamos soluções escaláveis e confiáveis para suportar seu crescimento.
+       </p>
+       <a href="/servicos.html#infraestrutura" class="service-card__link">
+        Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+       </a>
+      </article>
+     </div>
+     <div class="services__cta">
+      <a href="/servicos.html" class="hero__button hero__button--primary">
+       Ver Todos os Serviços
+      </a>
+     </div>
+    </div>
+   </section>
+
+   <!-- Resumo Sobre -->
+   <section id="sobre-resumo" class="about section fade-in">
+    <div class="about__container">
+     <div class="section-title slide-up">
+      <h2>Sobre nós</h2>
+      <p>Conheça a empresa que está transformando a gestão de TI no Brasil</p>
+     </div>
+     <div class="about__content">
+      <div class="about__text slide-up">
+       <p>
+        A NT Informática é uma empresa especializada em suporte técnico e
+        soluções em tecnologia da informação. Com anos de experiência no
+        mercado, oferecemos serviços de qualidade para empresas de todos os
+        portes, sempre priorizando a excelência e a satisfação dos nossos
+        clientes.
+       </p>
+       <p>
+        Nossa missão é proporcionar soluções tecnológicas eficientes e
+        confiáveis, garantindo que nossos clientes tenham a melhor experiência
+        possível com seus sistemas de TI. Com mais de 10 anos de experiência e
+        mais de 500 clientes atendidos, buscamos sempre superar expectativas e
+        entregar resultados que agreguem valor real ao negócio, mantendo 98% de
+        satisfação dos nossos clientes.
+       </p>
+      </div>
+      <div class="about__image-wrapper slide-up">
+       <div class="about__image">
+        <img
+         src="/assets/images/about.png"
+         alt="Equipe NT Informática"
+         loading="lazy"
+        />
+       </div>
+      </div>
+     </div>
+     
+     <!-- Container próprio para botão e badges alinhados -->
+     <div class="about__footer">
+      <div class="about__actions">
+       <a href="/sobre.html" class="hero__button hero__button--secondary">
+        <i class="fas fa-book-open" aria-hidden="true"></i>
+        Conheça Nossa História
+       </a>
       </div>
       
-      <!-- Estatísticas Rápidas (opcional) -->
-      <div class="hero__stats">
-        <div class="hero__stats-item">
-          <span class="hero__stats-number">+500</span>
-          <span class="hero__stats-label">Clientes Atendidos</span>
+      <div class="about__highlights">
+       <div class="about__highlight-item">
+        <i class="fas fa-award" aria-hidden="true"></i>
+        <div>
+         <strong>10+ Anos</strong>
+         <span>De experiência no mercado de TI</span>
         </div>
-        <div class="hero__stats-item">
-          <span class="hero__stats-number">24/7</span>
-          <span class="hero__stats-label">Suporte Disponível</span>
+       </div>
+       <div class="about__highlight-item">
+        <i class="fas fa-users" aria-hidden="true"></i>
+        <div>
+         <strong>+500 Clientes</strong>
+         <span>Atendidos com sucesso</span>
         </div>
-        <div class="hero__stats-item">
-          <span class="hero__stats-number">98%</span>
-          <span class="hero__stats-label">Satisfação</span>
+       </div>
+       <div class="about__highlight-item">
+        <i class="fas fa-certificate" aria-hidden="true"></i>
+        <div>
+         <strong>100% Certificada</strong>
+         <span>Equipe de profissionais qualificados</span>
         </div>
+       </div>
       </div>
+     </div>
     </div>
-  </section>
-  
-  <!-- Resumo de Serviços -->
-  <section id="servicos-resumo" class="services section fade-in">
-    <div class="services__container">
-      <div class="section-title slide-up">
-        <h2>Nossos Serviços</h2>
-        <p>Oferecemos soluções completas em tecnologia da informação para sua empresa</p>
-      </div>
-      <div class="services__grid">
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-laptop" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Suporte Técnico</h3>
-          <p class="service-card__description">
-            Suporte técnico remoto e presencial para resolver problemas de forma rápida e eficiente. 
-            Nossa equipe está disponível 24/7 para garantir que seus sistemas funcionem perfeitamente.
-          </p>
-          <a href="/servicos.html#suporte-tecnico" class="service-card__link">
-            Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Segurança da Informação</h3>
-          <p class="service-card__description">
-            Proteção dos dados e sistemas da sua empresa contra ameaças digitais. 
-            Implementamos soluções de segurança robustas para manter seus dados seguros.
-          </p>
-          <a href="/servicos.html#seguranca" class="service-card__link">
-            Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-server" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Infraestrutura de TI</h3>
-          <p class="service-card__description">
-            Planejamento e implementação de infraestrutura de TI para sua empresa. 
-            Criamos soluções escaláveis e confiáveis para suportar seu crescimento.
-          </p>
-          <a href="/servicos.html#infraestrutura" class="service-card__link">
-            Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-      </div>
-      <div class="services__cta">
-        <a href="/servicos.html" class="hero__button hero__button--primary">
-          Ver Todos os Serviços
-        </a>
-      </div>
     </div>
-  </section>
-  
-  <!-- Resumo Sobre -->
-  <section id="sobre-resumo" class="about section fade-in">
-    <div class="about__container">
-      <div class="section-title slide-up">
-        <h2>Sobre Nós</h2>
-        <p>Conheça a empresa que está transformando a gestão de TI no Brasil</p>
-      </div>
-      <div class="about__content">
-        <div class="about__text slide-up">
-          <p>
-            A NT Informática é uma empresa especializada em suporte técnico e soluções 
-            em tecnologia da informação. Com anos de experiência no mercado, oferecemos 
-            serviços de qualidade para empresas de todos os portes, sempre priorizando 
-            a excelência e a satisfação dos nossos clientes.
-          </p>
-          <p>
-            Nossa missão é proporcionar soluções tecnológicas eficientes e confiáveis, 
-            garantindo que nossos clientes tenham a melhor experiência possível com seus 
-            sistemas de TI. Buscamos sempre superar expectativas e entregar resultados 
-            que agreguem valor real ao negócio.
-          </p>
-          <div style="margin-top: var(--spacing-xl);">
-            <a href="/sobre.html" class="hero__button hero__button--secondary">
-              Conheça Nossa História
-            </a>
-          </div>
-        </div>
-        <div class="about__image slide-up">
-          <img src="https://via.placeholder.com/600x400" alt="Equipe NT Informática" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Benefícios/Diferenciais -->
-  <section id="beneficios" class="benefits section fade-in">
+   </section>
+
+   <!-- Benefícios/Diferenciais -->
+   <section id="beneficios" class="benefits section fade-in">
     <div class="benefits__container">
-      <div class="section-title slide-up">
-        <h2>Por Que Escolher a NT Informática?</h2>
-        <p>Diferenciais que fazem a diferença para sua empresa</p>
+     <div class="section-title slide-up">
+      <h2>Nossos diferenciais</h2>
+      <p>O que nos torna a melhor escolha para sua empresa</p>
+     </div>
+     <div class="benefits__grid">
+      <div class="benefit-card stagger-animation">
+       <div class="benefit-card__icon">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+       </div>
+       <div class="benefit-card__number">24/7</div>
+       <h3 class="benefit-card__title">Suporte contínuo</h3>
+       <p class="benefit-card__description">
+        Atendimento disponível 24 horas por dia, 7 dias por semana. Sua empresa
+        nunca fica sem suporte técnico, garantindo máxima disponibilidade.
+       </p>
       </div>
-      <div class="benefits__grid">
-        <div class="benefit-card stagger-animation">
-          <div class="benefit-card__icon">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-          </div>
-          <h3 class="benefit-card__title">Suporte 24/7</h3>
-          <p class="benefit-card__description">
-            Atendimento disponível 24 horas por dia, 7 dias por semana. 
-            Sua empresa nunca fica sem suporte técnico.
-          </p>
-        </div>
-        <div class="benefit-card stagger-animation">
-          <div class="benefit-card__icon">
-            <i class="fas fa-certificate" aria-hidden="true"></i>
-          </div>
-          <h3 class="benefit-card__title">Equipe Certificada</h3>
-          <p class="benefit-card__description">
-            Profissionais altamente qualificados e certificados nas principais 
-            tecnologias do mercado.
-          </p>
-        </div>
-        <div class="benefit-card stagger-animation">
-          <div class="benefit-card__icon">
-            <i class="fas fa-bolt" aria-hidden="true"></i>
-          </div>
-          <h3 class="benefit-card__title">Resposta Rápida</h3>
-          <p class="benefit-card__description">
-            Tempo médio de resposta inferior a 1 hora. Resolvemos seus problemas 
-            com agilidade e eficiência.
-          </p>
-        </div>
-        <div class="benefit-card stagger-animation">
-          <div class="benefit-card__icon">
-            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-          </div>
-          <h3 class="benefit-card__title">Segurança Garantida</h3>
-          <p class="benefit-card__description">
-            Proteção completa dos seus dados com as melhores práticas de segurança 
-            da informação.
-          </p>
-        </div>
+      <div class="benefit-card stagger-animation">
+       <div class="benefit-card__icon">
+        <i class="fas fa-cogs" aria-hidden="true"></i>
+       </div>
+       <div class="benefit-card__number">100%</div>
+       <h3 class="benefit-card__title">Soluções personalizadas</h3>
+       <p class="benefit-card__description">
+        Cada cliente é único. Desenvolvemos soluções sob medida para atender às
+        necessidades específicas do seu negócio, garantindo máxima eficiência e
+        resultados.
+       </p>
       </div>
+      <div class="benefit-card stagger-animation">
+       <div class="benefit-card__icon">
+        <i class="fas fa-bolt" aria-hidden="true"></i>
+       </div>
+       <div class="benefit-card__number">&lt; 1h</div>
+       <h3 class="benefit-card__title">Resposta rápida</h3>
+       <p class="benefit-card__description">
+        Tempo médio de resposta inferior a 1 hora. Resolvemos seus problemas com
+        agilidade e eficiência, minimizando impactos no seu negócio.
+       </p>
+      </div>
+      <div class="benefit-card stagger-animation">
+       <div class="benefit-card__icon">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+       </div>
+       <div class="benefit-card__number">99.9%</div>
+       <h3 class="benefit-card__title">Segurança garantida</h3>
+       <p class="benefit-card__description">
+        Proteção completa dos seus dados com as melhores práticas de segurança
+        da informação, garantindo 99.9% de uptime e zero incidentes de segurança.
+       </p>
+      </div>
+     </div>
     </div>
-  </section>
-  
-  <!-- CTA Contato -->
-  <section id="cta-contato" class="contact section fade-in" style="background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 168, 255, 0.05) 100%);">
-    <div class="contact__container" style="text-align: center; max-width: 800px;">
-      <div class="section-title slide-up">
-        <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">Pronto para Transformar sua Infraestrutura de TI?</h2>
-        <p style="font-size: 1.125rem; line-height: 1.8;">
-          Entre em contato conosco e solicite um orçamento sem compromisso. 
-          Estamos prontos para ajudar sua empresa a alcançar seus objetivos tecnológicos.
+   </section>
+
+   <!-- Depoimentos -->
+   <section id="depoimentos" class="testimonials section fade-in">
+    <div class="testimonials__container">
+     <div class="section-title slide-up">
+      <h2>O que nossos clientes dizem</h2>
+      <p>Depoimentos de quem confia na NT Informática</p>
+     </div>
+     <div class="testimonials__grid">
+      <article class="testimonial-card stagger-animation">
+       <div class="testimonial-card__content">
+        <div class="testimonial-card__rating">
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+        </div>
+        <p class="testimonial-card__text">
+         A NT Informática transformou nossa infraestrutura de TI. O suporte é
+         excepcional e sempre disponível quando precisamos. Nossa produtividade
+         aumentou significativamente desde que contratamos seus serviços.
         </p>
-      </div>
-      <div style="margin-top: var(--spacing-xxl);">
-        <a href="/contato.html" class="hero__button hero__button--primary">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          Entre em Contato
-        </a>
-      </div>
+       </div>
+       <div class="testimonial-card__author">
+        <strong>Carlos Eduardo Silva</strong>
+        <span>Diretor de TI - TechSolutions Brasil</span>
+       </div>
+      </article>
+      <article class="testimonial-card stagger-animation">
+       <div class="testimonial-card__content">
+        <div class="testimonial-card__rating">
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+        </div>
+        <p class="testimonial-card__text">
+         Profissionais altamente qualificados e sempre prontos para resolver
+         qualquer problema. A equipe da NT Informática entende as necessidades do
+         nosso negócio e oferece soluções personalizadas que realmente fazem a
+         diferença.
+        </p>
+       </div>
+       <div class="testimonial-card__author">
+        <strong>Mariana Oliveira</strong>
+        <span>Gerente de Operações - Inovação Digital Ltda</span>
+       </div>
+      </article>
+      <article class="testimonial-card stagger-animation">
+       <div class="testimonial-card__content">
+        <div class="testimonial-card__rating">
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+         <i class="fas fa-star" aria-hidden="true"></i>
+        </div>
+        <p class="testimonial-card__text">
+         Excelente atendimento e suporte técnico de primeira linha. A resposta
+         rápida e eficiente da equipe nos ajudou a evitar diversos problemas
+         críticos. Recomendo sem hesitação para qualquer empresa que precise de
+         suporte em TI.
+        </p>
+       </div>
+       <div class="testimonial-card__author">
+        <strong>Roberto Santos</strong>
+        <span>CEO - Empresas Unidas S.A.</span>
+       </div>
+      </article>
+     </div>
     </div>
-  </section>
-  
-  <vite-partial src="/partials/footer.html"/>
-  
+   </section>
+
+   <!-- CTA Contato -->
+   <section id="cta-contato" class="contact contact-cta section fade-in">
+    <div class="contact-cta__container">
+     <!-- Título e descrição -->
+     <div class="section-title slide-up">
+      <h2 class="contact-cta__title">
+       Pronto para transformar sua infraestrutura de TI?
+      </h2>
+      <p class="contact-cta__description">
+       Entre em contato conosco e solicite um orçamento sem compromisso. Estamos
+       prontos para ajudar sua empresa a alcançar seus objetivos tecnológicos.
+      </p>
+     </div>
+
+     <!-- Estatística rápida -->
+     <div class="contact-cta__stats slide-up">
+      <i class="fas fa-clock" aria-hidden="true"></i>
+      <span>Resposta em <strong>&lt; 1h</strong></span>
+     </div>
+
+     <!-- Botões de ação -->
+     <div class="contact-cta__actions slide-up">
+      <a href="/contato.html" class="hero__button hero__button--primary">
+       <i class="fas fa-paper-plane" aria-hidden="true"></i>
+       Solicitar Orçamento
+      </a>
+      <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="hero__button hero__button--whatsapp" target="_blank" rel="noopener noreferrer">
+       <i class="fab fa-whatsapp" aria-hidden="true"></i>
+       Falar no WhatsApp
+      </a>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <vite-partial src="/partials/footer.html" />
+
+  <!-- Botão Voltar ao Topo -->
+  <button
+   id="scroll-to-top"
+   class="scroll-to-top"
+   aria-label="Voltar ao topo"
+   title="Voltar ao topo"
+  >
+   <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
   <!-- JavaScript -->
   <script type="module" src="/assets/js/toast.js"></script>
   <script type="module" src="/assets/js/app.js"></script>
   <script type="module" src="/assets/js/main.js"></script>
-</body>
+ </body>
 </html>

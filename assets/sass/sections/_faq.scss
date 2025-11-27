@@ -1,0 +1,96 @@
+// ============================================
+// FAQ Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.faq {
+  background-color: var(--color-bg-primary);
+  padding: $spacing-xxl 0;
+}
+
+.faq__container {
+  @include container;
+}
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $spacing-md;
+  align-items: flex-start;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq-item {
+  border: var(--border-medium);
+  border-radius: 16px;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
+  padding: $spacing-md;
+  transition: all $transition-normal;
+
+  &:hover,
+  &.is-open {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.25);
+  }
+}
+
+.faq-item__trigger {
+  width: 100%;
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: $font-weight-semibold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+
+  i {
+    transition: transform $transition-normal;
+    color: var(--color-blue-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-primary);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+}
+
+.faq-item__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $transition-normal ease, opacity $transition-normal, padding $transition-normal;
+  opacity: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-top: 0;
+  padding-top: 0;
+
+  p {
+    margin-top: $spacing-sm;
+  }
+}
+
+.faq-item.is-open {
+  .faq-item__content {
+    opacity: 1;
+    padding-top: $spacing-sm;
+  }
+
+  .faq-item__trigger i {
+    transform: rotate(45deg);
+  }
+}
+

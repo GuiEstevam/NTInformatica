@@ -1,0 +1,182 @@
+// ============================================
+// Plans Section - NT Informática
+// ============================================
+
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.plans {
+  background-color: var(--color-bg-secondary);
+  position: relative;
+  overflow: hidden;
+  padding: $spacing-xxl 0;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.06), transparent 70%);
+    z-index: 0;
+    animation: float 22s ease-in-out infinite;
+  }
+
+  &::before {
+    top: -20%;
+    right: -10%;
+  }
+
+  &::after {
+    bottom: -25%;
+    left: -10%;
+    animation-direction: reverse;
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.05), transparent 70%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+.plans__container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.plans__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plan-card {
+  background-color: var(--color-bg-card);
+  border: var(--border-medium);
+  border-radius: 20px;
+  padding: $spacing-xl;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-normal;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.3);
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.plan-card--highlight {
+  border: 2px solid rgba(var(--color-blue-primary-rgb), 0.4);
+  box-shadow: 0 20px 60px rgba(var(--color-blue-primary-rgb), 0.15);
+
+  &::after {
+    content: 'Mais contratado';
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    padding: $spacing-xxs $spacing-sm;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-dark));
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.05em;
+  }
+}
+
+.plan-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxs;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+}
+
+.plan-card__category {
+  color: var(--color-blue-primary);
+  font-size: 0.95rem;
+}
+
+.plan-card__tag {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.plan-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
+
+  strong {
+    font-size: 2.25rem;
+    font-weight: $font-weight-extrabold;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+  }
+
+  span {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+  }
+}
+
+.plan-card__description {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.plan-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-blue-primary), var(--color-accent));
+      display: inline-block;
+      flex-shrink: 0;
+    }
+  }
+}
+

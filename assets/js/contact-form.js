@@ -27,11 +27,39 @@ export function initContactForm() {
   // Validação em tempo real
   inputs.forEach(input => {
     input.addEventListener('blur', () => {
+      // Validar campo quando o usuário sai dele
       validateField(input);
     });
 
     input.addEventListener('input', () => {
+      // Limpar erro enquanto o usuário digita
       clearFieldError(input);
+    });
+
+    // Validar também quando o campo perde o foco após ter sido tocado
+    input.addEventListener('focus', () => {
+      // Marcar que o campo foi tocado
+      input.dataset.touched = 'true';
+    });
+  });
+
+  // Validação em tempo real para checkboxes de serviços
+  const servicosCheckboxes = form.querySelectorAll('input[name="servicos"]');
+  servicosCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const servicosSelecionados = Array.from(servicosCheckboxes).filter(cb => cb.checked);
+      const servicosError = document.getElementById('servicos-error');
+      const fieldset = form.querySelector('fieldset[aria-labelledby="servicos-label"]');
+      
+      if (servicosSelecionados.length > 0) {
+        if (servicosError) {
+          servicosError.classList.remove('form-error--show');
+          servicosError.textContent = '';
+        }
+        if (fieldset) {
+          fieldset.classList.remove('form-fieldset--error');
+        }
+      }
     });
   });
 
@@ -46,6 +74,33 @@ export function initContactForm() {
         isValid = false;
       }
     });
+
+    // Validar serviços de interesse (pelo menos um checkbox selecionado)
+    const servicosCheckboxes = form.querySelectorAll('input[name="servicos"]');
+    const servicosSelecionados = Array.from(servicosCheckboxes).filter(cb => cb.checked);
+    const servicosError = document.getElementById('servicos-error');
+    
+    if (servicosSelecionados.length === 0) {
+      isValid = false;
+      if (servicosError) {
+        servicosError.textContent = 'Selecione pelo menos um serviço de interesse.';
+        servicosError.classList.add('form-error--show');
+      }
+      // Adicionar classe de erro no fieldset
+      const fieldset = form.querySelector('fieldset[aria-labelledby="servicos-label"]');
+      if (fieldset) {
+        fieldset.classList.add('form-fieldset--error');
+      }
+    } else {
+      if (servicosError) {
+        servicosError.classList.remove('form-error--show');
+        servicosError.textContent = '';
+      }
+      const fieldset = form.querySelector('fieldset[aria-labelledby="servicos-label"]');
+      if (fieldset) {
+        fieldset.classList.remove('form-fieldset--error');
+      }
+    }
 
     if (!isValid) {
       window.showToast('Por favor, preencha todos os campos obrigatórios corretamente.', 'warning', 5000);
@@ -68,16 +123,35 @@ export function initContactForm() {
     form.classList.add('contact-form--loading');
 
     try {
-      // Coletar dados do formulário
+      // Coletar e sanitizar dados do formulário
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
+      const data = {};
 
-      // Sanitizar dados
-      Object.keys(data).forEach(key => {
-        if (typeof data[key] === 'string') {
-          data[key] = escapeHtml(data[key].trim());
+      formData.forEach((value, key) => {
+        if (key === 'servicos') {
+          if (!Array.isArray(data.servicos)) {
+            data.servicos = [];
+          }
+          data.servicos.push(escapeHtml((value || '').trim()));
+          return;
+        }
+
+        if (key === 'consentimento') {
+          data.consentimento = true;
+          return;
+        }
+
+        if (typeof value === 'string') {
+          data[key] = escapeHtml(value.trim());
+        } else {
+          data[key] = value;
         }
       });
+
+      data.consentimento = !!form.querySelector('#consentimento')?.checked;
+      if (!Array.isArray(data.servicos)) {
+        data.servicos = [];
+      }
 
       // Enviar para Formspree (substituir pela URL do seu formulário)
       // Ou usar EmailJS conforme necessário
@@ -131,34 +205,56 @@ export function initContactForm() {
    * Valida um campo
    */
   function validateField(field) {
-    const value = field.value.trim();
-    const isRequired = field.hasAttribute('required');
+    const tagName = field.tagName.toLowerCase();
     const fieldType = field.type;
-    const errorElement = field.parentElement.querySelector('.form-error');
+    const isRequired = field.hasAttribute('required');
 
     clearFieldError(field);
 
-    // Validar obrigatório
+    if (fieldType === 'checkbox') {
+      if (isRequired && !field.checked) {
+        showFieldError(field, 'Este campo é obrigatório.');
+        return false;
+      }
+      return true;
+    }
+
+    if (tagName === 'select' && field.multiple) {
+      const selected = Array.from(field.selectedOptions).map(option => option.value).filter(Boolean);
+      if (isRequired && selected.length === 0) {
+        showFieldError(field, 'Selecione pelo menos uma opção.');
+        return false;
+      }
+      return true;
+    }
+
+    const value = field.value.trim();
+
+    // Validar campo obrigatório primeiro
     if (isRequired && !validateRequired(value)) {
       showFieldError(field, 'Este campo é obrigatório.');
       return false;
     }
 
-    // Validar e-mail
-    if (fieldType === 'email' && value && !validateEmail(value)) {
+    // Se o campo não é obrigatório e está vazio, é válido
+    if (!value) {
+      return true;
+    }
+
+    // Validar formato de email
+    if (fieldType === 'email' && !validateEmail(value)) {
       showFieldError(field, 'Por favor, insira um e-mail válido.');
       return false;
     }
 
-    // Validar telefone
-    if (fieldType === 'tel' && value && !validatePhone(value)) {
+    // Validar formato de telefone
+    if (fieldType === 'tel' && !validatePhone(value)) {
       showFieldError(field, 'Por favor, insira um telefone válido.');
       return false;
     }
 
-    // Validar tamanho mínimo
     const minLength = field.getAttribute('minlength');
-    if (minLength && value.length < parseInt(minLength)) {
+    if (minLength && value.length < parseInt(minLength, 10)) {
       showFieldError(field, `Este campo deve ter no mínimo ${minLength} caracteres.`);
       return false;
     }
@@ -178,18 +274,22 @@ export function initContactForm() {
    */
   function showFieldError(field, message) {
     field.setAttribute('aria-invalid', 'true');
-    field.classList.add('form-input--error');
     
-    let errorElement = field.parentElement.querySelector('.form-error');
-    if (!errorElement) {
-      errorElement = document.createElement('div');
-      errorElement.className = 'form-error';
-      errorElement.setAttribute('role', 'alert');
-      field.parentElement.appendChild(errorElement);
+    // Adicionar classe de erro baseada no tipo de campo
+    const tagName = field.tagName.toLowerCase();
+    if (tagName === 'input') {
+      field.classList.add('form-input--error');
+    } else if (tagName === 'select') {
+      field.classList.add('form-select--error');
+    } else if (tagName === 'textarea') {
+      field.classList.add('form-textarea--error');
     }
     
-    errorElement.textContent = message;
-    errorElement.classList.add('form-error--show');
+    const errorElement = getFieldErrorElement(field);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add('form-error--show');
+    }
   }
 
   /**
@@ -197,9 +297,11 @@ export function initContactForm() {
    */
   function clearFieldError(field) {
     field.removeAttribute('aria-invalid');
-    field.classList.remove('form-input--error');
     
-    const errorElement = field.parentElement.querySelector('.form-error');
+    // Remover todas as classes de erro possíveis
+    field.classList.remove('form-input--error', 'form-select--error', 'form-textarea--error');
+    
+    const errorElement = getFieldErrorElement(field);
     if (errorElement) {
       errorElement.classList.remove('form-error--show');
       errorElement.textContent = '';
@@ -213,6 +315,32 @@ export function initContactForm() {
     inputs.forEach(input => {
       clearFieldError(input);
     });
+  }
+
+  function getFieldErrorElement(field) {
+    const group = field.closest('.form-group') || field.parentElement;
+    if (group) {
+      const errorInsideGroup = group.querySelector('.form-error');
+      if (errorInsideGroup) {
+        return errorInsideGroup;
+      }
+    }
+
+    if (field.id) {
+      const byId = document.getElementById(`${field.id}-error`);
+      if (byId) {
+        return byId;
+      }
+    }
+
+    if (field.name) {
+      const byName = document.getElementById(`${field.name}-error`);
+      if (byName) {
+        return byName;
+      }
+    }
+
+    return null;
   }
 }
 

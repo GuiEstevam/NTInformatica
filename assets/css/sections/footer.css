@@ -1,0 +1,156 @@
+/* ============================================
+   Footer - NT Informática
+   ============================================ */
+
+.footer {
+ padding: var(--spacing-xl) 0;
+ background-color: var(
+  --color-bg-secondary
+ ); /* ✅ Muda automaticamente com tema */
+ color: var(--color-text-primary); /* ✅ Muda automaticamente com tema */
+ text-align: center;
+ border-top: var(--border-medium); /* ✅ Muda automaticamente com tema */
+}
+
+.footer__container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 var(--spacing-md);
+ display: flex;
+ flex-direction: column;
+ gap: var(--spacing-lg);
+ align-items: center;
+}
+
+.footer__social {
+ display: flex;
+ gap: var(--spacing-md);
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
+
+.footer__social-link {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 44px;
+ height: 44px;
+ color: var(--color-text-secondary); /* ✅ Muda automaticamente com tema */
+ background-color: var(--color-bg-card); /* ✅ Muda automaticamente com tema */
+ border: var(--border-thin); /* ✅ Muda automaticamente com tema */
+ border-radius: 50%;
+ text-decoration: none;
+ font-size: 1.25rem;
+ transition: all var(--transition-normal);
+}
+
+.footer__social-link:hover {
+ color: var(--color-white);
+ background-color: var(
+  --color-blue-primary
+ ); /* ✅ Muda automaticamente com tema */
+ border-color: var(--color-blue-primary);
+ transform: translateY(-3px);
+ box-shadow: var(--shadow-md);
+}
+
+.footer__social-link:focus-visible {
+ outline: 2px solid var(--color-blue-primary);
+ outline-offset: 2px;
+}
+
+/* Cores específicas para cada rede social no hover */
+.footer__social-link[aria-label='WhatsApp']:hover {
+ background-color: #25d366;
+ border-color: #25d366;
+}
+
+.footer__social-link[aria-label='LinkedIn']:hover {
+ background-color: #0077b5;
+ border-color: #0077b5;
+}
+
+.footer__social-link[aria-label='Facebook']:hover {
+ background-color: #1877f2;
+ border-color: #1877f2;
+}
+
+.footer__social-link[aria-label='Instagram']:hover {
+ background: linear-gradient(
+  45deg,
+  #f09433 0%,
+  #e6683c 25%,
+  #dc2743 50%,
+  #cc2366 75%,
+  #bc1888 100%
+ );
+ border-color: transparent;
+}
+
+/* Botão Dark Mode no Footer - estilo similar aos botões de redes sociais */
+.footer__dark-mode-toggle {
+ position: relative;
+ cursor: pointer;
+}
+
+.footer__dark-mode-toggle .dark-mode-toggle__icon--sun,
+.footer__dark-mode-toggle .dark-mode-toggle__icon--moon {
+ font-size: 1.25rem;
+ transition: opacity var(--transition-fast), transform var(--transition-normal);
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.footer__dark-mode-toggle .dark-mode-toggle__icon--sun.hidden,
+.footer__dark-mode-toggle .dark-mode-toggle__icon--moon.hidden {
+ opacity: 0;
+ transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+ pointer-events: none;
+}
+
+.footer__dark-mode-toggle .dark-mode-toggle__icon--sun:not(.hidden),
+.footer__dark-mode-toggle .dark-mode-toggle__icon--moon:not(.hidden) {
+ opacity: 1;
+ transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+.footer__dark-mode-toggle:hover {
+ color: var(--color-white);
+ background-color: var(--color-blue-primary);
+ border-color: var(--color-blue-primary);
+}
+
+.footer__copyright {
+ margin: 0;
+ font-size: 0.875rem;
+ color: var(--color-text-secondary); /* ✅ Muda automaticamente com tema */
+ font-weight: var(--font-weight-regular);
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+ .footer {
+  padding: var(--spacing-lg) 0;
+ }
+
+ .footer__container {
+  gap: var(--spacing-md);
+ }
+
+ .footer__social {
+  gap: var(--spacing-sm);
+ }
+
+ .footer__social-link {
+  width: 40px;
+  height: 40px;
+  font-size: 1.125rem;
+ }
+
+ .footer__copyright {
+  font-size: 0.8125rem;
+ }
+}

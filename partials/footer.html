@@ -1,7 +1,58 @@
 <!-- Footer -->
-<footer class="footer" style="padding: var(--spacing-lg) 0; background-color: var(--color-black-soft); color: var(--color-white); text-align: center; border-top: var(--border-thick);">
-  <div class="container">
-    <p>&copy; 2025 NT Informática. Todos os direitos reservados.</p>
+<footer class="footer">
+ <div class="footer__container">
+  <!-- Redes sociais e Dark Mode -->
+  <div class="footer__social">
+   <a
+    href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+    class="footer__social-link"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+   >
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+   </a>
+   <a
+    href="https://www.linkedin.com/company/nt-informatica"
+    class="footer__social-link"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+   >
+    <i class="fab fa-linkedin" aria-hidden="true"></i>
+   </a>
+   <a
+    href="https://www.facebook.com/ntinformatica"
+    class="footer__social-link"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+   >
+    <i class="fab fa-facebook" aria-hidden="true"></i>
+   </a>
+   <a
+    href="https://www.instagram.com/ntinformatica"
+    class="footer__social-link"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+   >
+    <i class="fab fa-instagram" aria-hidden="true"></i>
+   </a>
+   <button
+    id="dark-mode-toggle"
+    class="footer__social-link footer__dark-mode-toggle"
+    aria-label="Alternar tema claro/escuro"
+    type="button"
+   >
+    <i class="dark-mode-toggle__icon--sun fas fa-sun" aria-hidden="true"></i>
+    <i class="dark-mode-toggle__icon--moon fas fa-moon hidden" aria-hidden="true"></i>
+   </button>
   </div>
-</footer>
 
+  <!-- Copyright -->
+  <p class="footer__copyright">
+   &copy; 2025 NT Informática. Todos os direitos reservados.
+  </p>
+ </div>
+</footer>

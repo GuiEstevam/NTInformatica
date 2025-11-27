@@ -30,6 +30,8 @@
 }
 
 // Dark Mode
+// Suporta preferência do sistema
+// Para suporte à classe .dark, use diretamente nos arquivos CSS: .dark .seletor { }
 @mixin dark-mode {
   @media (prefers-color-scheme: dark) {
     @content;
@@ -47,32 +49,32 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  
+
   &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: $shadow-md;
-    border-color: $color-blue-primary;
+    border-color: var(--color-blue-primary);
   }
-  
+
   &:active:not(:disabled) {
     transform: translateY(0);
     box-shadow: $shadow-sm;
   }
-  
+
   &:focus {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
   }
-  
+
   &:focus:not(:focus-visible) {
     outline: none;
   }
-  
+
   &:focus-visible {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -83,31 +85,32 @@
 }
 
 // Cards Modernos (estilo tech)
+// Usa CSS variables para suporte nativo ao dark mode
 @mixin card-modern {
-  border: $border-medium;
+  border: var(--border-medium);
   border-radius: 8px;
-  background-color: $color-white;
-  box-shadow: $shadow-sm;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
   transition: all $transition-normal;
   overflow: hidden;
   min-height: 0;
   box-sizing: border-box;
-  
+
   &:hover {
     transform: translateY(-4px);
-    box-shadow: $shadow-lg;
-    border-color: rgba($color-blue-primary, 0.3);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.3);
   }
-  
+
   &:focus-within {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
     transition: none;
-    
+
     &:hover {
       transform: none;
     }
@@ -116,27 +119,25 @@
 
 // Gradiente sutil (estilo tech)
 @mixin tech-gradient {
-  background: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(0, 168, 255, 0.03) 100%);
+  background: var(--bg-gradient);
 }
 
 // Padrão geométrico muito sutil
 @mixin geometric-pattern {
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
+  background-image:
+    repeating-linear-gradient(45deg,
       transparent,
       transparent 20px,
-      rgba($color-blue-primary, 0.01) 20px,
-      rgba($color-blue-primary, 0.01) 40px
-    );
+      rgba(var(--color-blue-primary-rgb), 0.01) 20px,
+      rgba(var(--color-blue-primary-rgb), 0.01) 40px);
 }
 
 // Container centralizado
 @mixin container {
-  max-width: 1200px;
+  max-width: 1400px; // Aumentado de 1200px para melhor aproveitamento em telas grandes
   margin: 0 auto;
   padding: 0 $spacing-md;
-  
+
   @include desktop {
     padding: 0 $spacing-lg;
   }
@@ -145,7 +146,7 @@
 // Navegação hover suave
 @mixin nav-link-hover {
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -153,14 +154,12 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, $color-blue-primary, $color-accent);
+    background: linear-gradient(90deg, var(--color-blue-primary), var(--color-accent));
     transition: width $transition-normal;
     border-radius: 2px;
   }
-  
+
   &:hover::after {
     width: 100%;
   }
 }
-
-

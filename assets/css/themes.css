@@ -1,0 +1,165 @@
+/* ============================================
+   Dark Mode - NT Informática
+   ============================================ */
+
+/* Classe .dark - Prioridade máxima (aplicada pelo JavaScript) */
+/* Esta é a forma principal de ativar dark mode quando o usuário escolhe manualmente */
+html.dark,
+:root.dark {
+ /* Cores Base RGB para dark mode */
+ --color-black-soft-rgb: 15, 15, 15;
+
+ /* Cores Tech no dark mode - versões mais claras para melhor contraste */
+ --color-blue-primary: #0080ff;
+ --color-blue-primary-rgb: 0, 128, 255;
+ --color-blue-light: #4fc3f7;
+ --color-blue-light-rgb: 79, 195, 247;
+ --color-blue-dark: #0066cc;
+ --color-blue-dark-rgb: 0, 102, 204;
+ --color-accent: #4fc3f7;
+ --color-accent-rgb: 79, 195, 247;
+ --color-accent-light: #81d4fa;
+ --color-accent-light-rgb: 129, 212, 250;
+
+ /* Backgrounds e textos - oposto do light mode */
+ --color-bg-primary: var(--color-black-soft);
+ --color-bg-secondary: var(--color-black-soft);
+ --color-bg-card: var(--color-gray-dark);
+ --color-text-primary: var(--color-white);
+ --color-text-secondary: var(--color-gray-lighter);
+ --color-text-light: var(--color-gray-light);
+
+ /* Bordas para dark mode - mais visíveis */
+ --border-thick: 2px solid rgba(255, 255, 255, 0.1);
+ --border-medium: 1px solid rgba(255, 255, 255, 0.1);
+ --border-thin: 1px solid rgba(255, 255, 255, 0.06);
+ --border-accent: 1px solid var(--color-blue-light);
+
+ /* Sombras para dark mode - mais sutis mas visíveis */
+ --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+ --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
+  0 2px 4px -1px rgba(0, 0, 0, 0.3);
+ --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
+  0 4px 6px -2px rgba(0, 0, 0, 0.3);
+ --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+  0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+ /* Gradiente mais sutil no dark mode */
+ --bg-gradient: linear-gradient(
+  135deg,
+  rgba(0, 128, 255, 0.03) 0%,
+  rgba(79, 195, 247, 0.03) 100%
+ );
+
+ /* Inputs no dark mode */
+ --color-input-bg: var(--color-black-soft);
+ --color-input-border: rgba(255, 255, 255, 0.1);
+ --color-input-placeholder: var(--color-gray-medium);
+}
+
+/* Fallback: Preferência do sistema (apenas se JavaScript não carregar) */
+/* IMPORTANTE: Só aplica se NÃO houver classe .dark (para não conflitar com toggle manual) */
+@media (prefers-color-scheme: dark) {
+ :root:not(.dark) {
+  /* Cores Tech no dark mode */
+  --color-blue-primary: #0080ff;
+  --color-blue-primary-rgb: 0, 128, 255;
+  --color-blue-light: #4fc3f7;
+  --color-blue-light-rgb: 79, 195, 247;
+  --color-blue-dark: #0066cc;
+  --color-blue-dark-rgb: 0, 102, 204;
+  --color-accent: #4fc3f7;
+  --color-accent-rgb: 79, 195, 247;
+  --color-accent-light: #81d4fa;
+  --color-accent-light-rgb: 129, 212, 250;
+
+  /* Backgrounds e textos */
+  --color-bg-primary: var(--color-black-soft);
+  --color-bg-secondary: var(--color-black-soft);
+  --color-bg-card: var(--color-gray-dark);
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-gray-lighter);
+  --color-text-light: var(--color-gray-light);
+
+  /* Bordas */
+  --border-thick: 2px solid rgba(255, 255, 255, 0.1);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.1);
+  --border-thin: 1px solid rgba(255, 255, 255, 0.06);
+  --border-accent: 1px solid var(--color-blue-light);
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
+   0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
+   0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+   0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+  /* Gradiente */
+  --bg-gradient: linear-gradient(
+   135deg,
+   rgba(0, 128, 255, 0.03) 0%,
+   rgba(79, 195, 247, 0.03) 100%
+  );
+
+  /* Inputs */
+  --color-input-bg: var(--color-black-soft);
+  --color-input-border: rgba(255, 255, 255, 0.1);
+  --color-input-placeholder: var(--color-gray-medium);
+ }
+}
+
+/* IMPORTANTE: Quando não há classe .dark, forçar valores do light mode */
+/* Esta regra DEVE vir DEPOIS da media query para ter prioridade */
+/* Quando o usuário escolhe light mode manualmente, esta regra garante que os valores do light mode sejam aplicados */
+html:not(.dark),
+:root:not(.dark) {
+ /* Garantir que valores do light mode sejam aplicados */
+ --color-bg-primary: var(--color-white);
+ --color-bg-secondary: var(--color-white-soft);
+ --color-bg-card: var(--color-white);
+ --color-text-primary: var(--color-black);
+ --color-text-secondary: var(--color-gray-medium);
+ --color-text-light: var(--color-gray-light);
+
+ /* Cores Tech no light mode */
+ --color-blue-primary: #0066cc;
+ --color-blue-primary-rgb: 0, 102, 204;
+ --color-blue-light: #0080ff;
+ --color-blue-light-rgb: 0, 128, 255;
+ --color-blue-dark: #0052a3;
+ --color-blue-dark-rgb: 0, 82, 163;
+ --color-accent: #00a8ff;
+ --color-accent-rgb: 0, 168, 255;
+ --color-accent-light: #4fc3f7;
+ --color-accent-light-rgb: 79, 195, 247;
+
+ /* Bordas para light mode */
+ --border-thick: 2px solid rgba(0, 0, 0, 0.1);
+ --border-medium: 1px solid rgba(0, 0, 0, 0.08);
+ --border-thin: 1px solid rgba(0, 0, 0, 0.06);
+ --border-accent: 1px solid var(--color-blue-primary);
+
+ /* Sombras para light mode */
+ --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+ --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+ --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+ --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+ /* Gradiente para light mode */
+ --bg-gradient: linear-gradient(
+  135deg,
+  rgba(0, 102, 204, 0.02) 0%,
+  rgba(0, 168, 255, 0.02) 100%
+ );
+
+ /* Inputs no light mode */
+ --color-input-bg: var(--color-white);
+ --color-input-border: rgba(0, 0, 0, 0.1);
+ --color-input-placeholder: var(--color-gray-medium);
+}
+

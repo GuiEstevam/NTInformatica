@@ -1,0 +1,100 @@
+/* ============================================
+   Variáveis CSS - NT Informática
+   Paleta Monocromática
+   ============================================ */
+
+:root {
+ /* Cores Base - Tech Moderno */
+ --color-black: #000000;
+ --color-black-rgb: 0, 0, 0;
+ --color-black-soft: #0f0f0f;
+ --color-black-soft-rgb: 15, 15, 15;
+ --color-gray-dark: #1a1a1a;
+ --color-gray: #4a4a4a;
+ --color-gray-medium: #6b6b6b;
+ --color-gray-light: #9ca3af;
+ --color-gray-lighter: #e5e7eb;
+ --color-white-soft: #f9fafb;
+ --color-white: #ffffff;
+ --color-white-rgb: 255, 255, 255;
+ --color-gray-lighter-rgb: 229, 231, 235;
+
+ /* Cores Tech */
+ --color-blue-primary: #0066cc;
+ --color-blue-primary-rgb: 0, 102, 204;
+ --color-blue-light: #0080ff;
+ --color-blue-light-rgb: 0, 128, 255;
+ --color-blue-dark: #0052a3;
+ --color-blue-dark-rgb: 0, 82, 163;
+ --color-accent: #00a8ff;
+ --color-accent-rgb: 0, 168, 255;
+ --color-accent-light: #4fc3f7;
+ --color-accent-light-rgb: 79, 195, 247;
+
+ /* Semânticas */
+ --color-bg-primary: var(--color-white);
+ --color-bg-secondary: var(--color-white-soft);
+ --color-bg-card: var(--color-white);
+ --color-bg-dark: var(--color-black-soft);
+
+ --color-text-primary: var(--color-black);
+ --color-text-secondary: var(--color-gray-medium);
+ --color-text-light: var(--color-gray-light);
+
+ /* Inputs */
+ --color-input-bg: var(--color-white);
+ --color-input-border: rgba(0, 0, 0, 0.06);
+ --color-input-placeholder: var(--color-gray-light);
+
+ /* Bordas Suaves */
+ --border-thick: 2px solid rgba(0, 0, 0, 0.1);
+ --border-medium: 1px solid rgba(0, 0, 0, 0.08);
+ --border-thin: 1px solid rgba(0, 0, 0, 0.06);
+ --border-accent: 1px solid var(--color-blue-primary);
+
+ /* Sombras */
+ --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+ --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+ --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+ --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+ /* Gradientes (para elementos decorativos) */
+ --bg-gradient: linear-gradient(
+  135deg,
+  rgba(0, 102, 204, 0.05) 0%,
+  rgba(0, 168, 255, 0.05) 100%
+ );
+
+ /* Estados */
+ --color-success: #10b981;
+ --color-error: #ef4444;
+ --color-warning: #f59e0b;
+ --color-info: var(--color-blue-primary);
+
+/* Tipografia Moderna */
+--font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont,
+ 'Segoe UI', sans-serif;
+ --font-weight-regular: 400;
+ --font-weight-medium: 500;
+ --font-weight-semibold: 600;
+ --font-weight-bold: 700;
+ --font-weight-extrabold: 800;
+
+ /* Espaçamentos (reduzidos) */
+ --spacing-xs: 0.5rem;
+ --spacing-sm: 0.875rem;
+ --spacing-md: 1.25rem;
+ --spacing-lg: 1.5rem;
+ --spacing-xl: 2.5rem;
+ --spacing-xxl: 3rem;
+
+ /* Transições */
+ --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+ --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+ --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+

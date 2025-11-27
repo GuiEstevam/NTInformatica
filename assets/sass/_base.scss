@@ -22,8 +22,8 @@ body {
   font-size: $font-size-body;
   font-weight: $font-weight-regular;
   line-height: $line-height-relaxed;
-  color: $color-text-primary;
-  background-color: $color-bg-primary;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-heading;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
   margin-bottom: $spacing-md;
   letter-spacing: -0.02em;
 }
@@ -74,21 +74,21 @@ h4 {
 
 p {
   margin-bottom: $spacing-md;
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
   text-transform: none; // Garantir que não haja capitalize aplicado
 }
 
 a {
-  color: $color-text-primary;
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: color $transition-normal, transform $transition-normal, box-shadow $transition-normal;
   
   &:hover {
-    color: $color-blue-primary;
+    color: var(--color-blue-primary);
   }
   
   &:focus {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -98,7 +98,7 @@ a {
   }
   
   &:focus-visible {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid var(--color-blue-primary);
     outline-offset: 2px;
   }
   
@@ -126,27 +126,6 @@ ul, ol {
   list-style: none;
 }
 
-// Dark Mode
-@include dark-mode {
-  body {
-    background-color: $color-black-soft;
-    color: $color-white;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: $color-white;
-  }
-  
-  p {
-    color: $color-gray-lighter;
-  }
-  
-  a {
-    color: $color-white;
-    
-    &:hover {
-      color: $color-gray-lighter;
-    }
-  }
-}
+// Dark mode é gerenciado automaticamente via CSS variables em themes.css
+// Não é necessário código adicional aqui
 

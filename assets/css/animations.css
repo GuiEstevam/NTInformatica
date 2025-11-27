@@ -2,78 +2,124 @@
    Animações de Scroll - NT Informática
    ============================================ */
 
+/* Keyframes para animações suaves e refinadas */
+@keyframes fadeIn {
+ from {
+  opacity: 0;
+ }
+ to {
+  opacity: 1;
+ }
+}
+
+@keyframes slideUp {
+ from {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+ }
+}
+
+@keyframes fadeInUp {
+ from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+ }
+}
+
+/* Curvas de easing suaves e naturais */
+:root {
+ --easing-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+ --easing-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 /* Fade In */
 .fade-in {
-  opacity: 0;
-  transition: opacity var(--transition-slow) ease-out;
+ opacity: 0;
+ will-change: opacity;
 }
 
 .fade-in.animate-in {
-  opacity: 1;
+ animation: fadeIn 0.9s var(--easing-smooth) forwards;
 }
 
 /* Slide Up */
 .slide-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out;
+ opacity: 0;
+ transform: translateY(30px) scale(0.98);
+ will-change: opacity, transform;
 }
 
 .slide-up.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+ animation: slideUp 0.9s var(--easing-smooth) forwards;
 }
 
 /* Stagger Animation (para grids e listas) */
 .stagger-animation {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition-normal) ease-out, transform var(--transition-normal) ease-out;
+ opacity: 0;
+ transform: translateY(20px) scale(0.98);
+ will-change: opacity, transform;
 }
 
 .stagger-animation.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+ animation: fadeInUp 0.9s var(--easing-smooth) forwards;
 }
 
 /* Transições de Página */
 .page-loading {
-  opacity: 0;
-  transition: opacity var(--transition-normal) ease-in;
+ opacity: 0;
+ transition: opacity var(--transition-normal) ease-in;
 }
 
 .page-loaded {
-  opacity: 1;
-  transition: opacity var(--transition-normal) ease-in;
+ opacity: 1;
+ transition: opacity var(--transition-normal) ease-in;
 }
 
 .page-exiting {
-  opacity: 0;
-  transition: opacity var(--transition-fast) ease-out;
+ opacity: 0;
+ transition: opacity var(--transition-fast) ease-out;
+}
+
+/* Otimização de performance - remover will-change após animação */
+.fade-in.animate-in,
+.slide-up.animate-in,
+.stagger-animation.animate-in {
+ animation-fill-mode: forwards;
 }
 
 /* Suporte para prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .slide-up,
-  .stagger-animation {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  
-  .fade-in.animate-in,
-  .slide-up.animate-in,
-  .stagger-animation.animate-in {
-    opacity: 1;
-    transform: none;
-  }
-  
-  .page-loading,
-  .page-loaded,
-  .page-exiting {
-    opacity: 1;
-    transition: none;
-  }
-}
+ .fade-in,
+ .slide-up,
+ .stagger-animation {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  will-change: auto;
+ }
 
+ .fade-in.animate-in,
+ .slide-up.animate-in,
+ .stagger-animation.animate-in {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  will-change: auto;
+ }
+
+ .page-loading,
+ .page-loaded,
+ .page-exiting {
+  opacity: 1;
+  transition: none;
+ }
+}

@@ -33,4 +33,7 @@ yarn-error.log*
 *.tmp
 *.temp
 
+# Documentation folder
+docs/
+
 .cursor/

@@ -1,172 +1,509 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
   <!-- SEO Meta Tags -->
   <title>Sobre Nós - NT Informática | História, Missão e Valores</title>
-  <meta name="description" content="Conheça a história da NT Informática, nossa missão, visão e valores. Empresa especializada em suporte técnico e soluções em tecnologia da informação.">
-  <meta name="keywords" content="sobre NT Informática, história empresa TI, missão visão valores, empresa suporte técnico">
-  <meta name="author" content="NT Informática">
-  <meta name="robots" content="index, follow">
-  
+  <meta
+   name="description"
+   content="Conheça a história da NT Informática, nossa missão, visão e valores. Empresa especializada em suporte técnico e soluções em tecnologia da informação."
+  />
+  <meta
+   name="keywords"
+   content="sobre NT Informática, história empresa TI, missão visão valores, empresa suporte técnico"
+  />
+  <meta name="author" content="NT Informática" />
+  <meta name="robots" content="index, follow" />
+
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Sobre Nós - NT Informática | História, Missão e Valores">
-  <meta property="og:description" content="Conheça a história da NT Informática, nossa missão, visão e valores.">
-  <meta property="og:image" content="">
-  <meta property="og:url" content="">
-  
+  <meta property="og:type" content="website" />
+  <meta
+   property="og:title"
+   content="Sobre Nós - NT Informática | História, Missão e Valores"
+  />
+  <meta
+   property="og:description"
+   content="Conheça a história da NT Informática, nossa missão, visão e valores."
+  />
+  <meta
+   property="og:image"
+   content="https://www.ntinformatica.com.br/assets/images/about.png"
+  />
+  <meta
+   property="og:url"
+   content="https://www.ntinformatica.com.br/sobre.html"
+  />
+
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sobre Nós - NT Informática | História, Missão e Valores">
-  <meta name="twitter:description" content="Conheça a história da NT Informática, nossa missão, visão e valores.">
-  <meta name="twitter:image" content="">
-  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+   name="twitter:title"
+   content="Sobre Nós - NT Informática | História, Missão e Valores"
+  />
+  <meta
+   name="twitter:description"
+   content="Conheça a história da NT Informática, nossa missão, visão e valores."
+  />
+  <meta
+   name="twitter:image"
+   content="https://www.ntinformatica.com.br/assets/images/about.png"
+  />
+
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+   rel="stylesheet"
+  />
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+  />
+
   <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/toast.css">
-  <link rel="stylesheet" href="/assets/css/animations.css">
-  <link rel="stylesheet" href="/assets/css/accessibility.css">
-  <link rel="stylesheet" href="/assets/css/sections/navigation.css">
-  <link rel="stylesheet" href="/assets/sass/main.scss">
-</head>
-<body>
-  <vite-partial src="/partials/header.html"/>
-  
-  <!-- Hero da Página -->
-  <section class="hero hero--page">
+  <script
+   type="module"
+   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+   nomodule
+   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+  <!-- Inicializar Dark Mode ANTES do CSS carregar (evitar FOUC) -->
+  <!-- 
+    EXCEÇÃO À REGRA: Script externo carregado de forma síncrona antes dos CSS
+    Necessário para evitar FOUC (Flash of Unstyled Content).
+    Este script DEVE ser executado ANTES do CSS para aplicar a classe .dark imediatamente.
+    Referência: @.cursor/rules/rules.mdc - "exceto quando absolutamente necessário"
+  -->
+  <script src="/js/dark-mode-init.js"></script>
+
+  <!-- CSS (carregado depois do script de inicialização) -->
+  <!-- 1. Variáveis primeiro (necessárias para tudo) -->
+  <link rel="stylesheet" href="/assets/css/variables.css" />
+  <!-- 2. Temas (usa variáveis) -->
+  <link rel="stylesheet" href="/assets/css/themes.css" />
+  <!-- 3. Base (usa variáveis e temas) -->
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <!-- 4. Acessibilidade (pode sobrescrever) -->
+  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+  <!-- 5. Outros CSS -->
+  <link rel="stylesheet" href="/assets/css/toast.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/sections/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/sections/footer.css" />
+  <link rel="stylesheet" href="/assets/css/sections/dark-mode-toggle.css" />
+  <link rel="stylesheet" href="/assets/css/sections/scroll-to-top.css" />
+  <link rel="stylesheet" href="/assets/sass/main.scss" />
+ </head>
+ <body>
+  <!-- Skip Link para acessibilidade -->
+  <a href="#main-content" class="skip-link">Pular para conteúdo</a>
+
+  <vite-partial src="/partials/header.html" />
+
+  <main id="main-content">
+   <!-- Hero da Página -->
+   <section class="hero hero--page">
     <div class="hero__content">
-      <h1 class="hero__title">Sobre Nós</h1>
-      <p class="hero__subtitle">Conheça a história, missão e valores da NT Informática</p>
+     <h1 class="hero__title fade-in">Sobre Nós</h1>
+     <p class="hero__subtitle slide-up">
+      Conheça a história, missão e valores da NT Informática
+     </p>
     </div>
-  </section>
-  
-  <!-- Sobre -->
-  <section id="sobre" class="about section">
+   </section>
+
+   <!-- Sobre -->
+   <section id="sobre" class="about section fade-in">
     <div class="about__container">
-      <div class="section-title">
-        <h2>Nossa História</h2>
+     <div class="section-title slide-up">
+      <h2>Nossa História</h2>
+      <p>Uma trajetória de excelência e inovação em tecnologia da informação</p>
+     </div>
+     <div class="about__content">
+      <div class="about__text slide-up">
+       <p>
+        A NT Informática é uma empresa especializada em suporte técnico e
+        soluções em tecnologia da informação. Com mais de 10 anos de experiência
+        no mercado, oferecemos serviços de qualidade para empresas de todos os
+        portes, sempre priorizando a excelência e a satisfação dos nossos
+        clientes.
+       </p>
+       <p>
+        Fundada com o objetivo de democratizar o acesso a soluções tecnológicas
+        de qualidade, a NT Informática cresceu e se consolidou como referência
+        em suporte técnico e consultoria em TI. Nossa trajetória é marcada pelo
+        compromisso com a excelência e pela busca constante por inovação.
+       </p>
+       <p>
+        Ao longo dos anos, desenvolvemos expertise em diversas áreas da
+        tecnologia da informação, sempre priorizando a satisfação dos nossos
+        clientes e a qualidade dos serviços prestados. Nossa equipe é formada
+        por profissionais altamente qualificados e certificados, prontos para
+        atender as mais diversas necessidades tecnológicas.
+       </p>
       </div>
-      <div class="about__content">
-        <div class="about__text">
-          <p>
-            A NT Informática é uma empresa especializada em suporte técnico e soluções 
-            em tecnologia da informação. Com anos de experiência no mercado, oferecemos 
-            serviços de qualidade para empresas de todos os portes.
-          </p>
-          <p>
-            Fundada com o objetivo de democratizar o acesso a soluções tecnológicas de 
-            qualidade, a NT Informática cresceu e se consolidou como referência em 
-            suporte técnico e consultoria em TI. Nossa trajetória é marcada pelo 
-            compromisso com a excelência e pela busca constante por inovação.
-          </p>
-          <p>
-            Ao longo dos anos, desenvolvemos expertise em diversas áreas da tecnologia 
-            da informação, sempre priorizando a satisfação dos nossos clientes e a 
-            qualidade dos serviços prestados. Nossa equipe é formada por profissionais 
-            altamente qualificados e certificados, prontos para atender as mais diversas 
-            necessidades tecnológicas.
-          </p>
-        </div>
-        <div class="about__image">
-          <img src="/assets/images/placeholder-team.svg" alt="Equipe NT Informática" loading="lazy">
-        </div>
+      <div class="about__image-wrapper slide-up">
+       <div class="about__image">
+        <img
+         src="/assets/images/about.png"
+         alt="Equipe NT Informática"
+         loading="lazy"
+        />
+       </div>
       </div>
+     </div>
     </div>
-  </section>
-  
-  <!-- Missão, Visão e Valores -->
-  <section class="about section" style="background-color: var(--color-bg-secondary);">
+   </section>
+
+   <!-- Timeline / Linha do Tempo -->
+   <section id="timeline" class="timeline section fade-in">
+    <div class="timeline__container">
+     <div class="section-title slide-up">
+      <h2>Nossa trajetória</h2>
+      <p>Marcos importantes da nossa história</p>
+     </div>
+     <div class="timeline__content">
+      <div class="timeline__item stagger-animation">
+       <div class="timeline__year">2015</div>
+       <div class="timeline__content-wrapper">
+        <h3 class="timeline__title">Fundação</h3>
+        <p class="timeline__description">
+         A NT Informática foi fundada com a missão de democratizar o acesso a
+         soluções tecnológicas de qualidade para empresas de todos os portes.
+        </p>
+       </div>
+      </div>
+      <div class="timeline__item stagger-animation">
+       <div class="timeline__year">2018</div>
+       <div class="timeline__content-wrapper">
+        <h3 class="timeline__title">Primeiros 100 clientes</h3>
+        <p class="timeline__description">
+         Alcançamos a marca de 100 clientes atendidos, consolidando nossa
+         presença no mercado de suporte técnico e soluções em TI.
+        </p>
+       </div>
+      </div>
+      <div class="timeline__item stagger-animation">
+       <div class="timeline__year">2020</div>
+       <div class="timeline__content-wrapper">
+        <h3 class="timeline__title">Expansão de serviços</h3>
+        <p class="timeline__description">
+         Expandimos nossa atuação para incluir segurança da informação e
+         infraestrutura de TI, oferecendo soluções mais completas.
+        </p>
+       </div>
+      </div>
+      <div class="timeline__item stagger-animation">
+       <div class="timeline__year">2022</div>
+       <div class="timeline__content-wrapper">
+        <h3 class="timeline__title">500 clientes atendidos</h3>
+        <p class="timeline__description">
+         Atingimos a marca histórica de 500 clientes atendidos, reforçando nosso
+         compromisso com a excelência e a satisfação.
+        </p>
+       </div>
+      </div>
+      <div class="timeline__item stagger-animation">
+       <div class="timeline__year">2025</div>
+       <div class="timeline__content-wrapper">
+        <h3 class="timeline__title">Referência em TI</h3>
+        <p class="timeline__description">
+         Consolidamos nossa posição como referência em suporte técnico e
+         soluções em TI, com 98% de satisfação dos clientes.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <!-- Estatísticas Expandidas -->
+   <section id="estatisticas" class="stats section fade-in">
+    <div class="stats__container">
+     <div class="section-title slide-up">
+      <h2>Números que impressionam</h2>
+      <p>Resultados que comprovam nossa excelência e compromisso</p>
+     </div>
+     <div class="stats__grid">
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-project-diagram" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number" data-count="1000">+1000</div>
+       <h3 class="stats__title">Projetos concluídos</h3>
+       <p class="stats__description">
+        Mais de mil projetos entregues com sucesso, sempre dentro do prazo e
+        superando expectativas.
+       </p>
+      </div>
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number" data-count="50000">+50.000</div>
+       <h3 class="stats__title">Horas de suporte</h3>
+       <p class="stats__description">
+        Mais de 50 mil horas de suporte técnico prestadas, garantindo máxima
+        disponibilidade para nossos clientes.
+       </p>
+      </div>
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-bolt" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number">&lt; 1h</div>
+       <h3 class="stats__title">Tempo médio de resposta</h3>
+       <p class="stats__description">
+        Resposta rápida e eficiente, com tempo médio inferior a 1 hora para
+        atender suas necessidades.
+       </p>
+      </div>
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-server" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number" data-count="99">99.9%</div>
+       <h3 class="stats__title">Uptime garantido</h3>
+       <p class="stats__description">
+        Garantimos 99.9% de disponibilidade dos sistemas, minimizando
+        interrupções e maximizando produtividade.
+       </p>
+      </div>
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-certificate" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number" data-count="15">+15</div>
+       <h3 class="stats__title">Certificações</h3>
+       <p class="stats__description">
+        Equipe certificada com mais de 15 certificações técnicas, garantindo
+        conhecimento atualizado e especializado.
+       </p>
+      </div>
+      <div class="stats__card stagger-animation">
+       <div class="stats__icon">
+        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+       </div>
+       <div class="stats__number" data-count="10">10+</div>
+       <h3 class="stats__title">Anos de experiência</h3>
+       <p class="stats__description">
+        Mais de uma década de experiência no mercado, acumulando conhecimento e
+        expertise em diversas áreas de TI.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <!-- Missão, Visão e Valores -->
+   <section class="about section about--secondary fade-in">
     <div class="about__container">
-      <div class="section-title">
-        <h2>Missão, Visão e Valores</h2>
+     <div class="section-title slide-up">
+      <h2>Missão, Visão e Valores</h2>
+      <p>Os pilares que guiam nosso trabalho e relacionamento com clientes</p>
+     </div>
+
+     <!-- 3 Colunas: Missão | Visão | Valores -->
+     <div class="about__mvp-grid">
+      <div class="about__mvp-item stagger-animation">
+       <h3 class="about__mvp-title">Nossa Missão</h3>
+       <p class="about__mvp-text">
+        Proporcionar soluções tecnológicas eficientes e confiáveis, garantindo
+        que nossos clientes tenham a melhor experiência possível com seus
+        sistemas de TI. Buscamos sempre superar expectativas e entregar
+        resultados que agreguem valor real ao negócio dos nossos clientes.
+       </p>
       </div>
-      <div class="about__content">
-        <div class="about__text">
-          <h3>Nossa Missão</h3>
-          <p>
-            Proporcionar soluções tecnológicas eficientes e confiáveis, garantindo que 
-            nossos clientes tenham a melhor experiência possível com seus sistemas de TI. 
-            Buscamos sempre superar expectativas e entregar resultados que agreguem valor 
-            real ao negócio dos nossos clientes.
-          </p>
-          <h3>Nossa Visão</h3>
-          <p>
-            Ser referência em suporte técnico e soluções em TI, reconhecida pela 
-            excelência no atendimento e pela qualidade dos serviços prestados. Almejamos 
-            ser a primeira escolha das empresas que buscam parceiros tecnológicos 
-            confiáveis e inovadores.
-          </p>
-          <h3>Nossos Valores</h3>
-          <ul style="list-style: disc; margin-left: var(--spacing-lg); margin-top: var(--spacing-md);">
-            <li><strong>Qualidade:</strong> Buscamos sempre a excelência em tudo que fazemos</li>
-            <li><strong>Agilidade:</strong> Resposta rápida e eficiente aos desafios dos clientes</li>
-            <li><strong>Confiança:</strong> Transparência e compromisso com a satisfação do cliente</li>
-            <li><strong>Inovação:</strong> Estamos sempre atualizados com as melhores tecnologias</li>
-            <li><strong>Ética:</strong> Atuamos com integridade e responsabilidade em todas as relações</li>
-          </ul>
-        </div>
+      <div class="about__mvp-item stagger-animation">
+       <h3 class="about__mvp-title">Nossa Visão</h3>
+       <p class="about__mvp-text">
+        Ser referência em suporte técnico e soluções em TI, reconhecida pela
+        excelência no atendimento e pela qualidade dos serviços prestados.
+        Almejamos ser a primeira escolha das empresas que buscam parceiros
+        tecnológicos confiáveis e inovadores.
+       </p>
       </div>
-      <div class="about__values" style="margin-top: var(--spacing-xl);">
-        <div class="about__value">
-          <h4>Qualidade</h4>
-          <p>Serviços de alta qualidade com profissionais especializados e certificados.</p>
-        </div>
-        <div class="about__value">
-          <h4>Agilidade</h4>
-          <p>Atendimento rápido e eficiente para resolver seus problemas no menor tempo possível.</p>
-        </div>
-        <div class="about__value">
-          <h4>Confiança</h4>
-          <p>Transparência e compromisso com a satisfação do cliente em primeiro lugar.</p>
-        </div>
+      <div class="about__mvp-item stagger-animation">
+       <h3 class="about__mvp-title">Nossos Valores</h3>
+       <p class="about__mvp-text">
+        Nossos valores fundamentais guiam cada decisão e ação: Qualidade,
+        Agilidade, Confiança, Inovação e Ética. Estes pilares garantem que
+        sempre entreguemos o melhor para nossos clientes.
+       </p>
       </div>
+     </div>
+
+     <!-- Imagem larga abaixo das 3 colunas -->
+     <div class="about__mvp-image-wide slide-up">
+      <div class="about__image">
+       <img
+        src="/assets/images/values.png"
+        alt="Missão, Visão e Valores da NT Informática"
+        loading="lazy"
+       />
+      </div>
+     </div>
+
+     <div class="about__values">
+      <div class="about__value stagger-animation">
+       <div class="about__value-icon">
+        <i class="fas fa-award" aria-hidden="true"></i>
+       </div>
+       <h4>Qualidade</h4>
+       <p>
+        Buscamos sempre a excelência em tudo que fazemos. Serviços de alta
+        qualidade com profissionais especializados e certificados, garantindo
+        resultados que superam expectativas.
+       </p>
+      </div>
+      <div class="about__value stagger-animation">
+       <div class="about__value-icon">
+        <i class="fas fa-bolt" aria-hidden="true"></i>
+       </div>
+       <h4>Agilidade</h4>
+       <p>
+        Resposta rápida e eficiente aos desafios dos clientes. Atendimento
+        disponível para resolver seus problemas no menor tempo possível,
+        minimizando impactos no seu negócio.
+       </p>
+      </div>
+      <div class="about__value stagger-animation">
+       <div class="about__value-icon">
+        <i class="fas fa-handshake" aria-hidden="true"></i>
+       </div>
+       <h4>Confiança</h4>
+       <p>
+        Transparência e compromisso com a satisfação do cliente em primeiro
+        lugar. Construímos relacionamentos duradouros baseados em confiança
+        mútua e resultados consistentes.
+       </p>
+      </div>
+      <div class="about__value stagger-animation">
+       <div class="about__value-icon">
+        <i class="fas fa-lightbulb" aria-hidden="true"></i>
+       </div>
+       <h4>Inovação</h4>
+       <p>
+        Estamos sempre atualizados com as melhores tecnologias e práticas do
+        mercado. Buscamos constantemente novas soluções para otimizar processos
+        e agregar valor aos nossos clientes.
+       </p>
+      </div>
+      <div class="about__value stagger-animation">
+       <div class="about__value-icon">
+        <i class="fas fa-balance-scale" aria-hidden="true"></i>
+       </div>
+       <h4>Ética</h4>
+       <p>
+        Atuamos com integridade e responsabilidade em todas as relações. Nossos
+        valores éticos guiam cada decisão e ação, garantindo transparência e
+        respeito em todos os aspectos do negócio.
+       </p>
+      </div>
+     </div>
     </div>
-  </section>
-  
-  <!-- CTA -->
-  <section class="contact section">
-    <div class="contact__container" style="text-align: center;">
-      <div class="section-title">
-        <h2>Quer Conhecer Nossos Serviços?</h2>
-        <p>Entre em contato conosco e descubra como podemos ajudar sua empresa</p>
-      </div>
-      <div style="margin-top: var(--spacing-xl);">
-        <a href="/servicos.html" class="hero__button hero__button--secondary" style="margin-right: var(--spacing-md);">
-          Ver Serviços
-        </a>
-        <a href="/contato.html" class="hero__button hero__button--primary">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          Entre em Contato
-        </a>
-      </div>
+   </section>
+
+   <!-- CTA -->
+   <section id="cta-contato" class="contact contact-cta section fade-in">
+    <div class="contact-cta__container">
+     <!-- Título e descrição -->
+     <div class="section-title slide-up">
+      <h2 class="contact-cta__title">
+       Pronto para transformar sua infraestrutura de TI?
+      </h2>
+      <p class="contact-cta__description">
+       Entre em contato conosco e solicite um orçamento sem compromisso. Estamos
+       prontos para ajudar sua empresa a alcançar seus objetivos tecnológicos.
+      </p>
+     </div>
+
+     <!-- Estatística rápida -->
+     <div class="contact-cta__stats slide-up">
+      <i class="fas fa-clock" aria-hidden="true"></i>
+      <span>Resposta em <strong>&lt; 1h</strong></span>
+     </div>
+
+     <!-- Botões de ação -->
+     <div class="contact-cta__actions slide-up">
+      <a href="/contato.html" class="hero__button hero__button--primary">
+       <i class="fas fa-paper-plane" aria-hidden="true"></i>
+       Solicitar Orçamento
+      </a>
+      <a
+       href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+       class="hero__button hero__button--whatsapp"
+       target="_blank"
+       rel="noopener noreferrer"
+      >
+       <i class="fab fa-whatsapp" aria-hidden="true"></i>
+       Falar no WhatsApp
+      </a>
+      <a href="/servicos.html" class="hero__button hero__button--secondary">
+       <i class="fas fa-laptop" aria-hidden="true"></i>
+       Ver Serviços
+      </a>
+     </div>
     </div>
-  </section>
-  
-  <vite-partial src="/partials/footer.html"/>
-  
+   </section>
+  </main>
+
+  <vite-partial src="/partials/footer.html" />
+
+  <!-- Botão Voltar ao Topo -->
+  <button
+   id="scroll-to-top"
+   class="scroll-to-top"
+   aria-label="Voltar ao topo"
+   title="Voltar ao topo"
+  >
+   <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+   {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "NT Informática",
+    "description": "Empresa especializada em suporte técnico e soluções em tecnologia da informação com mais de 10 anos de experiência",
+    "foundingDate": "2015",
+    "numberOfEmployees": {
+     "@type": "QuantitativeValue",
+     "value": "10-50"
+    },
+    "aggregateRating": {
+     "@type": "AggregateRating",
+     "ratingValue": "4.9",
+     "reviewCount": "500"
+    },
+    "email": "contato@ntinformatica.com.br",
+    "url": "https://www.ntinformatica.com.br",
+    "serviceArea": {
+     "@type": "Country",
+     "name": "Brasil"
+    },
+    "areaServed": "BR"
+   }
+  </script>
+
   <!-- JavaScript -->
   <script type="module" src="/assets/js/toast.js"></script>
   <script type="module" src="/assets/js/app.js"></script>
   <script type="module" src="/assets/js/main.js"></script>
-</body>
+ </body>
 </html>
-

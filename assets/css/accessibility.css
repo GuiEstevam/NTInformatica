@@ -80,18 +80,31 @@ select:focus-visible {
 /* Skip Link para navegação por teclado */
 .skip-link {
   position: absolute;
-  top: -40px;
-  left: 0;
+  top: -100px;
+  left: -9999px;
   background: var(--color-blue-primary);
   color: var(--color-white);
   padding: var(--spacing-sm) var(--spacing-md);
   text-decoration: none;
   z-index: 10000;
   border-radius: 0 0 4px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), top var(--transition-fast);
+  font-weight: var(--font-weight-medium);
 }
 
 .skip-link:focus {
   top: 0;
+  left: 0;
+  opacity: 1;
+  pointer-events: auto;
+  color: var(--color-white);
+}
+
+/* Garantir cor branca no dark mode */
+.dark .skip-link:focus {
+  color: var(--color-white);
 }
 
 /* Indicadores de erro com contraste adequado */
@@ -139,16 +152,26 @@ select:focus-visible {
   }
 }
 
-/* Suporte para modo escuro com contraste adequado */
-@media (prefers-color-scheme: dark) {
-  a:focus-visible {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  button:focus-visible,
-  .button:focus-visible {
-    outline-color: var(--color-accent);
-    box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.3);
-  }
+/* Suporte para modo escuro com contraste adequado - Classe .dark */
+.dark a:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark button:focus-visible,
+.dark .button:focus-visible {
+  outline-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.3);
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+ *,
+ *::before,
+ *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+ }
 }
 

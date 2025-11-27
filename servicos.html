@@ -1,201 +1,882 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- SEO Meta Tags -->
-  <title>Serviços - NT Informática | Suporte Técnico e Soluções em TI</title>
-  <meta name="description" content="Conheça todos os serviços de suporte técnico, manutenção, infraestrutura de TI, segurança da informação e consultoria oferecidos pela NT Informática.">
-  <meta name="keywords" content="serviços de TI, suporte técnico, manutenção preventiva, infraestrutura TI, segurança da informação, backup, consultoria TI">
-  <meta name="author" content="NT Informática">
-  <meta name="robots" content="index, follow">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Serviços - NT Informática | Suporte Técnico e Soluções em TI">
-  <meta property="og:description" content="Conheça todos os serviços de suporte técnico e soluções em TI oferecidos pela NT Informática.">
-  <meta property="og:image" content="">
-  <meta property="og:url" content="">
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Serviços - NT Informática | Suporte Técnico e Soluções em TI">
-  <meta name="twitter:description" content="Conheça todos os serviços de suporte técnico e soluções em TI oferecidos pela NT Informática.">
-  <meta name="twitter:image" content="">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  
-  <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/toast.css">
-  <link rel="stylesheet" href="/assets/css/animations.css">
-  <link rel="stylesheet" href="/assets/css/accessibility.css">
-  <link rel="stylesheet" href="/assets/css/sections/navigation.css">
-  <link rel="stylesheet" href="/assets/sass/main.scss">
-</head>
-<body>
-  <vite-partial src="/partials/header.html"/>
-  
-  <!-- Hero da Página -->
-  <section class="hero hero--page">
-    <div class="hero__content">
-      <h1 class="hero__title">Nossos Serviços</h1>
-      <p class="hero__subtitle">Soluções completas em tecnologia da informação para sua empresa</p>
-    </div>
-  </section>
-  
-  <!-- Serviços -->
-  <section id="servicos" class="services section">
-    <div class="services__container">
-      <div class="section-title">
-        <h2>Serviços Oferecidos</h2>
-        <p>Oferecemos uma gama completa de serviços para atender todas as necessidades de TI da sua empresa</p>
-      </div>
-      <div class="services__grid">
-        <article id="suporte-tecnico" class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-laptop" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Suporte Técnico</h3>
-          <p class="service-card__description">
-            Suporte técnico remoto e presencial para resolver problemas de forma rápida e eficiente.
-            Nossa equipe está disponível para atender suas necessidades e garantir que seus sistemas 
-            funcionem perfeitamente.
-          </p>
-          <ul class="service-card__features">
-            <li>Atendimento remoto 24/7</li>
-            <li>Suporte presencial quando necessário</li>
-            <li>Resolução rápida de problemas</li>
-            <li>Equipe técnica especializada</li>
-            <li>Monitoramento proativo</li>
-          </ul>
-        </article>
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-tools" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Manutenção Preventiva</h3>
-          <p class="service-card__description">
-            Manutenção preventiva regular para manter seus sistemas funcionando perfeitamente.
-            Evitamos problemas antes que eles ocorram, garantindo máxima disponibilidade e performance.
-          </p>
-          <ul class="service-card__features">
-            <li>Check-ups regulares</li>
-            <li>Atualizações de software</li>
-            <li>Otimização de performance</li>
-            <li>Limpeza e organização</li>
-            <li>Relatórios detalhados</li>
-          </ul>
-        </article>
-        <article id="infraestrutura" class="service-card">
-          <div class="service-card__icon">
-            <i class="fas fa-server" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Infraestrutura de TI</h3>
-          <p class="service-card__description">
-            Planejamento e implementação de infraestrutura de TI para sua empresa.
-            Desenvolvemos soluções personalizadas que atendem às necessidades específicas do seu negócio.
-          </p>
-          <ul class="service-card__features">
-            <li>Planejamento de infraestrutura</li>
-            <li>Implementação de redes</li>
-            <li>Gerenciamento de servidores</li>
-            <li>Virtualização</li>
-            <li>Cloud computing</li>
-          </ul>
-        </article>
-        <article id="seguranca" class="service-card">
-          <div class="service-card__icon">
-            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Segurança da Informação</h3>
-          <p class="service-card__description">
-            Proteção dos dados e sistemas da sua empresa contra ameaças digitais.
-            Implementamos camadas de segurança para garantir a integridade e confidencialidade dos seus dados.
-          </p>
-          <ul class="service-card__features">
-            <li>Antivírus e firewall</li>
-            <li>Backup automatizado</li>
-            <li>Monitoramento de segurança</li>
-            <li>Análise de vulnerabilidades</li>
-            <li>Treinamento de equipe</li>
-          </ul>
-        </article>
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-database" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Backup e Recuperação</h3>
-          <p class="service-card__description">
-            Soluções completas de backup e recuperação de dados para sua empresa.
-            Garantimos que seus dados estejam sempre protegidos e acessíveis quando necessário.
-          </p>
-          <ul class="service-card__features">
-            <li>Backup automatizado</li>
-            <li>Recuperação de dados</li>
-            <li>Armazenamento em nuvem</li>
-            <li>Backup incremental</li>
-            <li>Testes de recuperação regulares</li>
-          </ul>
-        </article>
-        <article class="service-card stagger-animation">
-          <div class="service-card__icon">
-            <i class="fas fa-user-tie" aria-hidden="true"></i>
-          </div>
-          <h3 class="service-card__title">Consultoria em TI</h3>
-          <p class="service-card__description">
-            Consultoria especializada para otimizar seus processos e sistemas de TI.
-            Nossos especialistas analisam sua infraestrutura e fornecem recomendações estratégicas.
-          </p>
-          <ul class="service-card__features">
-            <li>Análise de processos</li>
-            <li>Recomendações técnicas</li>
-            <li>Planejamento estratégico</li>
-            <li>Auditoria de sistemas</li>
-            <li>Roadmap tecnológico</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-  
-  <!-- CTA -->
-  <section class="contact section" style="background-color: var(--color-bg-secondary);">
-    <div class="contact__container" style="text-align: center;">
-      <div class="section-title">
-        <h2>Precisa de um Serviço Específico?</h2>
-        <p>Entre em contato conosco e solicite um orçamento personalizado</p>
-      </div>
-      <div style="margin-top: var(--spacing-xl);">
-        <a href="/contato.html" class="hero__button hero__button--primary">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          Solicitar Orçamento
-        </a>
-      </div>
-    </div>
-  </section>
-  
-  <vite-partial src="/partials/footer.html"/>
-  
-  <!-- JavaScript -->
-  <script type="module" src="/assets/js/toast.js"></script>
-  <script type="module" src="/assets/js/app.js"></script>
-  <script type="module" src="/assets/js/main.js"></script>
-</body>
-</html>
+ <!DOCTYPE html>
+ <html lang="pt-BR">
+  <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+   <!-- SEO Meta Tags -->
+   <title>Serviços - NT Informática | Suporte Técnico e Soluções em TI</title>
+   <meta
+    name="description"
+    content="Conheça os serviços gerenciados, planos e consultorias especializadas da NT Informática para manter sua infraestrutura de TI segura, disponível e escalável."
+   />
+   <meta
+    name="keywords"
+    content="serviços de TI, suporte técnico, manutenção preventiva, infraestrutura TI, segurança da informação, backup, consultoria TI"
+   />
+   <meta name="author" content="NT Informática" />
+   <meta name="robots" content="index, follow" />
+
+   <!-- Open Graph / Facebook -->
+   <meta property="og:type" content="website" />
+   <meta
+    property="og:title"
+    content="Serviços - NT Informática | Suporte Técnico e Soluções em TI"
+   />
+   <meta
+    property="og:description"
+    content="Serviços completos de suporte técnico, infraestrutura, segurança da informação e consultoria para empresas em todo o Brasil."
+   />
+   <meta
+    property="og:image"
+    content="https://www.ntinformatica.com.br/assets/images/og-image.jpg"
+   />
+   <meta
+    property="og:url"
+    content="https://www.ntinformatica.com.br/servicos.html"
+   />
+
+   <!-- Twitter -->
+   <meta name="twitter:card" content="summary_large_image" />
+   <meta
+    name="twitter:title"
+    content="Serviços - NT Informática | Suporte Técnico e Soluções em TI"
+   />
+   <meta
+    name="twitter:description"
+    content="Conheça nossos planos e soluções completas de TI com SLA garantido e atendimento especializado."
+   />
+   <meta
+    name="twitter:image"
+    content="https://www.ntinformatica.com.br/assets/images/og-image.jpg"
+   />
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+   />
+
+   <!-- Font Awesome -->
+   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+   />
+
+   <!-- Ionicons -->
+   <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+   ></script>
+   <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+   ></script>
+
+   <!-- Inicializar Dark Mode ANTES do CSS carregar (evitar FOUC) -->
+   <!--
+     EXCEÇÃO À REGRA: Script externo carregado de forma síncrona antes dos CSS
+     Necessário para evitar FOUC (Flash of Unstyled Content).
+     Este script DEVE ser executado ANTES do CSS para aplicar a classe .dark imediatamente.
+     Referência: @.cursor/rules/rules.mdc - "exceto quando absolutamente necessário"
+   -->
+   <script src="/js/dark-mode-init.js"></script>
+
+   <!-- CSS (carregado depois do script de inicialização) -->
+   <!-- 1. Variáveis primeiro (necessárias para tudo) -->
+   <link rel="stylesheet" href="/assets/css/variables.css" />
+   <!-- 2. Temas (usa variáveis) -->
+   <link rel="stylesheet" href="/assets/css/themes.css" />
+   <!-- 3. Base (usa variáveis e temas) -->
+   <link rel="stylesheet" href="/assets/css/base.css" />
+   <!-- 4. Acessibilidade (pode sobrescrever) -->
+   <link rel="stylesheet" href="/assets/css/accessibility.css" />
+   <!-- 5. Outros CSS -->
+   <link rel="stylesheet" href="/assets/css/toast.css" />
+   <link rel="stylesheet" href="/assets/css/animations.css" />
+   <link rel="stylesheet" href="/assets/css/sections/navigation.css" />
+   <link rel="stylesheet" href="/assets/css/sections/footer.css" />
+   <link rel="stylesheet" href="/assets/css/sections/dark-mode-toggle.css" />
+   <link rel="stylesheet" href="/assets/css/sections/scroll-to-top.css" />
+   <link rel="stylesheet" href="/assets/sass/main.scss" />
+  </head>
+  <body>
+   <!-- Skip Link para acessibilidade -->
+   <a href="#main-content" class="skip-link">Pular para conteúdo</a>
+
+   <vite-partial src="/partials/header.html" />
+
+   <main id="main-content">
+    <!-- Hero da Página -->
+    <section class="hero hero--page fade-in">
+     <div class="hero__content">
+      <h1 class="hero__title slide-up">Nossos serviços</h1>
+      <p class="hero__subtitle slide-up">
+       Operação de TI contínua com SLAs claros e atendimento humano
+      </p>
+      <p class="hero__description slide-up">
+       Mapeamos, implementamos e sustentamos toda a infraestrutura tecnológica da
+       sua empresa. Do suporte diário à consultoria estratégica, entregamos
+       respostas rápidas, indicadores transparentes e equipes certificadas.
+      </p>
+      <div class="hero__actions">
+       <a href="/contato.html" class="hero__button hero__button--primary">
+        <i class="fas fa-headset" aria-hidden="true"></i>
+        Falar com um especialista
+       </a>
+       <a href="#planos" class="hero__button hero__button--secondary">
+        <i class="fas fa-layer-group" aria-hidden="true"></i>
+        Ver planos e pacotes
+       </a>
+      </div>
+      <div class="hero__stats">
+       <div class="hero__stats-item">
+        <span class="hero__stats-item-number">99,9%</span>
+        <span class="hero__stats-item-label">
+         <i class="fas fa-shield-alt" aria-hidden="true"></i>
+         SLAs cumpridos em 2024
+        </span>
+       </div>
+       <div class="hero__stats-item">
+        <span class="hero__stats-item-number">+50k</span>
+        <span class="hero__stats-item-label">
+         <i class="fas fa-clock" aria-hidden="true"></i>
+         Horas de suporte entregues
+        </span>
+       </div>
+       <div class="hero__stats-item">
+        <span class="hero__stats-item-number">&lt; 1h</span>
+        <span class="hero__stats-item-label">
+         <i class="fas fa-bolt" aria-hidden="true"></i>
+         Tempo médio de resposta
+        </span>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    <!-- Catálogo de Serviços -->
+    <section id="servicos" class="services section fade-in">
+     <div class="services__container">
+      <div class="section-title slide-up">
+       <h2>Catálogo completo de TI</h2>
+       <p>
+        Agrupamos nossos serviços em trilhas para facilitar a contratação e o
+        acompanhamento de indicadores.
+       </p>
+      </div>
+
+      <div class="services__group stagger-animation">
+       <div class="services__group-header slide-up">
+        <span class="services__badge">
+         <i class="fas fa-plug" aria-hidden="true"></i>
+         Operação crítica
+        </span>
+        <h3>Serviços principais</h3>
+        <p>
+         Cuidamos do dia a dia do seu time, garantindo atendimento humano,
+         processos claros e monitoramento 24/7.
+        </p>
+       </div>
+       <div class="services__grid">
+        <article id="suporte-tecnico" class="service-card fade-in">
+         <div class="service-card__badge">SLA 24/7</div>
+         <div class="service-card__icon">
+          <i class="fas fa-laptop" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Suporte técnico dedicado</h3>
+         <p class="service-card__description">
+          Central de atendimento multicanal com acesso remoto seguro, despacho
+          onsite e playbooks personalizados por cliente.
+         </p>
+         <ul class="service-card__features">
+          <li>Atendimento remoto ilimitado</li>
+          <li>Plantão crítico e escalonamento</li>
+          <li>Envio de técnico presencial</li>
+          <li>Portal com status dos tickets</li>
+          <li>Relatórios mensais e dashboards</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-headset" aria-hidden="true"></i>
+           Remoto e presencial
+          </span>
+          <span>
+           <i class="fas fa-stopwatch" aria-hidden="true"></i>
+           Resposta média de 30 min
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Solicitar diagnóstico
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+
+        <article class="service-card fade-in">
+         <div class="service-card__badge">Preventivo</div>
+         <div class="service-card__icon">
+          <i class="fas fa-tools" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Manutenção preventiva</h3>
+         <p class="service-card__description">
+          Roteiros mensais para manter ativos, sistemas operacionais e
+          periféricos atualizados e com desempenho ideal.
+         </p>
+         <ul class="service-card__features">
+          <li>Checklist técnico por equipamento</li>
+          <li>Atualizações e tuning seguros</li>
+          <li>Limpeza física e lógica</li>
+          <li>Inventário atualizado automaticamente</li>
+          <li>Alertas proativos de riscos</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-sync-alt" aria-hidden="true"></i>
+           Rotinas mensais
+          </span>
+          <span>
+           <i class="fas fa-file-alt" aria-hidden="true"></i>
+           Relatórios auditáveis
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Agendar visita técnica
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+       </div>
+      </div>
+
+      <div class="services__group stagger-animation">
+       <div class="services__group-header slide-up">
+        <span class="services__badge">
+         <i class="fas fa-shield-alt" aria-hidden="true"></i>
+         Serviços gerenciados
+        </span>
+        <h3>Infraestrutura e segurança</h3>
+        <p>
+         Monitoramos redes, servidores e políticas de segurança com indicadores
+         em tempo real e automações inteligentes.
+        </p>
+       </div>
+       <div class="services__grid">
+        <article id="infraestrutura" class="service-card fade-in">
+         <div class="service-card__badge">Projetos + NOC</div>
+         <div class="service-card__icon">
+          <i class="fas fa-server" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Infraestrutura de TI</h3>
+         <p class="service-card__description">
+          Desenhamos arquiteturas híbridas, implantamos redes seguras e fazemos
+          gestão contínua dos ativos críticos.
+         </p>
+         <ul class="service-card__features">
+          <li>Assessment completo de ambiente</li>
+          <li>Redes cabeadas e Wi-Fi corporativos</li>
+          <li>Virtualização, cloud e backup</li>
+          <li>Documentação e runbooks</li>
+          <li>Gestão de capacidade e custos</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-sitemap" aria-hidden="true"></i>
+           Projetos sob demanda
+          </span>
+          <span>
+           <i class="fas fa-signal" aria-hidden="true"></i>
+           Monitoramento 24/7
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Planejar infraestrutura
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+
+        <article id="seguranca" class="service-card fade-in">
+         <div class="service-card__badge">Compliance</div>
+         <div class="service-card__icon">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Segurança da informação</h3>
+         <p class="service-card__description">
+          Camadas de proteção alinhadas à LGPD, com SOC, resposta a incidentes e
+          conscientização contínua dos usuários.
+         </p>
+         <ul class="service-card__features">
+          <li>Firewalls, EDR e MFA gerenciados</li>
+          <li>Simulações de phishing e treinamentos</li>
+          <li>Playbook de resposta a incidentes</li>
+          <li>Auditorias e testes de intrusão</li>
+          <li>Compliance e governança de dados</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-user-shield" aria-hidden="true"></i>
+           Especialistas certificados
+          </span>
+          <span>
+           <i class="fas fa-bell" aria-hidden="true"></i>
+           Alertas em tempo real
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Solicitar avaliação de riscos
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+
+        <article class="service-card fade-in">
+         <div class="service-card__badge">Dados críticos</div>
+         <div class="service-card__icon">
+          <i class="fas fa-database" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Backup e recuperação</h3>
+         <p class="service-card__description">
+          Estratégia 3-2-1 com cópias locais, nuvem e testes frequentes para
+          garantir continuidade em qualquer cenário.
+         </p>
+         <ul class="service-card__features">
+          <li>Backups automatizados e criptografados</li>
+          <li>Versionamento e retenção inteligente</li>
+          <li>Recuperação validada mensalmente</li>
+          <li>RPO e RTO alinhados ao negócio</li>
+          <li>Painel com status em tempo real</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-cloud" aria-hidden="true"></i>
+           Armazenamento híbrido
+          </span>
+          <span>
+           <i class="fas fa-history" aria-hidden="true"></i>
+           Restore em minutos
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Ver demonstração
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+       </div>
+      </div>
+
+      <div class="services__group stagger-animation">
+       <div class="services__group-header slide-up">
+        <span class="services__badge">
+         <i class="fas fa-lightbulb" aria-hidden="true"></i>
+         Consultoria & Projetos
+        </span>
+        <h3>Transformação orientada a resultados</h3>
+        <p>
+          Atuamos lado a lado com a diretoria para definir roadmap tecnológico,
+          metas e indicadores que sustentem o crescimento do negócio.
+        </p>
+       </div>
+       <div class="services__grid">
+        <article class="service-card fade-in">
+         <div class="service-card__badge">Roadmap</div>
+         <div class="service-card__icon">
+          <i class="fas fa-user-tie" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Consultoria em TI</h3>
+         <p class="service-card__description">
+          Diagnóstico, priorização de iniciativas e definição de KPIs com
+          workshops executivos e squads híbridos.
+         </p>
+         <ul class="service-card__features">
+          <li>Assessment técnico e de processos</li>
+          <li>Planejamento de investimentos</li>
+          <li>Auditoria e compliance</li>
+          <li>PMO compartilhado</li>
+          <li>Mentorias para equipe interna</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-chart-line" aria-hidden="true"></i>
+           KPIs personalizados
+          </span>
+          <span>
+           <i class="fas fa-users" aria-hidden="true"></i>
+           Workshops com stakeholders
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Agendar consultoria
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+
+        <article class="service-card fade-in">
+         <div class="service-card__badge">Projetos especiais</div>
+         <div class="service-card__icon">
+          <i class="fas fa-diagram-project" aria-hidden="true"></i>
+         </div>
+         <h3 class="service-card__title">Projetos sob medida</h3>
+         <p class="service-card__description">
+          Implantamos soluções específicas como migrações cloud, modernização de
+          workplace e integrações com ERPs e CRMs.
+         </p>
+         <ul class="service-card__features">
+          <li>Migração para M365, Azure ou AWS</li>
+          <li>Modernização de data centers</li>
+          <li>Integrações com sistemas legados</li>
+          <li>Automação de processos repetitivos</li>
+          <li>Treinamento e handover completo</li>
+         </ul>
+         <div class="service-card__meta">
+          <span>
+           <i class="fas fa-rocket" aria-hidden="true"></i>
+           Kick-off em 10 dias
+          </span>
+          <span>
+           <i class="fas fa-certificate" aria-hidden="true"></i>
+           Equipe certificada
+          </span>
+         </div>
+         <a class="hero__button hero__button--primary service-card__link" href="/contato.html">
+          Discutir escopo
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+         </a>
+        </article>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    <!-- Como Atuamos -->
+    <section id="processo" class="timeline section fade-in">
+     <div class="timeline__container">
+      <div class="section-title slide-up">
+       <h2>Como atuamos</h2>
+       <p>Processo consultivo em quatro etapas para garantir previsibilidade.</p>
+      </div>
+      <div class="timeline__content">
+       <div class="timeline__item stagger-animation">
+        <div class="timeline__year">Etapa 01</div>
+        <div class="timeline__content-wrapper">
+         <h3 class="timeline__title">Diagnóstico e baseline</h3>
+         <p class="timeline__description">
+          Inventariamos ativos, processos e SLAs atuais para mapear riscos e
+          oportunidades de ganho imediato.
+         </p>
+        </div>
+       </div>
+       <div class="timeline__item stagger-animation">
+        <div class="timeline__year">Etapa 02</div>
+        <div class="timeline__content-wrapper">
+         <h3 class="timeline__title">Plano de ação</h3>
+         <p class="timeline__description">
+          Definimos jornadas de implantação, indicadores e responsáveis por cada
+          frente com comunicação transparente.
+         </p>
+        </div>
+       </div>
+       <div class="timeline__item stagger-animation">
+        <div class="timeline__year">Etapa 03</div>
+        <div class="timeline__content-wrapper">
+         <h3 class="timeline__title">Execução e automação</h3>
+         <p class="timeline__description">
+          Squads híbridos executam os projetos enquanto o NOC mantém monitoramento
+          contínuo com alertas inteligentes.
+         </p>
+        </div>
+       </div>
+       <div class="timeline__item stagger-animation">
+        <div class="timeline__year">Etapa 04</div>
+        <div class="timeline__content-wrapper">
+         <h3 class="timeline__title">Melhoria contínua</h3>
+         <p class="timeline__description">
+          Revisões trimestrais, auditorias de SLA e roadmap evolutivo com novos
+          sprints conforme objetivos do negócio.
+         </p>
+        </div>
+       </div>
+       <div class="timeline__item stagger-animation">
+        <div class="timeline__year">Etapa 05</div>
+        <div class="timeline__content-wrapper">
+         <h3 class="timeline__title">Escala e inovação</h3>
+         <p class="timeline__description">
+          Validamos resultados, expandimos para novas unidades e introduzimos
+          melhorias contínuas com labs de inovação e provas de conceito.
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="plans section fade-in">
+     <div class="plans__container">
+      <div class="section-title slide-up">
+       <h2>Planos e pacotes</h2>
+       <p>Escolha o modelo que melhor atende sua operação ou fale conosco para montar um pacote customizado.</p>
+      </div>
+      <div class="plans__grid">
+       <article class="plan-card fade-in">
+        <div class="plan-card__header">
+         <span class="plan-card__category">Start</span>
+         <span class="plan-card__tag">Até 25 dispositivos</span>
+        </div>
+        <div class="plan-card__price">
+         <strong>R$ 1.200</strong>
+         <span>/mês</span>
+        </div>
+        <p class="plan-card__description">
+         Ideal para empresas que precisam começar com suporte remoto estruturado.
+        </p>
+        <ul class="plan-card__features">
+         <li>Suporte remoto ilimitado em horário comercial</li>
+         <li>2 visitas presenciais por mês</li>
+         <li>Inventário automatizado</li>
+         <li>Monitoramento básico</li>
+        </ul>
+        <a href="/contato.html" class="hero__button hero__button--secondary">
+         Quero esse plano
+        </a>
+       </article>
+
+       <article class="plan-card plan-card--highlight fade-in">
+        <div class="plan-card__header">
+         <span class="plan-card__category">Business</span>
+         <span class="plan-card__tag">Até 80 dispositivos</span>
+        </div>
+        <div class="plan-card__price">
+         <strong>R$ 3.450</strong>
+         <span>/mês</span>
+        </div>
+        <p class="plan-card__description">
+         Plano mais contratado, com SLA 24/7, NOC dedicado e pacotes de projetos inclusos.
+        </p>
+        <ul class="plan-card__features">
+         <li>Suporte remoto e presencial ilimitados</li>
+         <li>Monitoramento avançado + resposta a incidentes</li>
+         <li>3 horas de consultoria estratégica / mês</li>
+         <li>Backup híbrido + testes trimestrais</li>
+        </ul>
+        <a href="/contato.html" class="hero__button hero__button--primary">
+         Solicitar proposta
+        </a>
+       </article>
+
+       <article class="plan-card fade-in">
+        <div class="plan-card__header">
+         <span class="plan-card__category">Enterprise</span>
+         <span class="plan-card__tag">+100 dispositivos</span>
+        </div>
+        <div class="plan-card__price">
+         <strong>Custom</strong>
+         <span>por demanda</span>
+        </div>
+        <p class="plan-card__description">
+         Estrutura sob medida com squads dedicados, PMO compartilhado e integrações avançadas.
+        </p>
+        <ul class="plan-card__features">
+         <li>SOC, NOC e Service Desk integrados</li>
+         <li>Projetos contínuos inclusos em contrato</li>
+         <li>Gestão de fornecedores e compliance</li>
+         <li>Treinamentos e workshops ilimitados</li>
+        </ul>
+        <a href="/contato.html" class="hero__button hero__button--secondary">
+         Falar com time comercial
+        </a>
+       </article>
+      </div>
+     </div>
+    </section>
+
+    <!-- Casos de sucesso -->
+    <section id="cases" class="testimonials section fade-in">
+     <div class="testimonials__container">
+      <div class="section-title slide-up">
+       <h2>Resultados comprovados</h2>
+       <p>Clientes que confiaram sua operação de TI à NT Informática.</p>
+      </div>
+      <div class="testimonials__grid">
+       <article class="testimonial-card stagger-animation">
+        <div class="testimonial-card__content">
+         <div class="testimonial-card__rating" aria-label="5 estrelas">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+         </div>
+         <p class="testimonial-card__text">
+          "Migramos toda a operação para o plano Business e reduzimos 35% do tempo de indisponibilidade. Os relatórios mensais são fundamentais nas reuniões executivas."
+         </p>
+        </div>
+        <div class="testimonial-card__author">
+         <strong>Fernanda Nunes</strong>
+         <span>COO · Grupo Vida Plena</span>
+        </div>
+       </article>
+       <article class="testimonial-card stagger-animation">
+        <div class="testimonial-card__content">
+         <div class="testimonial-card__rating" aria-label="5 estrelas">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+         </div>
+         <p class="testimonial-card__text">
+          "A NT assumiu infraestrutura, segurança e projetos especiais. Conseguimos focar no core business sabendo que o ambiente está monitorado 24/7."
+         </p>
+        </div>
+        <div class="testimonial-card__author">
+         <strong>Igor Mendes</strong>
+         <span>Diretor de Tecnologia · Conecta Saúde</span>
+        </div>
+       </article>
+       <article class="testimonial-card stagger-animation">
+        <div class="testimonial-card__content">
+         <div class="testimonial-card__rating" aria-label="5 estrelas">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
+         </div>
+         <p class="testimonial-card__text">
+          "Os planos foram customizados por unidade e hoje temos previsibilidade de custos, indicadores claros e um parceiro comprometido com o nosso crescimento."
+         </p>
+        </div>
+        <div class="testimonial-card__author">
+         <strong>Juliana Prado</strong>
+         <span>CEO · Rede Office Prime</span>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="contact-cta section fade-in">
+     <div class="contact-cta__container">
+      <span class="contact-cta__badge">
+       <i class="fas fa-bolt" aria-hidden="true"></i>
+       Atendimento em todo o Brasil
+      </span>
+      <h2 class="contact-cta__title">Pronto para acelerar sua TI?</h2>
+      <p class="contact-cta__description">
+       Compartilhe suas prioridades e em até 1 hora útil nosso time retorna com o plano ideal e próximos passos claros.
+      </p>
+      <div class="contact-cta__stats">
+       <i class="fas fa-clock" aria-hidden="true"></i>
+       Resposta em <strong>&lt; 1h</strong>
+      </div>
+      <div class="contact-cta__actions">
+       <a href="/contato.html" class="hero__button hero__button--primary">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        Solicitar orçamento
+       </a>
+       <a
+        href="https://wa.me/5511999999999?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20serviços%20da%20NT%20Informática."
+        class="hero__button hero__button--whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+       >
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        Conversar no WhatsApp
+       </a>
+       <a href="#servicos" class="hero__button hero__button--secondary">
+        <i class="fas fa-list" aria-hidden="true"></i>
+        Ver catálogo completo
+       </a>
+      </div>
+     </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq section fade-in">
+     <div class="faq__container">
+      <div class="section-title slide-up">
+       <h2>Dúvidas frequentes</h2>
+       <p>Reunimos as perguntas mais comuns sobre contratos, SLAs e implantação.</p>
+      </div>
+      <div class="faq__grid">
+       <article class="faq-item">
+        <button
+         class="faq-item__trigger"
+         aria-expanded="false"
+         aria-controls="faq-content-1"
+         id="faq-question-1"
+        >
+         Qual o prazo médio para iniciar o atendimento?
+         <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div
+         id="faq-content-1"
+         class="faq-item__content"
+         role="region"
+         aria-labelledby="faq-question-1"
+        >
+         <p>
+          Após o diagnóstico inicial, o onboarding leva de 5 a 15 dias úteis
+          dependendo da complexidade. Entregamos cronograma detalhado e
+          acompanhamos cada etapa com o cliente.
+         </p>
+        </div>
+       </article>
+
+       <article class="faq-item">
+        <button
+         class="faq-item__trigger"
+         aria-expanded="false"
+         aria-controls="faq-content-2"
+         id="faq-question-2"
+        >
+         O suporte é ilimitado?
+         <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div
+         id="faq-content-2"
+         class="faq-item__content"
+         role="region"
+         aria-labelledby="faq-question-2"
+        >
+         <p>
+          Sim. Todos os planos incluem suporte remoto ilimitado. Nos pacotes
+          Business e Enterprise também incluímos visitas presenciais e plantão
+          24/7 sem cobrança adicional.
+         </p>
+        </div>
+       </article>
+
+       <article class="faq-item">
+        <button
+         class="faq-item__trigger"
+         aria-expanded="false"
+         aria-controls="faq-content-3"
+         id="faq-question-3"
+        >
+         Vocês trabalham com ferramentas que já uso?
+         <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div
+         id="faq-content-3"
+         class="faq-item__content"
+         role="region"
+         aria-labelledby="faq-question-3"
+        >
+         <p>
+          Integramos com as principais soluções do mercado (Microsoft, Google,
+          AWS, Fortinet, Sophos, VMware, entre outras) e podemos operar com as
+          licenças já existentes da sua empresa.
+         </p>
+        </div>
+       </article>
+
+       <article class="faq-item">
+        <button
+         class="faq-item__trigger"
+         aria-expanded="false"
+         aria-controls="faq-content-4"
+         id="faq-question-4"
+        >
+         Como funcionam os indicadores e relatórios?
+         <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div
+         id="faq-content-4"
+         class="faq-item__content"
+         role="region"
+         aria-labelledby="faq-question-4"
+        >
+         <p>
+          Entregamos dashboards em tempo real, relatórios mensais (tickets,
+          SLAs, ativos monitorados) e reuniões trimestrais de performance para
+          revisar roadmap e próximos passos.
+         </p>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+   </main>
+
+   <vite-partial src="/partials/footer.html" />
+
+   <!-- Botão Voltar ao Topo -->
+   <button
+    id="scroll-to-top"
+    class="scroll-to-top"
+    aria-label="Voltar ao topo"
+    title="Voltar ao topo"
+   >
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+   </button>
+
+   <!-- Schema.org LocalBusiness -->
+   <script type="application/ld+json">
+    {
+     "@context": "https://schema.org",
+     "@type": "LocalBusiness",
+     "name": "NT Informática",
+     "description": "Serviços especializados de suporte técnico, infraestrutura, segurança da informação e consultoria em TI.",
+     "url": "https://www.ntinformatica.com.br/servicos.html",
+     "serviceArea": {
+      "@type": "Country",
+      "name": "Brasil"
+     },
+     "areaServed": "BR",
+     "telephone": "+55-11-99999-9999",
+     "email": "contato@ntinformatica.com.br",
+     "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços de TI",
+      "itemListElement": [
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Suporte Técnico",
+         "description": "Suporte remoto e presencial com SLA 24/7."
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Infraestrutura de TI",
+         "description": "Planejamento, implantação e gestão de redes e servidores."
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Segurança da Informação",
+         "description": "Proteção de dados, SOC e resposta a incidentes."
+        }
+       },
+       {
+        "@type": "Offer",
+        "itemOffered": {
+         "@type": "Service",
+         "name": "Consultoria em TI",
+         "description": "Roadmap tecnológico e gestão estratégica de TI."
+        }
+       }
+      ]
+     }
+    }
+   </script>
+
+   <!-- JavaScript -->
+   <script type="module" src="/assets/js/toast.js"></script>
+   <script type="module" src="/assets/js/app.js"></script>
+   <script type="module" src="/assets/js/main.js"></script>
+  </body>
+ </html>

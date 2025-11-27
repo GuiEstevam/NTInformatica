@@ -11,13 +11,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: $color-bg-primary;
-  @include tech-gradient;
+  background: var(--color-bg-primary);
+  background-image: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
   padding: $spacing-xl $spacing-md;
   // Compensar altura da navbar fixa (70px)
   padding-top: calc(70px + $spacing-xl);
   overflow: hidden; // Para elementos decorativos
-  
+
   // Elementos decorativos de fundo
   &::before {
     content: '';
@@ -26,12 +28,12 @@
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba($color-blue-primary, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.08) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
     animation: float 20s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -39,24 +41,24 @@
     left: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba($color-accent, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.06) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
     animation: float 15s ease-in-out infinite reverse;
   }
-  
+
   @include mobile {
     min-height: 80vh;
     padding: $spacing-lg $spacing-md;
     padding-top: calc(70px + $spacing-lg);
-    
+
     &::before,
     &::after {
       width: 300px;
       height: 300px;
     }
   }
-  
+
   // Hero em páginas internas (menor altura)
   &--page {
     min-height: 40vh;
@@ -66,7 +68,7 @@
     padding-right: $spacing-md;
     align-items: flex-start; // Alinhar conteúdo no topo (não centralizar)
     justify-content: flex-start; // Alinhar no topo também
-    
+
     @include mobile {
       min-height: 30vh;
       padding-top: calc(70px + 1.5rem) !important;
@@ -87,30 +89,30 @@
 .hero__title {
   font-size: 3.5rem; // Aumentado de 2.5rem
   font-weight: $font-weight-extrabold;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
   margin-bottom: $spacing-lg; // Aumentado
   line-height: 1.1;
   letter-spacing: -0.03em;
   animation: fadeInDown 0.8s ease-out;
-  
+
   strong {
     display: block;
     margin-top: $spacing-sm; // Aumentado
-    background: linear-gradient(135deg, $color-blue-primary, $color-accent);
+    background: linear-gradient(135deg, var(--color-blue-primary), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 0.8s ease-out 0.2s both;
   }
-  
+
   @include mobile {
     font-size: 2.5rem; // Aumentado de 2rem
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-    
+
     strong {
       animation: none;
     }
@@ -120,31 +122,31 @@
 .hero__subtitle {
   font-size: 1.75rem; // Aumentado de 1.5rem
   font-weight: $font-weight-semibold;
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
   margin-bottom: $spacing-md; // Aumentado
   animation: fadeInUp 0.8s ease-out 0.3s both;
   position: relative;
-  
+
   // Linha decorativa abaixo do subtítulo
   &::after {
     content: '';
     display: block;
     width: 80px; // Aumentado
     height: 4px; // Aumentado
-    background: linear-gradient(90deg, $color-blue-primary, $color-accent);
+    background: linear-gradient(90deg, var(--color-blue-primary), var(--color-accent));
     margin: $spacing-md auto 0; // Aumentado
     border-radius: 2px;
     animation: fadeInUp 0.8s ease-out 0.4s both;
   }
-  
+
   @include mobile {
     font-size: 1.5rem; // Aumentado de 1.25rem
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-    
+
     &::after {
       animation: none;
     }
@@ -153,18 +155,18 @@
 
 .hero__description {
   font-size: 1.125rem; // Aumentado de 1rem
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
   max-width: 700px; // Aumentado
   margin: 0 auto $spacing-xl; // Aumentado
   line-height: 1.8; // Aumentado
   animation: fadeInUp 0.8s ease-out 0.4s both;
   font-weight: $font-weight-regular;
-  
+
   @include mobile {
     font-size: 1rem; // Aumentado
     line-height: 1.7;
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -178,30 +180,30 @@
   flex-wrap: wrap;
   animation: fadeInUp 0.8s ease-out 0.5s both;
   margin-top: $spacing-xl;
-  
+
   @include mobile {
     flex-direction: column;
     align-items: stretch;
     margin-top: $spacing-lg;
   }
-  
+
   // Suporte para prefers-reduced-motion
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
-  
+
   // Stagger animation para botões filhos
   .stagger-animation {
     animation: fadeInUp 0.6s ease-out both;
-    
+
     &:nth-child(1) {
       animation-delay: 0.6s;
     }
-    
+
     &:nth-child(2) {
       animation-delay: 0.7s;
     }
-    
+
     @media (prefers-reduced-motion: reduce) {
       animation: none;
     }
@@ -215,35 +217,93 @@
   gap: $spacing-xxl; // Aumentado
   margin-top: $spacing-xxl; // Aumentado
   padding-top: $spacing-xl; // Aumentado
-  border-top: $border-medium; // Aumentado espessura
+  border-top: var(--border-medium); // Aumentado espessura
   animation: fadeInUp 0.8s ease-out 0.8s both;
-  
+
   @include mobile {
     flex-direction: column;
     gap: $spacing-lg; // Aumentado
     margin-top: $spacing-xl;
     padding-top: $spacing-lg;
   }
-  
+
   &-item {
     text-align: center;
-    
+    padding: $spacing-md;
+    border-radius: 8px;
+    transition: all $transition-normal;
+    position: relative;
+
+    // Efeito hover melhorado
+    &:hover {
+      transform: translateY(-4px);
+
+      .hero__stats-item-number {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px rgba(var(--color-blue-primary-rgb), 0.5);
+
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      .hero__stats-item-label {
+        color: var(--color-blue-primary);
+      }
+    }
+
     &-number {
       font-size: 3rem; // Aumentado de 2rem
       font-weight: $font-weight-extrabold;
-      color: $color-blue-primary;
+      color: var(--color-blue-primary); // Azul no modo claro para destaque
       display: block;
       line-height: 1;
       margin-bottom: $spacing-sm; // Aumentado
+      transition: all $transition-normal;
+      position: relative;
+
+      // Efeito de glow/brilho
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity $transition-normal;
+      }
     }
-    
+
     &-label {
       font-size: $font-size-body; // Aumentado de small
-      color: $color-text-secondary;
+      color: var(--color-text-secondary);
       font-weight: $font-weight-medium;
+      transition: color $transition-normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing-xs;
+
+      i {
+        font-size: 1rem;
+        color: var(--color-blue-primary);
+        opacity: 0.7;
+        transition: all $transition-normal;
+      }
+    }
+
+    &:hover &-label i {
+      opacity: 1;
+      transform: scale(1.2);
+      color: var(--color-blue-primary);
     }
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
@@ -261,7 +321,7 @@
   position: relative;
   overflow: hidden;
   min-height: 52px; // Aumentado para melhor toque
-  
+
   // Efeito de brilho no hover
   &::before {
     content: '';
@@ -273,79 +333,79 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left $transition-slow;
   }
-  
+
   &:hover::before {
     left: 100%;
   }
-  
+
   &--primary {
-    background: linear-gradient(135deg, $color-blue-primary, $color-blue-light) !important;
-    color: $color-white !important;
+    background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-light)) !important;
+    color: var(--color-white) !important;
     border: none;
-    box-shadow: $shadow-md;
+    box-shadow: var(--shadow-md);
     font-weight: $font-weight-semibold; // Aumentar peso da fonte para melhor contraste
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Sombra sutil no texto para melhor legibilidade
-    
+
     // Garantir contraste adequado no texto e ícones
     i {
-      color: $color-white !important;
+      color: var(--color-white) !important;
       filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
     }
-    
+
     // Garantir que o texto do link seja branco
     &,
     &:link,
     &:visited {
-      color: $color-white !important;
+      color: var(--color-white) !important;
     }
-    
+
     &:hover:not(:disabled) {
-      background: linear-gradient(135deg, $color-blue-dark, $color-blue-primary) !important;
+      background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue-primary)) !important;
       transform: translateY(-2px) scale(1.02);
-      box-shadow: $shadow-lg;
-      color: $color-white !important; // Garantir que o texto continue branco no hover
-      
+      box-shadow: var(--shadow-lg);
+      color: var(--color-white) !important; // Garantir que o texto continue branco no hover
+
       i {
-        color: $color-white !important;
+        color: var(--color-white) !important;
       }
     }
-    
+
     &:active:not(:disabled) {
       transform: translateY(0) scale(0.98);
-      color: $color-white !important;
-      
+      color: var(--color-white) !important;
+
       i {
-        color: $color-white !important;
+        color: var(--color-white) !important;
       }
     }
-    
+
     &:focus,
     &:focus-visible {
-      color: $color-white !important;
-      
+      color: var(--color-white) !important;
+
       i {
-        color: $color-white !important;
+        color: var(--color-white) !important;
       }
     }
   }
-  
+
   &--secondary {
-    background-color: $color-white;
-    color: $color-text-primary;
-    border-color: rgba($color-blue-primary, 0.2);
-    
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.2);
+
     &:hover:not(:disabled) {
-      background-color: rgba($color-blue-primary, 0.05);
-      border-color: $color-blue-primary;
-      color: $color-blue-primary;
+      background-color: rgba(var(--color-blue-primary-rgb), 0.05);
+      border-color: var(--color-blue-primary);
+      color: var(--color-blue-primary);
       transform: translateY(-2px);
     }
-    
+
     &:active:not(:disabled) {
       transform: translateY(0);
     }
   }
-  
+
   @include mobile {
     width: 100%;
     justify-content: center;
@@ -358,6 +418,7 @@
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -369,6 +430,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -377,79 +439,85 @@
 
 // Animação flutuante para elementos decorativos
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   33% {
     transform: translate(30px, -30px) rotate(5deg);
   }
+
   66% {
     transform: translate(-20px, 20px) rotate(-5deg);
   }
 }
 
-// Dark Mode
-@include dark-mode {
+// Animação de gradiente no background
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Dark mode é gerenciado automaticamente via CSS variables
+// Ajustes finos para elementos decorativos e botão secondary no dark mode
+.dark {
+  .hero__stats-item-number {
+    // No dark mode, manter azul mas com tom mais claro para contraste
+    color: var(--color-blue-light);
+  }
+
   .hero {
-    background-color: $color-black-soft;
+
+    // Ajustar elementos decorativos para dark mode - reduzir opacidade
+    &::before {
+      background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.04) 0%, transparent 70%);
+    }
+
+    &::after {
+      background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.03) 0%, transparent 70%);
+    }
   }
-  
-  .hero__title {
-    color: $color-white;
-  }
-  
-  .hero__subtitle,
-  .hero__description {
-    color: $color-gray-lighter;
-  }
-  
+
   .hero__button {
-    &--primary {
-      background: linear-gradient(135deg, $color-blue-primary, $color-blue-light) !important;
-      color: $color-white !important;
-      font-weight: $font-weight-semibold;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      
+    &--secondary {
+      background-color: var(--color-gray-dark);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--color-white);
+
       i {
-        color: $color-white !important;
-        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+        color: var(--color-white);
       }
-      
-      &,
-      &:link,
-      &:visited {
-        color: $color-white !important;
-      }
-      
+
       &:hover:not(:disabled) {
-        background: linear-gradient(135deg, $color-blue-dark, $color-blue-primary) !important;
-        color: $color-white !important;
-        
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: var(--color-white);
+        color: var(--color-white);
+
         i {
-          color: $color-white !important;
+          color: var(--color-white);
         }
       }
-      
+
+      &:active:not(:disabled),
       &:focus,
       &:focus-visible {
-        color: $color-white !important;
-        
+        color: var(--color-white);
+
         i {
-          color: $color-white !important;
+          color: var(--color-white);
         }
-      }
-    }
-    
-    &--secondary {
-      background-color: $color-black;
-      color: $color-white;
-      border-color: $color-white;
-      
-      &:hover:not(:disabled) {
-        background-color: $color-white;
-        color: $color-black;
       }
     }
   }
 }
-
