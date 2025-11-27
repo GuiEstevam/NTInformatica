@@ -32,16 +32,43 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          echo "=== INICIANDO BUILD ==="
+          echo "NODE_ENV: $NODE_ENV"
+          echo "Base path configurado: /NTInformatica/"
+          npm run build
+          echo "=== BUILD CONCLUÍDO ==="
         env:
           NODE_ENV: production
 
-      - name: List dist contents
+      - name: Debug - List all dist files
         run: |
-          echo "Contents of dist directory:"
+          echo "=== ESTRUTURA COMPLETA DO DIST ==="
           find dist -type f | sort
-          echo "Checking for dark-mode-init.js:"
-          ls -la dist/js/ || echo "js directory not found"
+          echo ""
+          echo "=== VERIFICANDO JS ==="
+          ls -la dist/js/ 2>&1 || echo "Pasta js não encontrada"
+          echo ""
+          echo "=== VERIFICANDO ASSETS ==="
+          ls -la dist/assets/ 2>&1 || echo "Pasta assets não encontrada"
+          echo ""
+          echo "=== VERIFICANDO HTMLs ==="
+          ls -la dist/*.html 2>&1
+
+      - name: Debug - Check HTML asset paths
+        run: |
+          echo "=== VERIFICANDO CAMINHOS NO INDEX.HTML ==="
+          echo "CSS:"
+          grep -o 'href="[^"]*\.css[^"]*"' dist/index.html || echo "Nenhum CSS encontrado"
+          echo ""
+          echo "JS:"
+          grep -o 'src="[^"]*\.js[^"]*"' dist/index.html || echo "Nenhum JS encontrado"
+          echo ""
+          echo "Dark mode init:"
+          grep -i "dark-mode" dist/index.html || echo "Dark mode init não encontrado"
+          echo ""
+          echo "=== PRIMEIRAS 20 LINHAS DO INDEX.HTML ==="
+          head -20 dist/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
