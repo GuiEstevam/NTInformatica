@@ -36,6 +36,13 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: List dist contents
+        run: |
+          echo "Contents of dist directory:"
+          find dist -type f | sort
+          echo "Checking for dark-mode-init.js:"
+          ls -la dist/js/ || echo "js directory not found"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
