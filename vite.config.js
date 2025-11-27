@@ -30,6 +30,7 @@ export default defineConfig({
     },
     cssCodeSplit: false
   },
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'assets')

@@ -884,12 +884,6 @@
   .form-button--loading::after {
     animation: none;
   }
-
-  @keyframes spin {
-    to {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-  }
 }
 
 .form-helper-text {

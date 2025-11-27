@@ -29,15 +29,32 @@ export function initNavigation() {
         return;
       }
 
-      // Se for link para outra página (com .html ou diferente da atual), deixar comportamento padrão
+      // Se for link para outra página, deixar comportamento padrão (navegação normal)
       const currentPath = window.location.pathname;
-      const normalizedCurrentPath = currentPath === '/' || currentPath === '/index.html' ? '/' : currentPath.replace(/\.html$/, '');
-      const normalizedHref = href === '/' || href === '/index.html' ? '/' : href.split('#')[0].replace(/\.html$/, '');
       
-      // Se for para outra página, deixar comportamento padrão (navegação normal)
-      if (normalizedHref !== normalizedCurrentPath) {
-        return;
+      // Extrair apenas o nome do arquivo do path atual (última parte do path)
+      const currentFile = currentPath.split('/').filter(Boolean).pop() || 'index.html';
+      
+      // Extrair apenas o nome do arquivo do href (sem # e sem ./)
+      let hrefFile = href.split('#')[0];
+      if (hrefFile === './' || hrefFile === '/') {
+        hrefFile = 'index.html';
+      } else if (hrefFile.startsWith('./')) {
+        hrefFile = hrefFile.replace(/^\.\//, '');
+      } else if (hrefFile.startsWith('/')) {
+        hrefFile = hrefFile.split('/').filter(Boolean).pop() || 'index.html';
       }
+      
+      // Normalizar: remover .html se houver para comparação
+      const normalizedCurrent = currentFile.replace(/\.html$/, '') || 'index';
+      const normalizedHref = hrefFile.replace(/\.html$/, '') || 'index';
+      
+      // Se for para outra página (arquivo diferente), deixar navegação padrão
+      if (normalizedHref !== normalizedCurrent) {
+        return; // Deixar navegação padrão do browser - é outra página
+      }
+      
+      // Se chegou aqui, é link para a mesma página
 
       // Se chegou aqui, é link na mesma página
       // Se tiver âncora (#), fazer smooth scroll

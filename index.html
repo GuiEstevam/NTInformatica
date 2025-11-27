@@ -89,25 +89,25 @@
     IMPORTANTE: Sem defer/async para garantir execução síncrona e bloqueante
     O script bloqueia o parsing até ser executado completamente
   -->
-  <script src="/js/dark-mode-init.js"></script>
+  <script src="./js/dark-mode-init.js"></script>
 
   <!-- CSS (carregado depois do script de inicialização) -->
   <!-- 1. Variáveis primeiro (necessárias para tudo) -->
-  <link rel="stylesheet" href="/assets/css/variables.css" />
+  <link rel="stylesheet" href="./assets/css/variables.css" />
   <!-- 2. Temas (usa variáveis) -->
-  <link rel="stylesheet" href="/assets/css/themes.css" />
+  <link rel="stylesheet" href="./assets/css/themes.css" />
   <!-- 3. Base (usa variáveis e temas) -->
-  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="./assets/css/base.css" />
   <!-- 4. Acessibilidade (pode sobrescrever) -->
-  <link rel="stylesheet" href="/assets/css/accessibility.css" />
+  <link rel="stylesheet" href="./assets/css/accessibility.css" />
   <!-- 5. Outros CSS -->
-  <link rel="stylesheet" href="/assets/css/toast.css" />
-  <link rel="stylesheet" href="/assets/css/animations.css" />
-  <link rel="stylesheet" href="/assets/css/sections/navigation.css" />
-  <link rel="stylesheet" href="/assets/css/sections/footer.css" />
-  <link rel="stylesheet" href="/assets/css/sections/dark-mode-toggle.css" />
-  <link rel="stylesheet" href="/assets/css/sections/scroll-to-top.css" />
-  <link rel="stylesheet" href="/assets/sass/main.scss" />
+  <link rel="stylesheet" href="./assets/css/toast.css" />
+  <link rel="stylesheet" href="./assets/css/animations.css" />
+  <link rel="stylesheet" href="./assets/css/sections/navigation.css" />
+  <link rel="stylesheet" href="./assets/css/sections/footer.css" />
+  <link rel="stylesheet" href="./assets/css/sections/dark-mode-toggle.css" />
+  <link rel="stylesheet" href="./assets/css/sections/scroll-to-top.css" />
+  <link rel="stylesheet" href="./assets/sass/main.scss" />
 
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
@@ -160,7 +160,7 @@
   <!-- Skip Link para acessibilidade -->
   <a href="#main-content" class="skip-link">Pular para conteúdo</a>
 
-  <vite-partial src="/partials/header.html" />
+  <vite-partial src="./partials/header.html" />
 
   <main id="main-content">
    <!-- Hero Section -->
@@ -179,14 +179,14 @@
      </p>
      <div class="hero__actions stagger-animation">
       <a
-       href="/contato.html"
+       href="./contato.html"
        class="hero__button hero__button--primary stagger-animation"
       >
        <i class="fas fa-paper-plane" aria-hidden="true"></i>
        Solicitar Orçamento
       </a>
       <a
-       href="/servicos.html"
+       href="./servicos.html"
        class="hero__button hero__button--secondary stagger-animation"
       >
        <i class="fas fa-laptop" aria-hidden="true"></i>
@@ -242,7 +242,7 @@
         rápida e eficiente. Nossa equipe está disponível 24/7 para garantir que
         seus sistemas funcionem perfeitamente.
        </p>
-       <a href="/servicos.html#suporte-tecnico" class="service-card__link">
+       <a href="./servicos.html#suporte-tecnico" class="service-card__link">
         Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
        </a>
       </article>
@@ -256,7 +256,7 @@
         Implementamos soluções de segurança robustas para manter seus dados
         seguros.
        </p>
-       <a href="/servicos.html#seguranca" class="service-card__link">
+       <a href="./servicos.html#seguranca" class="service-card__link">
         Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
        </a>
       </article>
@@ -269,13 +269,13 @@
         Planejamento e implementação de infraestrutura de TI para sua empresa.
         Criamos soluções escaláveis e confiáveis para suportar seu crescimento.
        </p>
-       <a href="/servicos.html#infraestrutura" class="service-card__link">
+       <a href="./servicos.html#infraestrutura" class="service-card__link">
         Saiba mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
        </a>
       </article>
      </div>
      <div class="services__cta">
-      <a href="/servicos.html" class="hero__button hero__button--primary">
+      <a href="./servicos.html" class="hero__button hero__button--primary">
        Ver Todos os Serviços
       </a>
      </div>
@@ -310,7 +310,7 @@
       <div class="about__image-wrapper slide-up">
        <div class="about__image">
         <img
-         src="/assets/images/about.png"
+         src="./assets/images/about.png"
          alt="Equipe NT Informática"
          loading="lazy"
         />
@@ -321,7 +321,7 @@
      <!-- Container próprio para botão e badges alinhados -->
      <div class="about__footer">
       <div class="about__actions">
-       <a href="/sobre.html" class="hero__button hero__button--secondary">
+       <a href="./sobre.html" class="hero__button hero__button--secondary">
         <i class="fas fa-book-open" aria-hidden="true"></i>
         Conheça Nossa História
        </a>
@@ -508,7 +508,7 @@
 
      <!-- Botões de ação -->
      <div class="contact-cta__actions slide-up">
-      <a href="/contato.html" class="hero__button hero__button--primary">
+      <a href="./contato.html" class="hero__button hero__button--primary">
        <i class="fas fa-paper-plane" aria-hidden="true"></i>
        Solicitar Orçamento
       </a>
@@ -521,7 +521,7 @@
    </section>
   </main>
 
-  <vite-partial src="/partials/footer.html" />
+  <vite-partial src="./partials/footer.html" />
 
   <!-- Botão Voltar ao Topo -->
   <button
@@ -534,8 +534,8 @@
   </button>
 
   <!-- JavaScript -->
-  <script type="module" src="/assets/js/toast.js"></script>
-  <script type="module" src="/assets/js/app.js"></script>
-  <script type="module" src="/assets/js/main.js"></script>
+  <script type="module" src="./assets/js/toast.js"></script>
+  <script type="module" src="./assets/js/app.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
  </body>
 </html>
