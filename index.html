@@ -81,15 +81,38 @@
 
   <!-- Inicializar Dark Mode ANTES do CSS carregar (evitar FOUC) -->
   <!-- 
-    EXCEÇÃO À REGRA: Script externo carregado de forma síncrona antes dos CSS
+    EXCEÇÃO À REGRA: Script inline carregado antes dos CSS
     Necessário para evitar FOUC (Flash of Unstyled Content).
     Este script DEVE ser executado ANTES do CSS para aplicar a classe .dark imediatamente.
     Referência: @.cursor/rules/rules.mdc - "exceto quando absolutamente necessário"
     
-    IMPORTANTE: Sem defer/async para garantir execução síncrona e bloqueante
-    O script bloqueia o parsing até ser executado completamente
+    IMPORTANTE: Script inline para garantir execução imediata sem dependência de arquivo externo
   -->
-  <script src="./js/dark-mode-init.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      try {
+        const savedTheme = localStorage.getItem('nt-informatica-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const shouldBeDark = savedTheme === null ? prefersDark : savedTheme === 'dark';
+        const html = document.documentElement;
+        if (shouldBeDark) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+      } catch (e) {
+        try {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefersDark) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e2) {
+          // Fallback: CSS vai usar @media como fallback
+        }
+      }
+    })();
+  </script>
 
   <!-- CSS (compilado pelo Vite) -->
   <link rel="stylesheet" href="./assets/sass/main.scss" />
