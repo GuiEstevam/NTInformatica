@@ -1,8 +1,8 @@
 # Template Site Corporativo - Empresas de Tecnologia
 
-> Template profissional e moderno para sites corporativos de empresas de tecnologia, suporte técnico e soluções em TI.
+> Template profissional e moderno baseado em um caso real de sucesso. Demonstração completa com conteúdo da NT Informática, pronto para customização.
 
-Um template completo, responsivo e otimizado para empresas que precisam de um site corporativo profissional com foco em apresentação de serviços, portfólio e captação de leads.
+Um template completo, responsivo e otimizado para empresas de tecnologia. Inclui um exemplo funcional completo (NT Informática) que demonstra todas as funcionalidades e pode ser facilmente customizado para sua empresa.
 
 ## Características Principais
 
@@ -91,6 +91,20 @@ template-site-corporativo/
 └── dist/                   # Build de produção
 ```
 
+## Sobre o Template
+
+Este template inclui um **exemplo completo e funcional** baseado na empresa **NT Informática**, demonstrando todas as funcionalidades em um caso real de uso. Todo o conteúdo pode ser facilmente customizado para sua empresa.
+
+### Exemplo Incluído
+
+O template vem pré-configurado com:
+
+- Conteúdo completo da NT Informática (exemplo)
+- Todas as páginas funcionais
+- Formulários configurados
+- Estrutura de navegação completa
+- SEO e meta tags configurados
+
 ## Customização
 
 ### Cores e Identidade Visual
@@ -108,10 +122,11 @@ As variáveis de cores estão em `assets/css/variables.css`:
 
 ### Conteúdo
 
-1. **Textos**: Edite diretamente os arquivos HTML
+1. **Textos**: Edite diretamente os arquivos HTML (substitua "NT Informática" pelo nome da sua empresa)
 2. **Imagens**: Substitua as imagens em `assets/images/`
 3. **Serviços**: Edite a seção de serviços em `servicos.html`
 4. **Formulário**: Configure o endpoint em `assets/js/contact-form.js`
+5. **Meta Tags**: Atualize as meta tags em cada arquivo HTML
 
 ### Configuração do Formulário
 
@@ -213,11 +228,26 @@ const FORM_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
 ## Licença
 
-Este template está disponível para comercialização. Consulte os termos de licença para mais informações.
+Este template é distribuído sob uma **Licença Proprietária** (All Rights Reserved).
+
+**Copyright (c) 2025 Guilherme Estevam de Lima** - Todos os direitos reservados.
+
+### Termos de Uso
+
+- **Uso único por projeto**: Cada compra permite o uso em um único projeto/website
+- **Proibida redistribuição**: Não é permitido revender, redistribuir ou compartilhar o código-fonte
+- **Modificações permitidas**: Você pode modificar o template para seu próprio uso
+- **Uso comercial permitido**: Pode ser usado em projetos comerciais e pessoais
+
+Para uso em múltiplos projetos ou licenciamento empresarial, entre em contato: **contato.estevamdelima@gmail.com**
+
+**Consulte o arquivo `LICENSE` para os termos completos da licença.**
 
 ## Suporte
 
-Para dúvidas, sugestões ou customizações, entre em contato através dos canais disponíveis.
+Para dúvidas, sugestões ou customizações, entre em contato:
+
+**Email**: contato.estevamdelima@gmail.com
 
 ## Documentação
 
@@ -225,4 +255,7 @@ Documentação técnica detalhada disponível na pasta `docs/` (não versionada)
 
 ---
 
+**Copyright (c) 2025 Guilherme Estevam de Lima**  
 **Desenvolvido para empresas de tecnologia**
+
+Para informações sobre licenciamento: contato.estevamdelima@gmail.com

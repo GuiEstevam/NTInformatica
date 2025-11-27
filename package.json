@@ -14,8 +14,8 @@
     "TI",
     "site corporativo"
   ],
-  "author": "NT Informática",
-  "license": "MIT",
+  "author": "Guilherme Estevam de Lima",
+  "license": "PROPRIETARY",
   "devDependencies": {
     "sass": "^1.69.5",
     "vite": "^5.0.0",

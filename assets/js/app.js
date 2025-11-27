@@ -1,6 +1,11 @@
 /**
  * App Principal - NT Informática
  * Entry point da aplicação
+ * 
+ * Copyright (c) 2025 Guilherme Estevam de Lima
+ * All Rights Reserved - Proprietary License
+ * 
+ * Unauthorized copying, modification, or distribution is strictly prohibited.
  */
 
 import { initNavigation } from './navigation.js';
