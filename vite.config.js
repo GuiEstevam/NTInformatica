@@ -79,6 +79,21 @@ export default defineConfig({
         // Processar após build completo (garantir que todos os HTMLs sejam processados)
         writeBundle(options, bundle) {
           if (isProduction) {
+            // Verificar se há referências a .scss nos arquivos JavaScript compilados
+            console.log('[Vite Plugin] Verificando bundle por referências a .scss...');
+            const jsFiles = Object.keys(bundle).filter(key => key.endsWith('.js'));
+            jsFiles.forEach(fileName => {
+              const file = bundle[fileName];
+              if (file.type === 'chunk' && file.code) {
+                if (file.code.includes('.scss') || file.code.includes('main.scss')) {
+                  console.error(`[Vite Plugin] ❌ ERRO CRÍTICO: ${fileName} contém referências a .scss!`);
+                  console.error(`[Vite Plugin] Isso indica que o Vite não processou o import do SCSS corretamente.`);
+                  console.error(`[Vite Plugin] O build está INCORRETO e não deve ser deployado!`);
+                  process.exit(1);
+                }
+              }
+            });
+            
             // Processar todos os arquivos HTML gerados
             const htmlFiles = ['index.html', 'servicos.html', 'sobre.html', 'contato.html'];
             
@@ -89,10 +104,15 @@ export default defineConfig({
                 let html = readFileSync(filePath, 'utf-8');
                 
                 // Verificar se há referências a .scss (não deveria ter)
-                if (html.includes('.scss')) {
+                if (html.includes('.scss') || html.includes('main.scss')) {
                   console.error(`[Vite Plugin] ❌ ERRO CRÍTICO: ${fileName} contém referências a .scss!`);
                   console.error(`[Vite Plugin] Isso indica que o Vite não processou o import do SCSS corretamente.`);
                   console.error(`[Vite Plugin] O build está INCORRETO e não deve ser deployado!`);
+                  // Mostrar onde está a referência
+                  const scssMatch = html.match(/[^"']*\.scss[^"']*/gi);
+                  if (scssMatch) {
+                    console.error(`[Vite Plugin] Referências encontradas:`, scssMatch);
+                  }
                   process.exit(1); // Falhar o build se houver referências a SCSS
                 }
                 
