@@ -67,8 +67,23 @@ jobs:
           echo "Dark mode init:"
           grep -i "dark-mode" dist/index.html || echo "Dark mode init não encontrado"
           echo ""
-          echo "=== PRIMEIRAS 20 LINHAS DO INDEX.HTML ==="
-          head -20 dist/index.html
+          echo "=== PRIMEIRAS 30 LINHAS DO INDEX.HTML ==="
+          head -30 dist/index.html
+
+      - name: Debug - Check SASS compilation
+        run: |
+          echo "=== VERIFICANDO COMPILAÇÃO SASS ==="
+          echo "Arquivos CSS gerados:"
+          find dist/assets -name "*.css" -type f || echo "Nenhum CSS encontrado em assets"
+          echo ""
+          echo "Tamanho dos arquivos CSS:"
+          ls -lh dist/assets/*.css 2>&1 || echo "Erro ao listar CSS"
+          echo ""
+          echo "Verificando se main.scss existe:"
+          test -f assets/sass/main.scss && echo "main.scss existe" || echo "main.scss NÃO existe"
+          echo ""
+          echo "Primeiras linhas do CSS gerado:"
+          head -50 dist/assets/*.css 2>&1 | head -50 || echo "Erro ao ler CSS"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
