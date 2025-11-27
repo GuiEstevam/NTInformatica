@@ -9,6 +9,7 @@
  */
 
 // Importar CSS principal (Vite processa e compila automaticamente)
+// Usar caminho relativo correto para o Vite processar
 import '../sass/main.scss';
 
 import { initNavigation } from './navigation.js';
