@@ -13,7 +13,21 @@ export default defineConfig({
   // Base path configurado dinamicamente
   base: basePath,
   plugins: [
-    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial()
+    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial(),
+    // Plugin para remover crossorigin do CSS (pode causar problemas no GitHub Pages)
+    {
+      name: 'remove-css-crossorigin',
+      transformIndexHtml(html) {
+        // Remover crossorigin do link CSS em produção
+        if (isProduction) {
+          return html.replace(
+            /<link([^>]*rel=["']stylesheet["'][^>]*)crossorigin=["'][^"']*["']([^>]*)>/g,
+            '<link$1$2>'
+          );
+        }
+        return html;
+      }
+    }
   ],
   css: {
     preprocessorOptions: {

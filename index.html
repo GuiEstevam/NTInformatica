@@ -116,6 +116,71 @@
 
   <!-- CSS (compilado pelo Vite) -->
   <link rel="stylesheet" href="./assets/sass/main.scss" />
+  
+  <!-- Debug: Verificar se CSS está carregando -->
+  <script>
+    (function() {
+      'use strict';
+      // Verificar se CSS foi carregado após 2 segundos
+      setTimeout(function() {
+        const testEl = document.createElement('div');
+        testEl.style.cssText = 'position:fixed;top:10px;right:10px;background:#ef4444;color:#fff;padding:10px;z-index:999999;font-size:12px;border-radius:4px;max-width:300px;';
+        const computedStyle = window.getComputedStyle(document.body);
+        const fontFamily = computedStyle.fontFamily;
+        
+        // Verificar se há link CSS no documento
+        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+        const viteCssLink = Array.from(cssLinks).find(link => 
+          link.href && (link.href.includes('/assets/') || link.href.includes('style-'))
+        );
+        
+        if (!fontFamily || fontFamily.includes('serif') || fontFamily === 'initial') {
+          let debugInfo = '⚠️ CSS NÃO CARREGADO<br>';
+          debugInfo += 'Font: ' + (fontFamily || 'undefined') + '<br>';
+          
+          if (viteCssLink) {
+            debugInfo += 'CSS Link: ' + viteCssLink.href + '<br>';
+            debugInfo += 'Status: Verificando...';
+            
+            // Tentar carregar CSS manualmente
+            const testLink = document.createElement('link');
+            testLink.rel = 'stylesheet';
+            testLink.href = viteCssLink.href.replace('crossorigin', '').split(' ')[0];
+            testLink.onerror = function() {
+              testEl.innerHTML = debugInfo + '<br>❌ Erro ao carregar CSS!';
+              console.error('[DEBUG] Erro ao carregar CSS:', testLink.href);
+            };
+            testLink.onload = function() {
+              testEl.style.background = '#10b981';
+              testEl.innerHTML = '✅ CSS CARREGADO MANUALMENTE<br>Font: ' + fontFamily.substring(0, 30);
+              setTimeout(function() {
+                testEl.remove();
+              }, 3000);
+            };
+            document.head.appendChild(testLink);
+          } else {
+            debugInfo += '❌ Link CSS não encontrado!';
+          }
+          
+          testEl.innerHTML = debugInfo;
+          document.body.appendChild(testEl);
+          
+          console.error('[DEBUG] CSS não carregado! Font family:', fontFamily);
+          console.error('[DEBUG] Links CSS encontrados:', cssLinks.length);
+          if (viteCssLink) {
+            console.error('[DEBUG] Link CSS do Vite:', viteCssLink.href);
+          }
+        } else {
+          testEl.style.background = '#10b981';
+          testEl.innerHTML = '✅ CSS CARREGADO<br>Font: ' + fontFamily.substring(0, 30);
+          document.body.appendChild(testEl);
+          setTimeout(function() {
+            testEl.remove();
+          }, 3000);
+        }
+      }, 2000);
+    })();
+  </script>
 
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
