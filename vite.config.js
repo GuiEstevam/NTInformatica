@@ -21,92 +21,113 @@ export default defineConfig({
   plugins: [
     vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial(),
     // Plugin completo para garantir que CSS seja servido corretamente
-    {
-      name: 'fix-css-for-github-pages',
-      enforce: 'post',
-      // Processar HTML durante transformação
-      transformIndexHtml: {
-        enforce: 'post',
-        transform(html, ctx) {
-          if (isProduction) {
-            // Remover crossorigin de links stylesheet (múltiplos padrões)
-            let result = html;
-            
-            // Padrão 1: crossorigin depois de rel="stylesheet"
-            result = result.replace(
-              /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin\s*=\s*["'][^"']*["']\s*([^>]*?)>/gi,
-              '<link$1$2>'
-            );
-            
-            // Padrão 2: crossorigin antes de rel="stylesheet"
-            result = result.replace(
-              /<link([^>]*?)crossorigin\s*=\s*["'][^"']*["']\s+([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)>/gi,
-              '<link$1$2>'
-            );
-            
-            // Padrão 3: crossorigin sem aspas
-            result = result.replace(
-              /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin\s*([^>]*?)>/gi,
-              '<link$1$2>'
-            );
-            
-            // Limpar espaços duplos
-            result = result.replace(/\s{2,}/g, ' ');
-            
-            return result;
-          }
-          return html;
-        }
-      },
-      // Processar após build completo (garantir que todos os HTMLs sejam processados)
-      writeBundle(options, bundle) {
-        if (isProduction) {
-          // Processar todos os arquivos HTML gerados
-          const htmlFiles = ['index.html', 'servicos.html', 'sobre.html', 'contato.html'];
-          
-          htmlFiles.forEach(fileName => {
-            const filePath = resolve(__dirname, 'dist', fileName);
-            
-            if (existsSync(filePath)) {
-              let html = readFileSync(filePath, 'utf-8');
-              
-              // Verificar se há referências a .scss (não deveria ter)
-              if (html.includes('.scss')) {
-                console.warn(`[Vite Plugin] ⚠️ ATENÇÃO: ${fileName} contém referências a .scss!`);
-                console.warn(`[Vite Plugin] Isso indica que o Vite não processou o import do SCSS corretamente.`);
-              }
-              
-              // Remover crossorigin de CSS
-              const before = html;
-              html = html.replace(
-                /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin\s*=\s*["'][^"']*["']\s*([^>]*?)>/gi,
-                '<link$1$2>'
-              );
-              html = html.replace(
-                /<link([^>]*?)crossorigin\s*=\s*["'][^"']*["']\s+([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)>/gi,
-                '<link$1$2>'
-              );
-              
-              if (html !== before) {
-                html = html.replace(/\s{2,}/g, ' ');
-                writeFileSync(filePath, html, 'utf-8');
-                console.log(`[Vite Plugin] ✅ Crossorigin removido de ${fileName}`);
-              } else {
-                console.log(`[Vite Plugin] ✅ ${fileName} já está correto (sem crossorigin)`);
-              }
-              
-              // Verificar se CSS foi gerado corretamente
-              const cssLinks = html.match(/href=["']([^"']*\.css[^"']*)["']/gi);
-              if (cssLinks && cssLinks.length > 0) {
-                console.log(`[Vite Plugin] ✅ ${fileName} tem ${cssLinks.length} link(s) CSS:`, cssLinks.map(l => l.match(/href=["']([^"']+)["']/)?.[1]).join(', '));
-              } else {
-                console.warn(`[Vite Plugin] ⚠️ ${fileName} NÃO tem links CSS!`);
-              }
-            }
-          });
-        }
+    (() => {
+      // Função helper para remover crossorigin de forma robusta
+      function removeCrossoriginFromCSS(html) {
+        let result = html;
+        
+        // Padrão 1: crossorigin="anonymous" ou crossorigin='anonymous' depois de rel="stylesheet"
+        result = result.replace(
+          /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin\s*=\s*["'][^"']*["']\s*([^>]*?)>/gi,
+          '<link$1$2>'
+        );
+        
+        // Padrão 2: crossorigin="anonymous" ou crossorigin='anonymous' antes de rel="stylesheet"
+        result = result.replace(
+          /<link([^>]*?)crossorigin\s*=\s*["'][^"']*["']\s+([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)>/gi,
+          '<link$1$2>'
+        );
+        
+        // Padrão 3: crossorigin sem aspas (crossorigin ou crossorigin=anonymous)
+        result = result.replace(
+          /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin(?:\s*=\s*["']?[^"'\s>]*["']?)?\s*([^>]*?)>/gi,
+          '<link$1$2>'
+        );
+        
+        // Padrão 4: crossorigin sem aspas antes de rel="stylesheet"
+        result = result.replace(
+          /<link([^>]*?)\s+crossorigin(?:\s*=\s*["']?[^"'\s>]*["']?)?\s+([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)>/gi,
+          '<link$1$2>'
+        );
+        
+        // Padrão 5: crossorigin no meio de outros atributos (mais genérico)
+        result = result.replace(
+          /<link([^>]*?rel\s*=\s*["']stylesheet["'][^>]*?)\s+crossorigin\s*=\s*["'][^"']*["']([^>]*?)>/gi,
+          '<link$1$2>'
+        );
+        
+        // Limpar espaços duplos e espaços antes de >
+        result = result.replace(/\s{2,}/g, ' ');
+        result = result.replace(/\s+>/g, '>');
+        
+        return result;
       }
-    }
+
+      return {
+        name: 'fix-css-for-github-pages',
+        enforce: 'post',
+        // Processar HTML durante transformação
+        transformIndexHtml: {
+          enforce: 'post',
+          transform(html, ctx) {
+            if (isProduction) {
+              return removeCrossoriginFromCSS(html);
+            }
+            return html;
+          }
+        },
+        // Processar após build completo (garantir que todos os HTMLs sejam processados)
+        writeBundle(options, bundle) {
+          if (isProduction) {
+            // Processar todos os arquivos HTML gerados
+            const htmlFiles = ['index.html', 'servicos.html', 'sobre.html', 'contato.html'];
+            
+            htmlFiles.forEach(fileName => {
+              const filePath = resolve(__dirname, 'dist', fileName);
+              
+              if (existsSync(filePath)) {
+                let html = readFileSync(filePath, 'utf-8');
+                
+                // Verificar se há referências a .scss (não deveria ter)
+                if (html.includes('.scss')) {
+                  console.error(`[Vite Plugin] ❌ ERRO CRÍTICO: ${fileName} contém referências a .scss!`);
+                  console.error(`[Vite Plugin] Isso indica que o Vite não processou o import do SCSS corretamente.`);
+                  console.error(`[Vite Plugin] O build está INCORRETO e não deve ser deployado!`);
+                  process.exit(1); // Falhar o build se houver referências a SCSS
+                }
+                
+                // Remover crossorigin de CSS usando função helper
+                const before = html;
+                html = removeCrossoriginFromCSS(html);
+                
+                if (html !== before) {
+                  writeFileSync(filePath, html, 'utf-8');
+                  console.log(`[Vite Plugin] ✅ Crossorigin removido de ${fileName}`);
+                }
+                
+                // VALIDAÇÃO FINAL: Verificar se crossorigin ainda está presente
+                const hasCrossorigin = /<link[^>]*rel\s*=\s*["']stylesheet["'][^>]*crossorigin[^>]*>/gi.test(html);
+                if (hasCrossorigin) {
+                  console.error(`[Vite Plugin] ❌ ERRO CRÍTICO: ${fileName} ainda contém crossorigin após processamento!`);
+                  console.error(`[Vite Plugin] O build está INCORRETO e não deve ser deployado!`);
+                  process.exit(1); // Falhar o build se crossorigin ainda estiver presente
+                }
+                
+                console.log(`[Vite Plugin] ✅ ${fileName} validado: sem crossorigin`);
+                
+                // Verificar se CSS foi gerado corretamente
+                const cssLinks = html.match(/href=["']([^"']*\.css[^"']*)["']/gi);
+                if (cssLinks && cssLinks.length > 0) {
+                  console.log(`[Vite Plugin] ✅ ${fileName} tem ${cssLinks.length} link(s) CSS:`, cssLinks.map(l => l.match(/href=["']([^"']+)["']/)?.[1]).join(', '));
+                } else {
+                  console.warn(`[Vite Plugin] ⚠️ ${fileName} NÃO tem links CSS!`);
+                }
+              }
+            });
+          }
+        }
+      };
+    })()
   ],
   css: {
     preprocessorOptions: {

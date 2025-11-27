@@ -40,16 +40,27 @@
       const linkSheet = viteCssLink.sheet || viteCssLink.styleSheet;
       console.log('[DEBUG CSS] CSS Sheet:', linkSheet ? 'Existe' : 'Não existe');
       
-      // Se o link aponta para SCSS, tentar encontrar o CSS compilado
+      // Se o link aponta para SCSS, isso é um ERRO CRÍTICO
       let cssHref = viteCssLink.href;
-      if (cssHref.includes('main.scss')) {
-        // Tentar encontrar o CSS compilado
-        const cssFiles = Array.from(cssLinks).filter(link => 
-          link.href && link.href.includes('style-') && link.href.endsWith('.css')
+      if (cssHref.includes('main.scss') || cssHref.includes('.scss')) {
+        console.error('[DEBUG CSS] ❌ ERRO CRÍTICO: Link aponta para SCSS!');
+        console.error('[DEBUG CSS] O HTML em produção está desatualizado ou há cache.');
+        console.error('[DEBUG CSS] Removendo link incorreto e procurando CSS compilado...');
+        
+        // Remover o link incorreto
+        viteCssLink.remove();
+        
+        // Procurar CSS compilado em todos os links
+        const compiledCss = Array.from(cssLinks).find(link => 
+          link.href && 
+          link.href.includes('/assets/') && 
+          link.href.includes('.css') && 
+          !link.href.includes('.scss')
         );
-        if (cssFiles.length > 0) {
-          cssHref = cssFiles[0].href;
-          console.log('[DEBUG CSS] CSS compilado encontrado:', cssHref);
+        
+        if (compiledCss) {
+          cssHref = compiledCss.href;
+          console.log('[DEBUG CSS] ✅ CSS compilado encontrado:', cssHref);
         } else {
           // Tentar construir o caminho do CSS compilado
           const basePath = cssHref.substring(0, cssHref.lastIndexOf('/'));

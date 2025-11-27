@@ -84,6 +84,24 @@ jobs:
           echo ""
           echo "Primeiras linhas do CSS gerado:"
           head -50 dist/assets/*.css 2>&1 | head -50 || echo "Erro ao ler CSS"
+          echo ""
+          echo "=== VALIDAÇÃO CRÍTICA: Verificando se há referências a .scss no HTML ==="
+          if grep -r "\.scss" dist/*.html; then
+            echo "❌ ERRO: HTML contém referências a .scss!"
+            echo "O build está INCORRETO!"
+            exit 1
+          else
+            echo "✅ Nenhuma referência a .scss encontrada no HTML"
+          fi
+          echo ""
+          echo "=== VERIFICANDO SE CSS FOI GERADO CORRETAMENTE ==="
+          if grep -q 'href="[^"]*\.css[^"]*"' dist/index.html; then
+            echo "✅ CSS link encontrado no HTML"
+            grep -o 'href="[^"]*\.css[^"]*"' dist/index.html
+          else
+            echo "❌ ERRO: Nenhum link CSS encontrado no HTML!"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
