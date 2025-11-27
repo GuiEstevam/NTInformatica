@@ -4,6 +4,8 @@ import vitePluginPartial from 'vite-plugin-partial';
 
 export default defineConfig({
   root: '.',
+  // Base path: './' para caminhos relativos (funciona em subpastas)
+  // Se precisar de caminho absoluto, usar '/NTInformatica/' 
   base: './',
   plugins: [
     vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial()
@@ -38,7 +40,12 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
+    // Configurar para servir corretamente em subpastas
+    middlewareMode: false,
+    fs: {
+      strict: false
+    }
   }
 });
 
