@@ -20,10 +20,13 @@ export default defineConfig({
       transformIndexHtml(html) {
         // Remover crossorigin do link CSS em produção
         if (isProduction) {
-          return html.replace(
+          console.log('[Vite Plugin] Removendo crossorigin do CSS...');
+          const result = html.replace(
             /<link([^>]*rel=["']stylesheet["'][^>]*)crossorigin=["'][^"']*["']([^>]*)>/g,
             '<link$1$2>'
           );
+          // Também remover espaços duplos que podem ter ficado
+          return result.replace(/\s+/g, ' ').replace(/>\s+</g, '><');
         }
         return html;
       }
