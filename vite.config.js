@@ -4,9 +4,9 @@ import vitePluginPartial from 'vite-plugin-partial';
 
 export default defineConfig({
   root: '.',
-  // Base path: './' para caminhos relativos (funciona em subpastas)
-  // Se precisar de caminho absoluto, usar '/NTInformatica/' 
-  base: './',
+  // Base path: '/NTInformatica/' para produção (subpasta no GitHub Pages)
+  // './' para desenvolvimento local
+  base: process.env.NODE_ENV === 'production' ? '/NTInformatica/' : './',
   plugins: [
     vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial()
   ],
