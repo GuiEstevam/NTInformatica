@@ -67,6 +67,43 @@ Os arquivos compilados estarão em `dist/` prontos para deploy em:
 - Vercel
 - Qualquer servidor estático
 
+### Deploy no GitHub Pages com Subpath
+
+O projeto está configurado para funcionar em subpastas do GitHub Pages (ex: `https://seu-usuario.github.io/NTInformatica/`).
+
+**Configuração automática:**
+
+O `vite.config.js` detecta automaticamente o ambiente de produção e configura o base path como `/NTInformatica/`. Isso significa que:
+
+- ✅ **Em desenvolvimento** (`npm run dev`): Usa caminhos relativos (`./`)
+- ✅ **Em produção** (`npm run build`): Usa base path `/NTInformatica/`
+
+**Como fazer o deploy:**
+
+1. Execute o build:
+
+   ```bash
+   npm run build
+   ```
+
+2. Faça commit e push da pasta `dist/`:
+
+   ```bash
+   git add dist/
+   git commit -m "Deploy: Build para produção"
+   git push
+   ```
+
+3. Configure o GitHub Pages para servir a pasta `dist/`:
+
+   - Vá em **Settings** > **Pages** no seu repositório
+   - Em **Source**, selecione a branch e a pasta `dist/`
+   - Salve
+
+4. Acesse seu site em: `https://seu-usuario.github.io/NTInformatica/`
+
+**Nota:** Se você precisar usar um subpath diferente de `/NTInformatica/`, edite a linha 9 do `vite.config.js` e altere o valor do `basePath` em produção.
+
 ## Estrutura do Projeto
 
 ```

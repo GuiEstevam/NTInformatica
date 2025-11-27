@@ -2,31 +2,18 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import vitePluginPartial from 'vite-plugin-partial';
 
-// Determinar base path
-// Usar caminho relativo para funcionar em qualquer subpasta
-const basePath = './';
+// Determinar base path baseado no ambiente
+// '/NTInformatica/' para produção (subpasta no GitHub Pages)
+// './' para desenvolvimento local
+const isProduction = process.env.NODE_ENV === 'production';
+const basePath = isProduction ? '/NTInformatica/' : './';
 
 export default defineConfig({
   root: '.',
-  // Base path: '/NTInformatica/' para produção (subpasta no GitHub Pages)
-  // './' para desenvolvimento local
+  // Base path configurado dinamicamente
   base: basePath,
   plugins: [
-    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial(),
-    // Plugin para substituir caminhos relativos de public files com base path em produção
-    {
-      name: 'replace-public-paths',
-      transformIndexHtml(html) {
-        if (process.env.NODE_ENV === 'production' && basePath !== './') {
-          // Substituir caminhos relativos de arquivos public por caminhos absolutos
-          return html.replace(
-            /src="\.\/js\/([^"]+)"/g,
-            `src="${basePath}js/$1"`
-          );
-        }
-        return html;
-      }
-    }
+    vitePluginPartial.default ? vitePluginPartial.default() : vitePluginPartial()
   ],
   css: {
     preprocessorOptions: {
