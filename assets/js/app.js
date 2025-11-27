@@ -8,6 +8,9 @@
  * Unauthorized copying, modification, or distribution is strictly prohibited.
  */
 
+// Importar CSS principal (Vite processa e compila automaticamente)
+import '../sass/main.scss';
+
 import { initNavigation } from './navigation.js';
 import { initContactForm } from './contact-form.js';
 import { initScrollAnimations } from './scroll-animations.js';
