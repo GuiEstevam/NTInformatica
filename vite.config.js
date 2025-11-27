@@ -3,7 +3,8 @@ import { resolve } from 'path';
 import vitePluginPartial from 'vite-plugin-partial';
 
 // Determinar base path
-const basePath = process.env.NODE_ENV === 'production' ? '/NTInformatica/' : './';
+// Usar caminho relativo para funcionar em qualquer subpasta
+const basePath = './';
 
 export default defineConfig({
   root: '.',
