@@ -70,6 +70,12 @@ export default defineConfig({
             if (existsSync(filePath)) {
               let html = readFileSync(filePath, 'utf-8');
               
+              // Verificar se há referências a .scss (não deveria ter)
+              if (html.includes('.scss')) {
+                console.warn(`[Vite Plugin] ⚠️ ATENÇÃO: ${fileName} contém referências a .scss!`);
+                console.warn(`[Vite Plugin] Isso indica que o Vite não processou o import do SCSS corretamente.`);
+              }
+              
               // Remover crossorigin de CSS
               const before = html;
               html = html.replace(
@@ -84,7 +90,17 @@ export default defineConfig({
               if (html !== before) {
                 html = html.replace(/\s{2,}/g, ' ');
                 writeFileSync(filePath, html, 'utf-8');
-                console.log(`[Vite Plugin] Crossorigin removido de ${fileName}`);
+                console.log(`[Vite Plugin] ✅ Crossorigin removido de ${fileName}`);
+              } else {
+                console.log(`[Vite Plugin] ✅ ${fileName} já está correto (sem crossorigin)`);
+              }
+              
+              // Verificar se CSS foi gerado corretamente
+              const cssLinks = html.match(/href=["']([^"']*\.css[^"']*)["']/gi);
+              if (cssLinks && cssLinks.length > 0) {
+                console.log(`[Vite Plugin] ✅ ${fileName} tem ${cssLinks.length} link(s) CSS:`, cssLinks.map(l => l.match(/href=["']([^"']+)["']/)?.[1]).join(', '));
+              } else {
+                console.warn(`[Vite Plugin] ⚠️ ${fileName} NÃO tem links CSS!`);
               }
             }
           });
