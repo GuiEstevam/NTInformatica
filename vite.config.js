@@ -17,18 +17,27 @@ export default defineConfig({
     // Plugin para remover crossorigin do CSS (pode causar problemas no GitHub Pages)
     {
       name: 'remove-css-crossorigin',
-      transformIndexHtml(html) {
-        // Remover crossorigin do link CSS em produção
-        if (isProduction) {
-          console.log('[Vite Plugin] Removendo crossorigin do CSS...');
-          const result = html.replace(
-            /<link([^>]*rel=["']stylesheet["'][^>]*)crossorigin=["'][^"']*["']([^>]*)>/g,
-            '<link$1$2>'
-          );
-          // Também remover espaços duplos que podem ter ficado
-          return result.replace(/\s+/g, ' ').replace(/>\s+</g, '><');
+      enforce: 'post', // Executar depois de outros plugins
+      transformIndexHtml: {
+        enforce: 'post',
+        transform(html, context) {
+          // Remover crossorigin do link CSS em produção
+          if (isProduction) {
+            // Remover crossorigin de qualquer link stylesheet (qualquer ordem de atributos)
+            let result = html.replace(
+              /<link([^>]*rel=["']stylesheet["'][^>]*)\s+crossorigin=["'][^"']*["']([^>]*)>/gi,
+              '<link$1$2>'
+            );
+            result = result.replace(
+              /<link([^>]*)crossorigin=["'][^"']*["']\s+([^>]*rel=["']stylesheet["'][^>]*)>/gi,
+              '<link$1$2>'
+            );
+            // Limpar espaços duplos e quebras de linha
+            result = result.replace(/\s+/g, ' ').replace(/>\s+</g, '><');
+            return result;
+          }
+          return html;
         }
-        return html;
       }
     }
   ],
