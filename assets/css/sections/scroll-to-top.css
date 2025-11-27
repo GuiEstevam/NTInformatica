@@ -67,18 +67,14 @@
   transform: translateY(-2px);
 }
 
-  /* Mobile */
-  @media screen and (max-width: 768px) {
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .scroll-to-top {
     width: 44px;
     height: 44px;
     bottom: var(--spacing-md);
     right: var(--spacing-md);
     font-size: 1.125rem;
-  }
-
-  /* Suporte para prefers-reduced-motion */
-  @media (prefers-reduced-motion: reduce) {
-    transition: opacity var(--transition-fast), visibility var(--transition-fast);
   }
 }
 

@@ -5,14 +5,14 @@
 // All Rights Reserved - Proprietary License
 // ============================================
 
-// Variáveis e Mixins (devem vir primeiro)
+// Variáveis e Mixins SASS (devem vir PRIMEIRO - regra obrigatória do SASS)
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// Base
+// Base SASS
 @use 'base';
 
-// Seções
+// Seções (todos os @use devem vir antes de @import)
 @use 'sections/hero';
 @use 'sections/about';
 @use 'sections/services';
@@ -24,6 +24,18 @@
 @use 'sections/stats';
 @use 'sections/plans';
 @use 'sections/faq';
+
+// Importar arquivos CSS necessários (devem vir depois de TODOS os @use)
+@import '../css/variables.css';
+@import '../css/themes.css';
+@import '../css/base.css';
+@import '../css/accessibility.css';
+@import '../css/toast.css';
+@import '../css/animations.css';
+@import '../css/sections/navigation.css';
+@import '../css/sections/footer.css';
+@import '../css/sections/dark-mode-toggle.css';
+@import '../css/sections/scroll-to-top.css';
 
 // Utilitários
 .sr-only {
