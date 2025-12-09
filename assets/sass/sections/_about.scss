@@ -144,6 +144,7 @@
   grid-template-columns: 1fr 1fr;
   gap: $spacing-xl; // Aumentado para melhor separação
   align-items: start; // Alinhar ambos os itens no topo
+  overflow: visible; // Permitir que o conteúdo seja visível, mas controlado pelos filhos
 
   // Quando só tem texto (sem imagem ao lado)
   &--single {
@@ -167,79 +168,16 @@
   }
 }
 
-// Wrapper para título e texto na coluna esquerda
-.about__text-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-lg;
-  align-items: flex-start; // Alinhar conteúdo ao topo
-  align-self: start; // Alinhar wrapper no topo do grid
-
-  // Ajustar section-title quando dentro do wrapper
-  .section-title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; // Alinhar ao topo
-    text-align: left; // Alinhar à esquerda
-    margin: 0; // Remover todas as margens para alinhar com o topo da imagem
-    padding: 0; // Remover padding
-    margin-bottom: $spacing-md; // Espaço apenas abaixo do título/subtítulo
-    width: 100%; // Ocupar largura total
-
-    h2 {
-      text-align: left; // Alinhar título à esquerda
-      display: block; // Remover inline-block
-      margin: 0; // Remover todas as margens
-      margin-bottom: $spacing-sm; // Apenas margem inferior
-      padding: 0; // Remover padding
-      width: 100%; // Ocupar largura total
-      line-height: 1.2; // Manter line-height
-      align-self: flex-start; // Alinhar ao topo
-
-      &::after {
-        margin-left: 0; // Alinhar linha decorativa à esquerda
-        margin-right: auto; // Alinhar à esquerda
-      }
-    }
-
-    p {
-      text-align: left; // Alinhar subtítulo à esquerda
-      margin: 0; // Remover todas as margens
-      padding: 0; // Remover padding
-      line-height: 1.5; // Line-height normal
-      align-self: flex-start; // Alinhar ao topo
-    }
-  }
-
-  @include mobile {
-    gap: $spacing-md;
-  }
-}
 
 .about__image-wrapper {
   display: flex;
   flex-direction: column;
-  position: sticky; // Fixar imagem durante scroll
-  top: calc(70px + $spacing-lg); // Abaixo da navbar
-  align-self: start; // Alinhar no topo
-  height: fit-content;
-  max-height: calc(100vh - 70px - #{$spacing-lg * 2}); // Limitar altura máxima
-  margin: 0; // Remover margens
-  padding: 0; // Remover padding
-
-  @include tablet {
-    position: relative;
-    top: auto;
-    max-height: none;
-  }
 
   @include mobile {
     gap: $spacing-md;
-    position: relative;
-    top: auto;
-    max-height: none;
   }
 }
+
 
 .about__image-center {
   display: flex;
@@ -395,13 +333,6 @@
   margin: 0; // Remover margens
   padding-top: 0; // Garantir que não há padding-top
 
-  // Quando dentro de image-wrapper (layout lado a lado)
-  .about__image-wrapper & {
-    padding-bottom: 140%; // Proporção mais alta para ocupar mais espaço vertical
-    min-height: 600px; // Altura mínima
-    object-fit: cover; // Garantir que a imagem preencha o espaço
-    padding-top: 0; // Garantir que não há padding-top
-  }
 
   // Quando dentro de image-center, usar max-width
   .about__image-center & {
@@ -417,7 +348,9 @@
     height: 100%;
     object-fit: cover;
     transition: all $transition-normal;
+    display: block; // Garantir que a imagem seja exibida
   }
+
 
   // Efeito hover sutil e elegante
   &:hover {
@@ -763,6 +696,123 @@
 
   @include mobile {
     font-size: 2rem;
+  }
+}
+
+// ============================================
+// Seção Nossa História - Refatorada
+// ============================================
+
+.about--history {
+  .about-history__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+    align-items: start;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+
+  .about-history__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  .about-history__header {
+    h2 {
+      font-size: $font-size-h2;
+      font-weight: $font-weight-extrabold;
+      color: var(--color-text-primary);
+      margin: 0;
+      margin-bottom: $spacing-sm;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+      line-height: 1.5;
+      text-align: left;
+    }
+  }
+
+  .about-history__text {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    p {
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      font-size: 1.0625rem;
+      text-align: left;
+      margin: 0;
+
+      @include mobile {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+    }
+  }
+
+  .about-history__image {
+    position: sticky;
+    top: calc(70px + $spacing-lg);
+    align-self: start;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; // Proporção 1:1 (quadrada) para ocupar espaço vertical
+    max-height: calc(100vh - 70px - #{$spacing-lg * 2});
+    overflow: hidden;
+    border-radius: 12px;
+    border: var(--border-medium);
+    box-shadow: var(--shadow-md);
+    background-color: var(--color-bg-card);
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform $transition-normal;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.05);
+      }
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(var(--color-blue-primary-rgb), 0.4);
+    }
+
+    @include tablet {
+      position: relative;
+      top: auto;
+      max-height: none;
+      padding-bottom: 75%; // Proporção 4:3 no tablet
+    }
+
+    @include mobile {
+      position: relative;
+      top: auto;
+      max-height: none;
+      padding-bottom: 75%; // Proporção 4:3 no mobile
+    }
   }
 }
 
