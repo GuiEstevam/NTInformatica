@@ -90,6 +90,12 @@
 .plan-card--highlight {
   border: 2px solid rgba(var(--color-blue-primary-rgb), 0.4);
   box-shadow: 0 20px 60px rgba(var(--color-blue-primary-rgb), 0.15);
+  transform: scale(1.02); // Levemente maior
+  position: relative;
+  z-index: 2;
+
+  // Animação de pulso muito sutil na sombra
+  animation: highlightPulse 4s ease-in-out infinite;
 
   &::after {
     content: 'Mais contratado';
@@ -103,6 +109,23 @@
     font-size: 0.75rem;
     font-weight: $font-weight-semibold;
     letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(var(--color-blue-primary-rgb), 0.3);
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 25px 70px rgba(var(--color-blue-primary-rgb), 0.2);
+    border-color: rgba(var(--color-blue-primary-rgb), 0.5);
+  }
+}
+
+// Animação sutil de pulso na sombra
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(var(--color-blue-primary-rgb), 0.15);
+  }
+  50% {
+    box-shadow: 0 22px 65px rgba(var(--color-blue-primary-rgb), 0.18);
   }
 }
 
@@ -159,14 +182,17 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
+  flex-grow: 1; // Permitir que cresça para empurrar o botão para baixo
+  min-height: 0; // Permitir que o flex funcione corretamente
 
   li {
     display: flex;
-    align-items: center;
+    align-items: flex-start; // Alinhar no topo para itens com múltiplas linhas
     gap: $spacing-sm;
     font-size: 0.95rem;
     color: var(--color-text-primary);
     line-height: 1.5;
+    min-height: 1.5em; // Altura mínima para uma linha
 
     &::before {
       content: '';
@@ -176,7 +202,20 @@
       background: linear-gradient(135deg, var(--color-blue-primary), var(--color-accent));
       display: inline-block;
       flex-shrink: 0;
+      margin-top: 0.25em; // Alinhar o bullet com o texto quando há múltiplas linhas
     }
+  }
+}
+
+// Alinhar botões na parte inferior dos cards
+.plan-card {
+  min-height: 100%; // Garantir que todos os cards tenham altura mínima igual
+  
+  .hero__button {
+    margin-top: auto; // Empurrar botão para o final do flex container
+    width: 100%;
+    justify-content: center;
+    flex-shrink: 0; // Não permitir que o botão encolha
   }
 }
 

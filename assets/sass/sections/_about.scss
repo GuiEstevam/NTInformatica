@@ -16,7 +16,7 @@
   background-size: 200% 200%;
   animation: gradientShift 20s ease infinite;
 
-  // Elementos decorativos flutuantes
+  // Elementos decorativos flutuantes (padrão)
   &::before {
     content: '';
     position: absolute;
@@ -43,6 +43,54 @@
     animation: float 20s ease-in-out infinite reverse;
   }
 
+  // Primeira seção about - criar continuidade com hero
+  &:first-of-type {
+    padding-top: $spacing-xl; // Reduzido para criar continuidade visual
+    margin-top: -80px; // Aumentado para sobreposição mais visível
+
+    // Elemento decorativo de conexão mais visível
+    &::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px; // Aumentado de 2px
+      height: 80px; // Aumentado de 60px
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--color-blue-primary-rgb), 0.5) 0%,
+        rgba(var(--color-blue-primary-rgb), 0.3) 30%,
+        rgba(var(--color-blue-primary-rgb), 0.15) 60%,
+        transparent 100%
+      );
+      z-index: 1;
+      animation: none; // Sem animação float
+      border-radius: 2px;
+    }
+
+    // Linha divisória decorativa mais visível
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 5%;
+      right: 5%;
+      height: 2px; // Aumentado de 1px
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(var(--color-blue-primary-rgb), 0.15) 15%,
+        rgba(var(--color-blue-primary-rgb), 0.25) 30%,
+        rgba(var(--color-blue-primary-rgb), 0.25) 70%,
+        rgba(var(--color-blue-primary-rgb), 0.15) 85%,
+        transparent 100%
+      );
+      z-index: 1;
+      animation: none; // Sem animação float
+    }
+  }
+
   // Variante com background alternado
   &--secondary {
     background-color: var(--color-bg-primary);
@@ -54,6 +102,18 @@
   @include mobile {
     padding: $spacing-xl 0; // Aumentado
 
+    // Primeira seção no mobile
+    &:first-of-type {
+      padding-top: $spacing-lg;
+      margin-top: -30px; // Menor sobreposição no mobile
+
+      &::before {
+        height: 40px;
+        top: -20px;
+      }
+    }
+
+    // Elementos decorativos no mobile
     &::before,
     &::after {
       width: 300px;
@@ -76,14 +136,14 @@
 .about__container {
   @include container;
   position: relative;
-  z-index: 1;
+  z-index: 2; // Acima dos elementos decorativos de transição
 }
 
 .about__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: $spacing-lg;
-  align-items: start;
+  gap: $spacing-xl; // Aumentado para melhor separação
+  align-items: start; // Alinhar ambos os itens no topo
 
   // Quando só tem texto (sem imagem ao lado)
   &--single {
@@ -93,7 +153,8 @@
   }
 
   @include tablet {
-    gap: $spacing-md;
+    gap: $spacing-lg;
+    grid-template-columns: 1fr; // Uma coluna no tablet
 
     &--single {
       max-width: 100%;
@@ -106,12 +167,77 @@
   }
 }
 
-.about__image-wrapper {
+// Wrapper para título e texto na coluna esquerda
+.about__text-wrapper {
   display: flex;
   flex-direction: column;
+  gap: $spacing-lg;
+  align-items: flex-start; // Alinhar conteúdo ao topo
+  align-self: start; // Alinhar wrapper no topo do grid
+
+  // Ajustar section-title quando dentro do wrapper
+  .section-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // Alinhar ao topo
+    text-align: left; // Alinhar à esquerda
+    margin: 0; // Remover todas as margens para alinhar com o topo da imagem
+    padding: 0; // Remover padding
+    margin-bottom: $spacing-md; // Espaço apenas abaixo do título/subtítulo
+    width: 100%; // Ocupar largura total
+
+    h2 {
+      text-align: left; // Alinhar título à esquerda
+      display: block; // Remover inline-block
+      margin: 0; // Remover todas as margens
+      margin-bottom: $spacing-sm; // Apenas margem inferior
+      padding: 0; // Remover padding
+      width: 100%; // Ocupar largura total
+      line-height: 1.2; // Manter line-height
+      align-self: flex-start; // Alinhar ao topo
+
+      &::after {
+        margin-left: 0; // Alinhar linha decorativa à esquerda
+        margin-right: auto; // Alinhar à esquerda
+      }
+    }
+
+    p {
+      text-align: left; // Alinhar subtítulo à esquerda
+      margin: 0; // Remover todas as margens
+      padding: 0; // Remover padding
+      line-height: 1.5; // Line-height normal
+      align-self: flex-start; // Alinhar ao topo
+    }
+  }
 
   @include mobile {
     gap: $spacing-md;
+  }
+}
+
+.about__image-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: sticky; // Fixar imagem durante scroll
+  top: calc(70px + $spacing-lg); // Abaixo da navbar
+  align-self: start; // Alinhar no topo
+  height: fit-content;
+  max-height: calc(100vh - 70px - #{$spacing-lg * 2}); // Limitar altura máxima
+  margin: 0; // Remover margens
+  padding: 0; // Remover padding
+
+  @include tablet {
+    position: relative;
+    top: auto;
+    max-height: none;
+  }
+
+  @include mobile {
+    gap: $spacing-md;
+    position: relative;
+    top: auto;
+    max-height: none;
   }
 }
 
@@ -141,30 +267,51 @@
   }
 
   @include mobile {
-    gap: $spacing-lg;
-    margin-bottom: $spacing-lg;
+    grid-template-columns: 1fr; // Uma coluna no mobile para melhor leitura
+    gap: $spacing-xl; // Espaçamento maior entre itens no mobile
+    margin-bottom: $spacing-xl;
   }
 }
 
 .about__mvp-item {
   text-align: center;
+
+  @include mobile {
+    text-align: left; // Alinhamento à esquerda no mobile para melhor leitura
+    padding: $spacing-md 0; // Espaçamento vertical adicional
+  }
 }
 
 .about__mvp-title {
   font-size: $font-size-h3;
-  font-weight: $font-weight-semibold;
-  margin-bottom: $spacing-md;
+  font-weight: $font-weight-bold; // Mais destaque
+  margin-bottom: $spacing-lg; // Mais espaço abaixo do título
   color: var(--color-text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.3; // Melhor legibilidade
+
+  @include mobile {
+    font-size: 1.5rem; // Tamanho otimizado para mobile
+    margin-bottom: $spacing-md;
+  }
 }
 
 .about__mvp-text {
   color: var(--color-text-secondary);
-  line-height: 1.8;
-  font-size: 1rem;
+  line-height: 1.75; // Line-height aumentado para melhor leitura
+  font-size: 1.0625rem; // 17px - tamanho ideal para leitura
   margin: 0;
-  text-align: justify;
-  text-align-last: center;
+  text-align: left; // Alinhamento à esquerda (melhor para leitura)
+  max-width: 65ch; // Largura ideal para leitura (65 caracteres)
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mobile {
+    text-align: left;
+    font-size: 1rem; // 16px no mobile
+    line-height: 1.7;
+    max-width: 100%; // Largura total no mobile
+  }
 }
 
 // Imagem larga abaixo das 3 colunas
@@ -196,27 +343,42 @@
 }
 
 .about__text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md; // Espaçamento entre parágrafos
+
   h2 {
     font-size: $font-size-h2;
     font-weight: $font-weight-extrabold;
-    margin-bottom: $spacing-md;
+    margin: 0; // Remover margens padrão
     letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--color-text-primary);
   }
 
   h3 {
     font-size: $font-size-h4;
     font-weight: $font-weight-semibold;
-    margin-top: $spacing-md;
-    margin-bottom: $spacing-xs;
+    margin: 0; // Remover margens padrão
+    line-height: 1.4;
+    color: var(--color-text-primary);
   }
 
   p {
     color: var(--color-text-secondary);
-    line-height: 1.8; // Aumentado
-    margin-bottom: $spacing-lg; // Aumentado
-    font-size: 1.125rem; // Aumentado para ocupar melhor o espaço
-    text-align: justify; // Texto justificado para melhor aproveitamento do espaço
-    text-align-last: left; // Última linha alinhada à esquerda (mais natural)
+    line-height: 1.75; // Line-height otimizado para leitura
+    margin-bottom: $spacing-lg;
+    font-size: 1.0625rem; // 17px - tamanho ideal para leitura de texto longo
+    text-align: left; // Alinhamento à esquerda (melhor para leitura)
+    max-width: 70ch; // Largura ideal para leitura (70 caracteres)
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mobile {
+      font-size: 1rem; // 16px no mobile
+      line-height: 1.7;
+      max-width: 100%; // Largura total no mobile
+    }
   }
 }
 
@@ -230,6 +392,16 @@
   border: var(--border-medium);
   box-shadow: var(--shadow-md);
   transition: all $transition-normal;
+  margin: 0; // Remover margens
+  padding-top: 0; // Garantir que não há padding-top
+
+  // Quando dentro de image-wrapper (layout lado a lado)
+  .about__image-wrapper & {
+    padding-bottom: 140%; // Proporção mais alta para ocupar mais espaço vertical
+    min-height: 600px; // Altura mínima
+    object-fit: cover; // Garantir que a imagem preencha o espaço
+    padding-top: 0; // Garantir que não há padding-top
+  }
 
   // Quando dentro de image-center, usar max-width
   .about__image-center & {
@@ -536,30 +708,6 @@
     }
   }
 
-  @include mobile {
-    padding: $spacing-lg;
-  }
-}
-
-.about__value-icon {
-  font-size: 2.5rem;
-  color: var(--color-blue-primary);
-  margin-bottom: $spacing-sm;
-  transition: all $transition-normal;
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-
-  @include tablet {
-    font-size: 2.25rem;
-  }
-
-  @include mobile {
-    font-size: 2rem;
-  }
-}
-
-.about__value {
   h4 {
     font-size: 1.125rem;
     font-weight: $font-weight-semibold;
@@ -583,6 +731,10 @@
     z-index: 1;
   }
 
+  @include mobile {
+    padding: $spacing-lg;
+  }
+
   @include tablet {
     padding: $spacing-md;
 
@@ -593,6 +745,24 @@
     p {
       font-size: 0.8125rem;
     }
+  }
+}
+
+.about__value-icon {
+  font-size: 2.5rem;
+  color: var(--color-blue-primary);
+  margin-bottom: $spacing-sm;
+  transition: all $transition-normal;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+
+  @include tablet {
+    font-size: 2.25rem;
+  }
+
+  @include mobile {
+    font-size: 2rem;
   }
 }
 

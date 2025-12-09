@@ -61,18 +61,56 @@
 
   // Hero em páginas internas (menor altura)
   &--page {
-    min-height: 40vh;
-    padding-top: calc(70px + 2rem) !important; // 70px navbar + 2rem spacing
-    padding-bottom: 2rem;
+    min-height: 50vh; // Aumentado de 40vh para mais espaço
+    padding-top: calc(70px + 3rem) !important; // 70px navbar + 3rem spacing (aumentado)
+    padding-bottom: 4rem; // Aumentado para criar espaço de transição
     padding-left: $spacing-md;
     padding-right: $spacing-md;
     align-items: flex-start; // Alinhar conteúdo no topo (não centralizar)
     justify-content: flex-start; // Alinhar no topo também
+    position: relative;
+
+    // Gradiente fade-out na parte inferior para transição suave (mais visível)
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px; // Aumentado para ser mais visível
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(var(--color-bg-secondary-rgb, 249, 250, 251), 0.3) 40%,
+        var(--color-bg-secondary) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    // Elemento decorativo mais visível
+    &::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: 3%;
+      width: 300px; // Aumentado
+      height: 300px; // Aumentado
+      background: radial-gradient(
+        circle,
+        rgba(var(--color-blue-primary-rgb), 0.08) 0%,
+        rgba(var(--color-blue-primary-rgb), 0.04) 40%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: 0;
+      animation: float 25s ease-in-out infinite;
+    }
 
     @include mobile {
-      min-height: 30vh;
-      padding-top: calc(70px + 1.5rem) !important;
-      padding-bottom: 1.5rem;
+      min-height: 40vh; // Aumentado de 30vh
+      padding-top: calc(70px + 2rem) !important;
+      padding-bottom: 3rem; // Aumentado
     }
   }
 }
@@ -80,10 +118,20 @@
 .hero__content {
   @include container;
   text-align: center;
-  z-index: 1;
+  z-index: 2; // Acima do gradiente de transição
   position: relative;
   max-width: 1000px; // Aumentado para ocupar mais espaço
   padding: $spacing-lg 0; // Adicionar padding vertical
+
+  // Quando dentro de hero--page, melhorar espaçamento
+  .hero--page & {
+    padding: $spacing-xl 0 $spacing-xxl 0; // Mais espaço vertical
+    text-align: center; // Manter centralizado
+
+    @include mobile {
+      padding: $spacing-lg 0 $spacing-xl 0;
+    }
+  }
 }
 
 .hero__title {
@@ -139,8 +187,24 @@
     animation: fadeInUp 0.8s ease-out 0.4s both;
   }
 
+  // Ajuste para hero--page
+  .hero--page & {
+    font-size: 1.25rem; // Tamanho adequado para páginas internas
+    text-align: center; // Manter centralizado
+    margin-bottom: $spacing-lg; // Mais espaço abaixo
+
+    &::after {
+      margin: $spacing-md auto 0; // Centralizar linha decorativa
+      width: 60px; // Largura menor para páginas internas
+    }
+  }
+
   @include mobile {
     font-size: 1.5rem; // Aumentado de 1.25rem
+
+    .hero--page & {
+      font-size: 1.125rem; // Tamanho para mobile em páginas internas
+    }
   }
 
   // Suporte para prefers-reduced-motion
@@ -234,17 +298,12 @@
     transition: all $transition-normal;
     position: relative;
 
-    // Efeito hover melhorado
+    // Efeito hover simples (sem brilho)
     &:hover {
       transform: translateY(-4px);
 
       .hero__stats-item-number {
-        transform: scale(1.1);
-        text-shadow: 0 0 20px rgba(var(--color-blue-primary-rgb), 0.5);
-
-        &::after {
-          opacity: 1;
-        }
+        transform: scale(1.05);
       }
 
       .hero__stats-item-label {
@@ -261,22 +320,8 @@
       margin-bottom: $spacing-sm; // Aumentado
       transition: all $transition-normal;
       position: relative;
-
-      // Efeito de glow/brilho
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120%;
-        height: 120%;
-        background: radial-gradient(circle, rgba(var(--color-blue-primary-rgb), 0.2) 0%, transparent 70%);
-        border-radius: 50%;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity $transition-normal;
-      }
+      backface-visibility: hidden; // Melhora performance da animação
+      -webkit-font-smoothing: antialiased; // Melhora renderização do texto
     }
 
     &-label {
@@ -409,6 +454,10 @@
   @include mobile {
     width: 100%;
     justify-content: center;
+    padding: $spacing-sm $spacing-md; // Reduzido para mobile
+    font-size: 0.875rem; // Reduzido para mobile
+    min-height: 44px; // Reduzido para mobile (tamanho padrão de toque)
+    gap: $spacing-xs; // Reduzido para mobile
   }
 }
 

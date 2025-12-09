@@ -45,6 +45,8 @@
 .fade-in {
  opacity: 0;
  will-change: opacity;
+ /* Garantir que elementos ocupem espaço mesmo quando invisíveis */
+ visibility: visible;
 }
 
 .fade-in.animate-in {
@@ -56,6 +58,8 @@
  opacity: 0;
  transform: translateY(30px) scale(0.98);
  will-change: opacity, transform;
+ /* Garantir que elementos ocupem espaço mesmo quando invisíveis */
+ visibility: visible;
 }
 
 .slide-up.animate-in {
@@ -67,6 +71,8 @@
  opacity: 0;
  transform: translateY(20px) scale(0.98);
  will-change: opacity, transform;
+ /* Garantir que elementos ocupem espaço mesmo quando invisíveis */
+ visibility: visible;
 }
 
 .stagger-animation.animate-in {
@@ -96,6 +102,32 @@
  animation-fill-mode: forwards;
 }
 
+/* Animação simples para números durante contagem (similar aos ícones) */
+@keyframes numberFadeIn {
+ from {
+  opacity: 0;
+  transform: translateY(8px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+/* Estado inicial dos números - invisível até começar a contar */
+.hero__stats-item-number[data-count],
+.stats__number[data-count] {
+ opacity: 0;
+ transform: translateY(8px);
+ transition: none;
+}
+
+/* Aplicar animação suave aos números durante contagem */
+.hero__stats-item-number.counting,
+.stats__number.counting {
+ animation: numberFadeIn 0.5s ease-out forwards;
+}
+
 /* Suporte para prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
  .fade-in,
@@ -121,5 +153,15 @@
  .page-exiting {
   opacity: 1;
   transition: none;
+ }
+
+ .hero__stats-item-number,
+ .stats__number {
+  animation: none;
+ }
+
+ .hero__stats-item-number::before,
+ .stats__number::before {
+  animation: none;
  }
 }
