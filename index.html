@@ -115,71 +115,6 @@
   </script>
 
   <!-- CSS será importado via JavaScript (app.js) para garantir processamento pelo Vite -->
-  
-  <!-- Debug: Verificar se CSS está carregando -->
-  <script>
-    (function() {
-      'use strict';
-      // Verificar se CSS foi carregado após 2 segundos
-      setTimeout(function() {
-        const testEl = document.createElement('div');
-        testEl.style.cssText = 'position:fixed;top:10px;right:10px;background:#ef4444;color:#fff;padding:10px;z-index:999999;font-size:12px;border-radius:4px;max-width:300px;';
-        const computedStyle = window.getComputedStyle(document.body);
-        const fontFamily = computedStyle.fontFamily;
-        
-        // Verificar se há link CSS no documento
-        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-        const viteCssLink = Array.from(cssLinks).find(link => 
-          link.href && (link.href.includes('/assets/') || link.href.includes('style-'))
-        );
-        
-        if (!fontFamily || fontFamily.includes('serif') || fontFamily === 'initial') {
-          let debugInfo = '⚠️ CSS NÃO CARREGADO<br>';
-          debugInfo += 'Font: ' + (fontFamily || 'undefined') + '<br>';
-          
-          if (viteCssLink) {
-            debugInfo += 'CSS Link: ' + viteCssLink.href + '<br>';
-            debugInfo += 'Status: Verificando...';
-            
-            // Tentar carregar CSS manualmente
-            const testLink = document.createElement('link');
-            testLink.rel = 'stylesheet';
-            testLink.href = viteCssLink.href.replace('crossorigin', '').split(' ')[0];
-            testLink.onerror = function() {
-              testEl.innerHTML = debugInfo + '<br>❌ Erro ao carregar CSS!';
-              console.error('[DEBUG] Erro ao carregar CSS:', testLink.href);
-            };
-            testLink.onload = function() {
-              testEl.style.background = '#10b981';
-              testEl.innerHTML = '✅ CSS CARREGADO MANUALMENTE<br>Font: ' + fontFamily.substring(0, 30);
-              setTimeout(function() {
-                testEl.remove();
-              }, 3000);
-            };
-            document.head.appendChild(testLink);
-          } else {
-            debugInfo += '❌ Link CSS não encontrado!';
-          }
-          
-          testEl.innerHTML = debugInfo;
-          document.body.appendChild(testEl);
-          
-          console.error('[DEBUG] CSS não carregado! Font family:', fontFamily);
-          console.error('[DEBUG] Links CSS encontrados:', cssLinks.length);
-          if (viteCssLink) {
-            console.error('[DEBUG] Link CSS do Vite:', viteCssLink.href);
-          }
-        } else {
-          testEl.style.background = '#10b981';
-          testEl.innerHTML = '✅ CSS CARREGADO<br>Font: ' + fontFamily.substring(0, 30);
-          document.body.appendChild(testEl);
-          setTimeout(function() {
-            testEl.remove();
-          }, 3000);
-        }
-      }, 2000);
-    })();
-  </script>
 
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
@@ -238,11 +173,6 @@
    <!-- Hero Section -->
    <section id="hero" class="hero">
     <div class="hero__content">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 4rem; color: #0066cc;">
-      <i class="fas fa-desktop" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: HERO SECTION]</span>
-     </div>
      <h1 class="hero__title fade-in">
       Soluções completas em<br />
       <strong>Suporte de Informática</strong>
@@ -301,11 +231,6 @@
    <!-- Resumo de Serviços -->
    <section id="servicos-resumo" class="services section fade-in">
     <div class="services__container">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 3rem; color: #10b981;">
-      <i class="fas fa-server" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: SERVIÇOS SECTION]</span>
-     </div>
      <div class="section-title slide-up">
       <h2>Nossos serviços</h2>
       <p>
@@ -315,11 +240,6 @@
      </div>
      <div class="services__grid">
       <article class="service-card stagger-animation">
-       <!-- Logo de Debug no Card -->
-       <div style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: #0066cc;">
-        <i class="fas fa-bug" aria-hidden="true"></i>
-        <span style="display: block; font-size: 0.7rem; color: #ef4444; font-weight: bold;">[CARD 1]</span>
-       </div>
        <div class="service-card__icon">
         <i class="fas fa-laptop" aria-hidden="true"></i>
        </div>
@@ -334,11 +254,6 @@
        </a>
       </article>
       <article class="service-card stagger-animation">
-       <!-- Logo de Debug no Card -->
-       <div style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: #10b981;">
-        <i class="fas fa-bug" aria-hidden="true"></i>
-        <span style="display: block; font-size: 0.7rem; color: #ef4444; font-weight: bold;">[CARD 2]</span>
-       </div>
        <div class="service-card__icon">
         <i class="fas fa-shield-alt" aria-hidden="true"></i>
        </div>
@@ -353,11 +268,6 @@
        </a>
       </article>
       <article class="service-card stagger-animation">
-       <!-- Logo de Debug no Card -->
-       <div style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: #f59e0b;">
-        <i class="fas fa-bug" aria-hidden="true"></i>
-        <span style="display: block; font-size: 0.7rem; color: #ef4444; font-weight: bold;">[CARD 3]</span>
-       </div>
        <div class="service-card__icon">
         <i class="fas fa-server" aria-hidden="true"></i>
        </div>
@@ -382,11 +292,6 @@
    <!-- Resumo Sobre -->
    <section id="sobre-resumo" class="about section fade-in">
     <div class="about__container">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 3rem; color: #f59e0b;">
-      <i class="fas fa-building" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: SOBRE SECTION]</span>
-     </div>
      <div class="section-title slide-up">
       <h2>Sobre nós</h2>
       <p>Conheça a empresa que está transformando a gestão de TI no Brasil</p>
@@ -454,17 +359,11 @@
       </div>
      </div>
     </div>
-    </div>
    </section>
 
    <!-- Benefícios/Diferenciais -->
    <section id="beneficios" class="benefits section fade-in">
     <div class="benefits__container">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 3rem; color: #8b5cf6;">
-      <i class="fas fa-star" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: BENEFÍCIOS SECTION]</span>
-     </div>
      <div class="section-title slide-up">
       <h2>Nossos diferenciais</h2>
       <p>O que nos torna a melhor escolha para sua empresa</p>
@@ -522,11 +421,6 @@
    <!-- Depoimentos -->
    <section id="depoimentos" class="testimonials section fade-in">
     <div class="testimonials__container">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 3rem; color: #ec4899;">
-      <i class="fas fa-comments" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: DEPOIMENTOS SECTION]</span>
-     </div>
      <div class="section-title slide-up">
       <h2>O que nossos clientes dizem</h2>
       <p>Depoimentos de quem confia na NT Informática</p>
@@ -601,11 +495,6 @@
    <!-- CTA Contato -->
    <section id="cta-contato" class="contact contact-cta section fade-in">
     <div class="contact-cta__container">
-     <!-- Logo de Debug -->
-     <div style="text-align: center; margin-bottom: 2rem; font-size: 3rem; color: #06b6d4;">
-      <i class="fas fa-envelope" aria-hidden="true"></i>
-      <span style="display: block; font-size: 1rem; margin-top: 0.5rem; color: #ef4444; font-weight: bold;">[DEBUG: CTA CONTATO SECTION]</span>
-     </div>
      <!-- Título e descrição -->
      <div class="section-title slide-up">
       <h2 class="contact-cta__title">
@@ -654,7 +543,5 @@
   <script type="module" src="./assets/js/toast.js"></script>
   <script type="module" src="./assets/js/app.js"></script>
   <script type="module" src="./assets/js/main.js"></script>
-  <!-- Debug: Verificar se CSS está carregando -->
-  <script src="./assets/js/css-debug.js"></script>
  </body>
 </html>

@@ -79,8 +79,6 @@ export default defineConfig({
         // Processar após build completo (garantir que todos os HTMLs sejam processados)
         writeBundle(options, bundle) {
           if (isProduction) {
-            // Verificar se há referências a .scss nos arquivos JavaScript compilados
-            console.log('[Vite Plugin] Verificando bundle por referências a .scss...');
             const jsFiles = Object.keys(bundle).filter(key => key.endsWith('.js'));
             jsFiles.forEach(fileName => {
               const file = bundle[fileName];
@@ -122,7 +120,6 @@ export default defineConfig({
                 
                 if (html !== before) {
                   writeFileSync(filePath, html, 'utf-8');
-                  console.log(`[Vite Plugin] ✅ Crossorigin removido de ${fileName}`);
                 }
                 
                 // VALIDAÇÃO FINAL: Verificar se crossorigin ainda está presente
@@ -133,13 +130,8 @@ export default defineConfig({
                   process.exit(1); // Falhar o build se crossorigin ainda estiver presente
                 }
                 
-                console.log(`[Vite Plugin] ✅ ${fileName} validado: sem crossorigin`);
-                
-                // Verificar se CSS foi gerado corretamente
                 const cssLinks = html.match(/href=["']([^"']*\.css[^"']*)["']/gi);
-                if (cssLinks && cssLinks.length > 0) {
-                  console.log(`[Vite Plugin] ✅ ${fileName} tem ${cssLinks.length} link(s) CSS:`, cssLinks.map(l => l.match(/href=["']([^"']+)["']/)?.[1]).join(', '));
-                } else {
+                if (!cssLinks || cssLinks.length === 0) {
                   console.warn(`[Vite Plugin] ⚠️ ${fileName} NÃO tem links CSS!`);
                 }
               }
@@ -182,7 +174,6 @@ export default defineConfig({
       }
     },
     cssCodeSplit: false,
-    // Minificar mas manter estrutura legível para debug
     minify: isProduction ? 'esbuild' : false
   },
   publicDir: 'public',

@@ -42,6 +42,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
  // Inicializar FAQ (apenas onde existir)
  initFaqAccordion();
-
- console.log('NT Informática - Site carregado com sucesso');
 });
