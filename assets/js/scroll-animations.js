@@ -8,38 +8,49 @@ const prefersReducedMotion = window.matchMedia(
  '(prefers-reduced-motion: reduce)'
 ).matches;
 
-// Configuração do Intersection Observer
+// Configuração do Intersection Observer - mais agressivo para carregar junto com o scroll
 const observerOptions = {
  root: null,
- rootMargin: '0px 0px -80px 0px', // Iniciar animação quando elemento estiver 80px antes da viewport (mais cedo = mais suave)
- threshold: 0.15, // Aumentado para iniciar quando mais visível
+ rootMargin: '0px 0px -200px 0px', // Iniciar animação quando elemento estiver 200px antes da viewport
+ threshold: 0.01, // Muito baixo para detectar elementos assim que começam a aparecer
 };
 
 /**
  * Inicializa animações de scroll
  */
 /**
- * Animar contador de números
+ * Função de easing circular (ease-out) para animação suave
+ * Retorna um valor entre 0 e 1 baseado no progresso (0 a 1)
  */
-function animateCounter(element, target, duration = 2000) {
+function easeOutCirc(t) {
+ return Math.sqrt(1 - Math.pow(t - 1, 2));
+}
+
+/**
+ * Animar contador de números com easing circular suave
+ */
+function animateCounter(element, target, duration = 2500) {
  const isPercentage = target.includes('%');
  const isPlus = target.includes('+');
  const numericTarget = parseInt(target.replace(/[^0-9]/g, ''));
  const start = 0;
- const increment = numericTarget / (duration / 16); // 60fps
- let current = start;
+ const startTime = performance.now();
 
  // Função para formatar número com pontos
  const formatNumber = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
  };
 
- const timer = setInterval(() => {
-  current += increment;
-  if (current >= numericTarget) {
-   current = numericTarget;
-   clearInterval(timer);
-  }
+ // Adicionar classe para transição suave
+ element.style.transition = 'none';
+
+ const animate = (currentTime) => {
+  const elapsed = currentTime - startTime;
+  const progress = Math.min(elapsed / duration, 1);
+  
+  // Aplicar easing circular (começa rápido e desacelera suavemente)
+  const easedProgress = easeOutCirc(progress);
+  const current = start + (numericTarget - start) * easedProgress;
 
   let displayValue = Math.floor(current);
   
@@ -52,7 +63,16 @@ function animateCounter(element, target, duration = 2000) {
   if (isPercentage) displayValue = `${displayValue}%`;
 
   element.textContent = displayValue;
- }, 16);
+
+  if (progress < 1) {
+   requestAnimationFrame(animate);
+  } else {
+   // Finalizar animação
+   element.textContent = target; // Garantir valor final exato
+  }
+ };
+
+ requestAnimationFrame(animate);
 }
 
 export function initScrollAnimations() {
@@ -85,8 +105,9 @@ export function initScrollAnimations() {
  }, observerOptions);
 
  // Observar elementos com classes de animação
- const fadeInElements = document.querySelectorAll('.fade-in');
- const slideUpElements = document.querySelectorAll('.slide-up');
+ // Excluir elementos que estão dentro de grupos com stagger-animation (serão animados pelo grupo)
+ const fadeInElements = document.querySelectorAll('.fade-in:not(.stagger-animation .fade-in)');
+ const slideUpElements = document.querySelectorAll('.slide-up:not(.stagger-animation .slide-up)');
  const staggerElements = document.querySelectorAll('.stagger-animation');
 
  [...fadeInElements, ...slideUpElements, ...staggerElements].forEach((el) => {
@@ -104,6 +125,21 @@ export function initScrollAnimations() {
      const delay = index * 80; // Reduzido para 80ms (mais fluido)
      setTimeout(() => {
       entry.target.classList.add('animate-in');
+
+      // Animar também os elementos filhos com fade-in e slide-up dentro do grupo IMEDIATAMENTE
+      // (sem delay adicional para que apareçam junto com o scroll)
+      const childFadeInElements = entry.target.querySelectorAll('.fade-in');
+      const childSlideUpElements = entry.target.querySelectorAll('.slide-up');
+      
+      childFadeInElements.forEach((child) => {
+       // Animar imediatamente quando o grupo pai for animado
+       child.classList.add('animate-in');
+      });
+      
+      childSlideUpElements.forEach((child) => {
+       // Animar imediatamente quando o grupo pai for animado
+       child.classList.add('animate-in');
+      });
 
       // Remover will-change após animação para otimizar performance
       setTimeout(() => {
@@ -130,7 +166,18 @@ export function initScrollAnimations() {
     if (entry.isIntersecting && !entry.target.dataset.animated) {
      const target = entry.target.textContent.trim();
      entry.target.dataset.animated = 'true';
-     animateCounter(entry.target, target, 2000);
+     
+     // Adicionar classe para ativar animação CSS
+     entry.target.classList.add('counting');
+     
+     // Iniciar animação do contador
+     animateCounter(entry.target, target, 2500);
+     
+     // Remover classe após animação
+     setTimeout(() => {
+      entry.target.classList.remove('counting');
+     }, 2500);
+     
      statsObserver.unobserve(entry.target);
     }
    });
