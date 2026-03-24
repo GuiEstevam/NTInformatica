@@ -9,10 +9,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Determinar base path baseado no ambiente
-// '/NTInformatica/' para produção (subpasta no GitHub Pages)
+// '/' para Vercel (deploy na raiz)
+// '/NTInformatica/' para GitHub Pages (subpasta)
 // './' para desenvolvimento local
 const isProduction = process.env.NODE_ENV === 'production';
-const basePath = isProduction ? '/NTInformatica/' : './';
+const isVercel = process.env.VERCEL === '1';
+const basePath = !isProduction ? './' : isVercel ? '/' : '/NTInformatica/';
 
 export default defineConfig({
   root: '.',

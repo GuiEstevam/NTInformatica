@@ -5,10 +5,9 @@
   "installCommand": "npm install",
   "framework": null,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/servicos", "destination": "/servicos.html" },
+    { "source": "/sobre", "destination": "/sobre.html" },
+    { "source": "/contato", "destination": "/contato.html" }
   ]
 }
 
